@@ -4,6 +4,8 @@ import os
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = False
@@ -22,7 +24,7 @@ DATABASES = {
 
 
 sentry_sdk.init(
-    dsn="https://17e5b37213464b05a42d9f2171116080@o570822.ingest.sentry.io/5741629",
+    dsn=os.getenv('SENTRY_DSN'),
     integrations=[DjangoIntegration()],
 
     traces_sample_rate=1.0,
