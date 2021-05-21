@@ -9,7 +9,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = False
-ALLOWED_HOSTS = os.getenv('167.71.39.195')
+ALLOWED_HOSTS = ['165.22.23.75', 'localhost']
 
 DATABASES = {
     'default': {
