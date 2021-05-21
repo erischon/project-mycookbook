@@ -1,0 +1,14 @@
+[flake8]
+exclude =
+    migrations,
+    __pycache__,
+    manage.py,
+    settings.py,
+    .venv,
+    htmlcov,
+    config
+    accounts
+
+ignore =
+    E501,
+    

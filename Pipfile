@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 django = "*"
 psycopg2 = "*"
+flake8 = "*"
+coverage = "*"
 
 [dev-packages]
 
