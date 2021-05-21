@@ -7,8 +7,8 @@ exclude =
     .venv,
     htmlcov,
     config
-    accounts
 
 ignore =
     E501,
+    F401,
     
