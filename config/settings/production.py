@@ -5,8 +5,6 @@ import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-STATICFILES_DIRS = ''
-
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 SECRET_KEY = os.getenv('SECRET_KEY')
