@@ -9,6 +9,7 @@ psycopg2 = "*"
 flake8 = "*"
 coverage = "*"
 sentry-sdk = "*"
+gunicorn = "*"
 
 [dev-packages]
 
