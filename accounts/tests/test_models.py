@@ -5,17 +5,20 @@ from django.test import TestCase
 class CustomUserTests(TestCase):
 
     def setUp(self):
-        User = get_user_model()
-        self.user = User.objects.create_user(
+        self.client = get_user_model()
+
+    def test_create_user(self):
+        """ """
+        
+        response = get_user_model().objects.create_user(
             username='test',
             email='test@erischon.dev',
             password='testpass123'
         )
 
-    def test_create_user(self):
-        """ """
-        self.assertEqual(self.user.username, 'test')
-        self.assertEqual(self.user.email, 'test@erischon.dev')
-        self.assertTrue(self.user.is_active)
-        self.assertFalse(self.user.is_staff)
-        self.assertFalse(self.user.is_superuser)
+        self.assertEqual(response.username, 'test')
+        self.assertEqual(response.email, 'test@erischon.dev')
+        self.assertTrue(response.check_password('testpass123'))
+        self.assertTrue(response.is_active)
+        self.assertFalse(response.is_staff)
+        self.assertFalse(response.is_superuser)
