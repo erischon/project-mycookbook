@@ -9,7 +9,6 @@ class CustomUserTests(TestCase):
 
     def test_create_user(self):
         """ """
-        
         response = get_user_model().objects.create_user(
             username='test',
             email='test@erischon.dev',
