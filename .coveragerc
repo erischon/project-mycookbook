@@ -4,6 +4,6 @@ omit=
     */__init__.py
     manage.py
     */config/*
-
+    */tests/*
 
     *.venv/*
