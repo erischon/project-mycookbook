@@ -1,11 +1,19 @@
+{% extends 'core/_base.html' %}{% load static %}
 
-<h1>Homepage</h1>
+{% block title %}My CookBook - Accueil{% endblock title %}
 
-{% if user.is_authenticated %}
-  Hi {{ user.username }}!
-  <p><a href="{% url 'logout' %}">Log Out</a></p>
-{% else %}
-  <p>You are not logged in</p>
-  <a href="{% url 'login' %}">Log In</a>
-  <a href="{% url 'signup' %}">Sign Up</a>
-{% endif %}
+{% block content %}
+
+  <h1 class="text-5xl font-bold">Homepage</h1>
+
+  {% if user.is_authenticated %}
+    Hi {{ user.username }}!
+    <p><a href="{% url 'logout' %}">Log Out</a></p>
+  {% else %}
+    <p>You are not logged in</p>
+    <a href="{% url 'login' %}">Log In</a>
+    <a href="{% url 'signup' %}">Sign Up</a>
+  {% endif %}
+
+{% endblock content %}
+
