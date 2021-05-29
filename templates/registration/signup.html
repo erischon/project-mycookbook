@@ -1,19 +1,30 @@
-<h2>Sign Up</h2>
+{% extends 'core/_base.html' %}{% load static %}
+
+{% block title %}My CookBook - Inscription{% endblock title %}
+
+{% block content %}
+  <div class="flex items-center place-content-center m-5 p-5 flex-col bg-gray-300">
+
+  <h2 class="font-bold text-2xl">Inscription</h2>
+
   <form method="post">
     {% csrf_token %}
-                   {% for field in form %}
-                <p>
-                    {{ field.label_tag }}<br>
-                    {{ field }}
+    {% for field in form %}
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
 
-                    {% if field.help_text %}
-                        <small style="color: grey">{{ field.help_text }}</small>
-                    {% endif %}
+        {% if field.help_text %}
+            <small style="color: grey">{{ field.help_text }}</small>
+        {% endif %}
 
-                    {% for error in field.errors %}
-                        <p style="color: red">{{ error }}</p>
-                    {% endfor %}
-                </p>
-                {% endfor %}
+        {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+{% endfor %}
     <button type="submit">Sign Up</button>
   </form>
+
+  </div>
+{% endblock content %}

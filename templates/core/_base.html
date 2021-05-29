@@ -12,11 +12,11 @@
     <title>{% block title %}My CookBook{% endblock title%}</title>
 </head>
 <body class="font-sans tracking-wide leading-relaxed">
-    <div class="grid grid-cols-1 grid-rows-6 gap-y-6 content-center bg-orange-400 grid-flow-row">
+    <div class="grid grid-cols-1 grid-rows-6 gap-y-6 content-center grid-flow-row">
 
         <!-- Header -->
-        <nav class="flex items-center justify-between flex-wrap bg-gray-900 p-5">
-            <div class="flex items-center flex-shrink-0 text-white ml-6 mr-8">
+        <nav class="flex items-center justify-between flex-wrap bg-white p-5 border border-b-0 border-gray-200">
+            <div class="flex items-center flex-shrink-0 text-black ml-6 mr-8">
                 <img class="fill-current h-8 w-8 mr-2" width="54" height="54" src="{% static 'assets/img/chef.svg' %}">
                 <span class="font-semibold text-xl tracking-tight">My CookBook</span>
             </div>
@@ -27,16 +27,16 @@
             </div> -->
             <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
                 <div class="font-semibold lg:flex-grow">
-                    <a href="#" class="block mt-4 lg:inline-block lg:mt-0 text-teal-300 hover:text-white mr-4">Accueil</a>
+                    <a href="{% url 'home' %}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-600 hover:text-black mr-4">Accueil</a>
                 </div>
-                <div class="mr-8">
+                <div class="mr-8 font-semibold">
                     {% if user.is_authenticated %}
-                        <a href="#" class="block mt-4 lg:inline-block lg:mt-0 text-teal-300 hover:text-white mr-4">Mon Compte</a>
-                        <a href="{% url 'logout' %}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-300 hover:text-white mr-4">Log Out</a>
+                        <a href="#" class="block mt-4 lg:inline-block lg:mt-0 text-teal-600 hover:text-black mr-4">Mon Compte</a>
+                        <a href="{% url 'logout' %}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-300 hover:text-black mr-4">Log Out</a>
 
                     {% else %}
-                        <a href="{% url 'login' %}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-300 hover:text-white mr-4">Log In</a>
-                        <a href="{% url 'signup' %}" class="inline-block font-semibold text-sm px-4 py-2 leading-none border text-black border-teal-300 hover:border-transparent hover:text-black bg-teal-300 hover:bg-white mt-4 lg:mt-0 uppercase">Inscription</a>
+                        <a href="{% url 'login' %}" class="block mt-4 lg:inline-block lg:mt-0 text-teal-600 hover:text-black mr-4">Log In</a>
+                        <a href="{% url 'signup' %}" class="inline-block text-sm px-4 py-2 leading-none border text-black border-teal-300 hover:border-black hover:text-black bg-teal-300 hover:bg-white mt-4 lg:mt-0 uppercase">Inscription</a>
 
                     {% endif %}
                 </div>
@@ -44,17 +44,17 @@
         </nav>
 
         <!-- Body -->
-        <div class="bg-blue-500 row-span-4">
+        <div class="row-span-4 justify-self-center">
             {% block content %}
             {% endblock content %}
         </div>
 
         <!-- Footer -->
-        <footer class="bg-gray-400">
+        <footer class="bg-gray-800">
             <p>Footer</p>
         </footer>
     </div>
 
-<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </body>
 </html>
