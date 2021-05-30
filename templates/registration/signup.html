@@ -3,27 +3,29 @@
 {% block title %}My CookBook - Inscription{% endblock title %}
 
 {% block content %}
-  <div class="flex items-center place-content-center m-5 p-5 flex-col bg-gray-300">
+  <div class="mx-auto flex items-center place-content-center p-5 flex-col bg-white text-black shadow-xl border-2 border-gray-700 sm:w-3/4 md:w-1/2 lg:w-1/2">
 
-  <h2 class="font-bold text-2xl">Inscription</h2>
+  <h2 class="font-bold text-2xl mb-5">Inscription</h2>
 
-  <form method="post">
+  <form method="post" class="w-full p-8">
     {% csrf_token %}
     {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
+      <p class="p-2 flex flex-col appearance-none gap-1">
+        {{ field.label_tag }}  {{ field }} 
 
-        {% if field.help_text %}
+        <!-- {% if field.help_text %}
             <small style="color: grey">{{ field.help_text }}</small>
-        {% endif %}
+        {% endif %} -->
 
         {% for error in field.errors %}
             <p style="color: red">{{ error }}</p>
         {% endfor %}
       </p>
-{% endfor %}
-    <button type="submit">Sign Up</button>
+    {% endfor %}
+    <div class="flex items-center justify-between w-full my-4 px-6 flex-col sm:flex-row">
+      <button type="submit" class="bg-gray-700 text-sm text-white font-bold px-4 py-2 uppercase rounded focus:outline-none focus:shadow-outline w-full sm:w-auto">Sign Up</button>
+      <a class="inline-block align-baseline font-bold text-sm text-gray-600 hover:text-gray-500" href="#">Password oublié ?</a>
+    </div>
   </form>
 
   </div>
