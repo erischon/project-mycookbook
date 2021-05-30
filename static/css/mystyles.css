@@ -7,3 +7,7 @@ input, textarea {
 input:focus, textarea:focus {
     outline: none;
 }
+
+.bg-sympa {
+    background: linear-gradient(124deg, rgba(45,69,88,1) 49%, rgba(45,69,88,0.9531162806919643) 77%);
+}

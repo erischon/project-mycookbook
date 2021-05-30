@@ -13,10 +13,10 @@
     <title>{% block title %}My CookBook{% endblock title%}</title>
 </head>
 <body class="font-sans tracking-wide leading-relaxed">
-    <div class="mx-auto grid grid-cols-1 grid-rows-6 gap-y-6 content-center grid-flow-row px-4 py-2">
+    <div class="mx-auto grid grid-cols-1 grid-rows-6 content-center grid-flow-row">
 
         <!-- Header -->
-        <nav class="flex items-center justify-between flex-wrap bg-white p-5 border border-b-1 border-gray-200 lg:max-w-screen-lg">
+        <nav class="flex justify-between justify-self-center flex-wrap bg-white p-5 border border-b-1 border-gray-200 lg:max-w-screen-lg w-full">
             <div class="flex items-center flex-shrink-0 text-black ml-6 mr-8">
                 <img class="fill-current h-8 w-8 mr-2" width="54" height="54" src="{% static 'assets/img/chef.svg' %}">
                 <span class="font-semibold text-xl tracking-tight border-b-2 border-transparent">My CookBook</span>
@@ -45,7 +45,7 @@
         </nav>
 
         <!-- Body --> 
-        <div class="row-span-4 justify-self-center w-full px-10 lg:max-w-screen-lg">
+        <div class="row-span-4 justify-self-center w-screen px-10">
             {% block content %}
             {% endblock content %}
         </div>

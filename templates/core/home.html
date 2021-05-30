@@ -3,17 +3,16 @@
 {% block title %}My CookBook - Accueil{% endblock title %}
 
 {% block content %}
+  <div class="grid-cols-12 bg-red w-screen">
 
-  <h1 class="text-5xl font-bold">Homepage</h1>
+    <div class="py-5 w-full flex flex-cols justify-items-center">
+      <div class="px-6 mx-auto text-black justify-items-center">
+        <h1 class="font-extrabold text-6xl">My CookBook</h1>
+        <h2 class="text-4xl font-bold mb-2 text-center">Ne perdez plus vos recettes,<br> organisez vos repas,<br> faites vos courses facilement.</h2>
+        <button class="bg-white font-bold rounded py-4 px-8 shadow-lg uppercase tracking-wider justify-self-center">Inscription</button>
+      </div>
+    </div>
 
-  {% if user.is_authenticated %}
-    Hi {{ user.username }}!
-    <p><a href="{% url 'logout' %}">Log Out</a></p>
-  {% else %}
-    <p>You are not logged in</p>
-    <a href="{% url 'login' %}">Log In</a>
-    <a href="{% url 'signup' %}">Sign Up</a>
-  {% endif %}
-
+  </div>
 {% endblock content %}
 
