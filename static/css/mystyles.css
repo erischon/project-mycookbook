@@ -11,3 +11,10 @@ input:focus, textarea:focus {
 .bg-sympa {
     background: linear-gradient(124deg, rgba(45,69,88,1) 49%, rgba(45,69,88,0.9531162806919643) 77%);
 }
+
+.bg-hero {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+

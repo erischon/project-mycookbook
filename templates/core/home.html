@@ -3,13 +3,16 @@
 {% block title %}My CookBook - Accueil{% endblock title %}
 
 {% block content %}
-  <div class="grid-cols-12 bg-red w-screen">
+  <div class="mx-auto grid-cols-12 w-full mb-10 lg:max-w-screen-lg">
 
-    <div class="py-5 w-full flex flex-cols justify-items-center">
-      <div class="px-6 mx-auto text-black justify-items-center">
-        <h1 class="font-extrabold text-6xl">My CookBook</h1>
-        <h2 class="text-4xl font-bold mb-2 text-center">Ne perdez plus vos recettes,<br> organisez vos repas,<br> faites vos courses facilement.</h2>
-        <button class="bg-white font-bold rounded py-4 px-8 shadow-lg uppercase tracking-wider justify-self-center">Inscription</button>
+    <div class="py-5 flex flex-col md:flex-row justify-items-center">
+      <div class="md:w-1/3 md:flex shadow" style="background-image: url('{% static 'assets/img/mycookbook-1.jpg' %}');background-size: cover; background-position: center;">
+        
+      </div>
+      <div class="md:w-2/3 mx-2 md:px-6 md:ml-6 mx-auto text-black">
+        <h1 class="font-extrabold text-4xl md:text-5xl lg:text-6xl mb-2">My CookBook</h1>
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold mb-4">Ne perdez plus vos recettes,<br> Organisez vos repas,<br> Faites vos courses facilement.</h2>
+        <button class="inline-block text-base hover:text-lg text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded font-bold">Inscription</button>
       </div>
     </div>
 
