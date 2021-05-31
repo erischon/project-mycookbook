@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def recipe_creation(request):
+    return render(request, 'cookbook/create.html')
