@@ -57,6 +57,9 @@ class Recipe(models.Model):
     ingredient = models.ManyToManyField(Ingredient)
     tags = models.ManyToManyField(Tag, blank=True)
 
+    def __str__(self):
+        return self.title
+
 
 class RecipeInfos(models.Model):
     slug = models.SlugField(max_length=200, null=True)

@@ -7,6 +7,41 @@
 
   <h1>Creation</h1>
 
+      <form method="post" action="{% url 'recipe_create' %}">
+      {% csrf_token %}
+      {% comment %} {{ recipe_form.as_p }} {% endcomment %}
+
+      <div class="">
+        {{ recipe_form.title.label }}
+        {{ recipe_form.title }}
+      </div>
+
+      <div class="">
+        {{ recipe_form.description.label }}
+        {{ recipe_form.description }}
+      </div>
+      
+      <div class="">
+        {{ recipe_form.prep_time.label }}
+        {{ recipe_form.prep_time }}
+      </div>
+
+
+      <p>Ingrédients</p>
+
+      {{ ingredient_form.as_p }}
+
+      {{ ingredient_form.name }}
+
+
+      {{ quantity_form.as_p }}
+
+
+      <div class="">
+        <button class="" type="submit">Envoyer</button>
+      </div>
+    </form>
+
 </div>
 {% endblock content %}
 
