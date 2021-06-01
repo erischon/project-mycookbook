@@ -1,0 +1,14 @@
+{% extends 'core/_base.html' %}{% load static %}
+
+{% block title %}My CookBook - Mon Compte{% endblock title %}
+
+{% block content %}
+
+
+<p>Mon Nom : {{ user.username }}</p>
+<p>Mon Email : {{ user.email }}</p>
+<p>Mon Cookbook : <a href="{% url 'my_cookbook' %}">{{ cookbook.name }}</p></a>
+
+
+{% endblock content %}
+

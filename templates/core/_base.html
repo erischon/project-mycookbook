@@ -32,7 +32,7 @@
                 </div>
                 <div class="font-semibold">
                     {% if user.is_authenticated %}
-                        <a href="#" class="block mt-4 lg:inline-block lg:mt-0 border-b-2 border-transparent hover:border-yellow-700 mr-4">Mon Compte</a>
+                        <a href="{% url 'user_admin' %}" class="block mt-4 lg:inline-block lg:mt-0 border-b-2 border-transparent hover:border-yellow-700 mr-4">Mon Compte</a>
                         <a href="{% url 'logout' %}" class="block mt-4 lg:inline-block lg:mt-0 border-b-2 border-transparent hover:border-yellow-700 mr-4">Log Out</a>
 
                     {% else %}
