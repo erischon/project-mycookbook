@@ -3,12 +3,17 @@
 {% block title %}My CookBook - Mon Compte{% endblock title %}
 
 {% block content %}
+<div class="mx-auto grid-cols-12 w-full mb-10 lg:max-w-screen-lg">
+
+    <h1>Mon Compte</h1>
+
+    <p>Mon Nom : {{ user.username }}</p>
+    <p>Mon Email : {{ user.email }}</p>
+    <p>Mon Cookbook : <a href="{% url 'my_cookbook' %}">{{ cookbook.name }}</p></a>
+    <p>Créer un Cookbook : <a href="{% url 'cookbook_create' %}">Créer</p></a>
 
 
-<p>Mon Nom : {{ user.username }}</p>
-<p>Mon Email : {{ user.email }}</p>
-<p>Mon Cookbook : <a href="{% url 'my_cookbook' %}">{{ cookbook.name }}</p></a>
 
-
+</div>
 {% endblock content %}
 

@@ -7,8 +7,11 @@ from accounts.models import CustomUser as User
 
 
 class Cookbook(models.Model):
-    name = models.CharField(max_length=200, unique=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ['name', 'user']
 
     def __str__(self):
         return self.name
