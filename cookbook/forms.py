@@ -1,6 +1,6 @@
 from typing import ClassVar
 from django.forms import ModelForm
-from .models import *
+from .models import Cookbook
 
 
 class CookbookCreationForm(ModelForm):
@@ -8,8 +8,7 @@ class CookbookCreationForm(ModelForm):
         model = Cookbook
         fields = ['name']
 
-
 # class RecipeCreationForm(ModelForm):
 #     class Meta:
-#         model = 
+#         model = Recipe
 #         fields = ['']

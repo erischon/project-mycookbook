@@ -7,8 +7,11 @@ from accounts.models import CustomUser as User
 
 
 class Cookbook(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 
 class LinkType(models.Model):
@@ -37,13 +40,13 @@ class TagType(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=200)
-    tagtype = models.ForeignKey(TagType, on_delete=models.CASCADE)    
+    tagtype = models.ForeignKey(TagType, on_delete=models.CASCADE)
 
 
 class Recipe(models.Model):
     title = models.CharField(max_length=200)
-    description = models.TextField
-    guest = models.IntegerField
+    description = models.TextField(null=True)
+    guest = models.IntegerField(null=True)
     prep_time = models.DurationField(blank=True)
     cook_time = models.DurationField(blank=True)
     source = models.CharField(max_length=200, blank=True)
@@ -53,28 +56,29 @@ class Recipe(models.Model):
 
 
 class RecipeInfos(models.Model):
-    slug = models.SlugField
+    slug = models.SlugField(max_length=200, null=True)
     private = models.BooleanField(default=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="creator")
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="owner")
     creation_date = models.DateField(auto_now_add=True)
+    modification_date = models.DateField(auto_now=True)
 
 
 class Quantity(models.Model):
     measure = models.CharField(max_length=200)
-    quantity = models.IntegerField
+    quantity = models.IntegerField(null=True)
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
 
 
 class Instruction(models.Model):
-    step = models.IntegerField
-    instruction = models.TextField
+    step = models.IntegerField(null=True)
+    instruction = models.TextField(null=True)
     cookbook = models.ForeignKey(Cookbook, on_delete=models.CASCADE)
 
 
 class Tips(models.Model):
-    tips = models.TextField
+    tips = models.TextField(null=True)
     cookbook = models.ForeignKey(Cookbook, on_delete=models.CASCADE)
 
 
@@ -85,7 +89,7 @@ class Photo(models.Model):
 
 class Video(models.Model):
     name = models.CharField(max_length=200)
-    url = models.URLField
+    url = models.URLField(null=True)
 
 
 class Media(models.Model):
@@ -95,7 +99,7 @@ class Media(models.Model):
 
 
 class Note(models.Model):
-    note = models.TextField
+    note = models.TextField(null=True)
     cookbook = models.ForeignKey(Cookbook, on_delete=models.CASCADE)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
 
