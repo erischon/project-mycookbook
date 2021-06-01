@@ -9,10 +9,12 @@
 
     <p>Mon Nom : {{ user.username }}</p>
     <p>Mon Email : {{ user.email }}</p>
-    <p>Mon Cookbook : <a href="{% url 'my_cookbook' %}">{{ cookbook.name }}</p></a>
-    <p>Créer un Cookbook : <a href="{% url 'cookbook_create' %}">Créer</p></a>
-
-
+    
+    {% if cookbook.name %}
+        <p>Mon Cookbook : <a href="{% url 'my_cookbook' %}">{{ cookbook.name }}</p></a>
+    {% else %}
+        <p><a href="{% url 'cookbook_create' %}">Créer mon Cookbook</p></a>
+    {% endif%}
 
 </div>
 {% endblock content %}
