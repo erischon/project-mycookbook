@@ -50,18 +50,24 @@
 
 <p>&nbsp;</p>
 
-<!-- <input type="hidden" name="form-TOTAL_FORMS" value="6" id="id_form-TOTAL_FORMS">
-<input type="hidden" name="form-INITIAL_FORMS" value="3" id="id_form-INITIAL_FORMS">
-<input type="hidden" name="form-MIN_NUM_FORMS" value="0" id="id_form-MIN_NUM_FORMS">
-<input type="hidden" name="form-MAX_NUM_FORMS" value="1000" id="id_form-MAX_NUM_FORMS"> -->
+      {{ ingredient_formset.management_form }}
+      {% for ingredient_set in ingredient_formset %}
+        <div class="flex flex-rows m-4 p-5 border border-6 border-gray-500">
 
-      <!-- <div class="">
-        {{ ingredient_formset.as_p }}
-      </div> -->
+              <div class="flex p-5 gap-2">
+                {{ ingredient_set.name.label }} {{ ingredient_set.name }} 
+              </div>
 
-{% for ingredient in ingredient_formset %}
-      {{ ingredient.name }}
-{% endfor %}
+              <div class="flex p-5 gap-2">
+                {{ ingredient_set.quantity.label }} {{ ingredient_set.quantity }} 
+              </div>
+
+              <div class="flex p-5 gap-2">
+                {{ ingredient_set.measure.label }} {{ ingredient_set.measure }} 
+              </div>
+
+        </div>
+      {% endfor %}
 
 
 
@@ -71,5 +77,6 @@
     </form>
 
 </div>
+
 {% endblock content %}
 

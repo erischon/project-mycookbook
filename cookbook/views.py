@@ -1,9 +1,9 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
+from django.forms import ModelForm, modelformset_factory
 
-
-from .forms import CookbookCreationForm, IngredientFormSet, RecipeCreationForm, IngredientFormSet
-from .models import Cookbook, Ingredient
+from .forms import CookbookCreationForm, RecipeCreationForm, IngredientForm
+from .models import Cookbook, Ingredient, RecipeInfos
 
 
 @login_required
@@ -22,22 +22,35 @@ def create_cookbook(request):
 
 @login_required
 def create_recipe(request):
+    IngredientFormSet = modelformset_factory(Ingredient, form=IngredientForm)
+    data = {
+        'form-TOTAL_FORMS': '3',
+        'form-INITIAL_FORMS': '0',
+        'form-MIN_NUM_FORMS': '3',
+        'form-MAX_NUM_FORMS': '20',
+    }
+
     if request.method == 'POST':
         recipe_form = RecipeCreationForm(request.POST)
         ingredient_formset = IngredientFormSet(request.POST)
 
-        if recipe_form.is_valid():
+        if recipe_form.is_valid() and ingredient_formset.is_valid():
+            # Recipe
             recipe = recipe_form.save()
+            # Recipe Infos
+            creator = request.user
+            owner = request.user
+            RecipeInfos.objects.create(creator=creator, owner=owner, recipe=recipe)
+            # Ingredients
             ingredients = ingredient_formset.save(commit=False)
             for ingredient in ingredients:
                 ingredient.recipe = recipe
                 ingredient.save()
+
             return redirect('home')
     else:
-        form = RecipeCreationForm()
-
-    recipe_form = RecipeCreationForm()
-    ingredient_formset = IngredientFormSet()
+        recipe_form = RecipeCreationForm()
+        ingredient_formset = IngredientFormSet(data)
 
     context = {
         'recipe_form': recipe_form,

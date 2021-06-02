@@ -33,17 +33,18 @@ class IngredientForm(ModelForm):
         model = Ingredient
         fields = ['name', 'measure', 'quantity']
         labels = {
-            'measure': 'le type de mesure ',
-            'quantity': 'la quantité'
+            'name': 'Ingédient : ',
+            'measure': 'La mesure : ',
+            'quantity': 'La quantité : ',
         }
         widgets = {
-            'name': TextInput(attrs={'placeholder': 'Nom'}),
-            'measure': TextInput(attrs={'placeholder': 'Mesure'}),
-            'quantity': TextInput(attrs={'placeholder': 'Quantité'}),
+            'name': TextInput(attrs={'placeholder': 'Nom', 'size': '20'}),
+            'measure': TextInput(attrs={'placeholder': 'Mesure',  'size': '10'}),
+            'quantity': TextInput(attrs={'placeholder': 'Quantité',  'size': '5'}),
         }
 
-IngredientFormSet = modelformset_factory(
-    Ingredient,
-    form=IngredientForm,
-    extra=3,
-)
+# IngredientFormSet = modelformset_factory(
+#     Ingredient,
+#     form=IngredientForm,
+#     # extra=3,
+# )
