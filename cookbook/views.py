@@ -23,26 +23,24 @@ def create_cookbook(request):
 @login_required
 def create_recipe(request):
     if request.method == 'POST':
-        # recipe_form = RecipeCreationForm(request.POST)
+        recipe_form = RecipeCreationForm(request.POST)
         ingredient_formset = IngredientFormSet(request.POST)
 
-        if ingredient_formset.is_valid():
-        # if recipe_form.is_valid() and ingredient_formset.is_valid():
-            # recipe = recipe_form.save()
-            # ingredient = ingredient_formset
-            # name = ingredient.cleaned_data['name']
-            # quantity = ingredient.cleaned_data['quantity']
-            # measure = ingredient.cleaned_data['measure']
-            # Ingredient.objects.create(name=name, quantity=quantity, measure=measure, recipe=recipe)
+        if recipe_form.is_valid():
+            recipe = recipe_form.save()
+            ingredients = ingredient_formset.save(commit=False)
+            for ingredient in ingredients:
+                ingredient.recipe = recipe
+                ingredient.save()
             return redirect('home')
     else:
         form = RecipeCreationForm()
 
-    # recipe_form = RecipeCreationForm(request.POST)
-    ingredient_formset = IngredientFormSet(request.POST)
+    recipe_form = RecipeCreationForm()
+    ingredient_formset = IngredientFormSet()
 
     context = {
-        # 'recipe_form': recipe_form,
+        'recipe_form': recipe_form,
         'ingredient_formset': ingredient_formset,
     }
     return render(request, 'cookbook/recipe-create.html', context)

@@ -1,6 +1,7 @@
-from typing import ClassVar
-from django.forms import ModelForm, formset_factory
+# from typing import ClassVar
+from django.forms import ModelForm, modelformset_factory
 from django.forms.widgets import TextInput, Textarea
+
 from .models import Cookbook, Recipe, Ingredient
 
 
@@ -41,4 +42,8 @@ class IngredientForm(ModelForm):
             'quantity': TextInput(attrs={'placeholder': 'Quantité'}),
         }
 
-IngredientFormSet = formset_factory(IngredientForm, extra=2, max_num=25) 
+IngredientFormSet = modelformset_factory(
+    Ingredient,
+    form=IngredientForm,
+    extra=3,
+)

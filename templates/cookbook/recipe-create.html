@@ -46,31 +46,23 @@
       <p>&nbsp;</p>
       <p>Ingrédients</p>
 
-      <div class="">
-        {{ ingredient_form.as_p }}
-      </div>
-
 
 
 <p>&nbsp;</p>
 
+<!-- <input type="hidden" name="form-TOTAL_FORMS" value="6" id="id_form-TOTAL_FORMS">
+<input type="hidden" name="form-INITIAL_FORMS" value="3" id="id_form-INITIAL_FORMS">
+<input type="hidden" name="form-MIN_NUM_FORMS" value="0" id="id_form-MIN_NUM_FORMS">
+<input type="hidden" name="form-MAX_NUM_FORMS" value="1000" id="id_form-MAX_NUM_FORMS"> -->
+
+      <!-- <div class="">
+        {{ ingredient_formset.as_p }}
+      </div> -->
+
 {% for ingredient in ingredient_formset %}
-      <div class="">
-        {{ ingredient.as_table }}
-      </div>
-
-      <div class="">
-
-        {{ ingredient.quantity }}
-      </div>
-
-      <div class="">
-        {{ ingredient.measure }}
-      </div>
-
+      {{ ingredient.name }}
 {% endfor %}
 
-{{ ingredient_formset.as_table }}
 
 
       <div class="">

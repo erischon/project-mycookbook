@@ -68,9 +68,12 @@ class RecipeInfos(models.Model):
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=200)
-    measure = models.CharField(max_length=200, null=True)
+    measure = models.CharField(max_length=200, null=False)
     quantity = models.IntegerField(null=True)
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null=True)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null= False)
+
+    def __str__(self):
+        return str(self.recipe)
 
     class Meta:
         unique_together = ['name', 'measure', 'quantity', 'recipe']
