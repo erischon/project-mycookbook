@@ -33,10 +33,6 @@ class Tab(models.Model):
     cookbook = models.ForeignKey(Cookbook, on_delete=models.CASCADE)
 
 
-class Ingredient(models.Model):
-    name = models.CharField(max_length=200)
-
-
 class TagType(models.Model):
     name = models.CharField(max_length=200)
 
@@ -54,7 +50,6 @@ class Recipe(models.Model):
     cook_time = models.DurationField(blank=True)
     source = models.CharField(max_length=200, blank=True)
     cookbook = models.ManyToManyField(Cookbook)
-    ingredient = models.ManyToManyField(Ingredient)
     tags = models.ManyToManyField(Tag, blank=True)
 
     def __str__(self):
@@ -68,13 +63,17 @@ class RecipeInfos(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="owner")
     creation_date = models.DateField(auto_now_add=True)
     modification_date = models.DateField(auto_now=True)
+    recipe = models.OneToOneField(Recipe, on_delete=models.CASCADE, null=True)
 
 
-class Quantity(models.Model):
-    measure = models.CharField(max_length=200)
+class Ingredient(models.Model):
+    name = models.CharField(max_length=200)
+    measure = models.CharField(max_length=200, null=True)
     quantity = models.IntegerField(null=True)
-    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null=True)
+
+    class Meta:
+        unique_together = ['name', 'measure', 'quantity', 'recipe']
 
 
 class Instruction(models.Model):

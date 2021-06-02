@@ -1,6 +1,7 @@
 from typing import ClassVar
-from django.forms import ModelForm
-from .models import Cookbook, Recipe, Ingredient, Quantity
+from django.forms import ModelForm, formset_factory
+from django.forms.widgets import TextInput, Textarea
+from .models import Cookbook, Recipe, Ingredient
 
 
 class CookbookCreationForm(ModelForm):
@@ -21,21 +22,23 @@ class RecipeCreationForm(ModelForm):
             'cook_time': 'Temps de cuisson ',
             'source': 'Source de la recette'
         }
+        widgets = {
+            'description': Textarea(attrs={'cols': 5, 'rows': 3}),
+        }
 
 
 class IngredientForm(ModelForm):
     class Meta:
         model = Ingredient
-        fields = ['name']
-        labels = {
-            'name': 'Nom de l\'ingredient ',
-        }
-
-class QuantityForm(ModelForm):
-    class Meta:
-        model = Quantity
-        fields = ['measure', 'quantity']
+        fields = ['name', 'measure', 'quantity']
         labels = {
             'measure': 'le type de mesure ',
             'quantity': 'la quantité'
         }
+        widgets = {
+            'name': TextInput(attrs={'placeholder': 'Nom'}),
+            'measure': TextInput(attrs={'placeholder': 'Mesure'}),
+            'quantity': TextInput(attrs={'placeholder': 'Quantité'}),
+        }
+
+IngredientFormSet = formset_factory(IngredientForm, extra=2, max_num=25) 

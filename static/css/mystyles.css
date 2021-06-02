@@ -18,3 +18,6 @@ input:focus, textarea:focus {
     background-position: center;
 }
 
+::placeholder {
+    color: #000;
+}

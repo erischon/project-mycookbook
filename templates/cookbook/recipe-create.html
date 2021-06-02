@@ -9,7 +9,8 @@
 
       <form method="post" action="{% url 'recipe_create' %}">
       {% csrf_token %}
-      {% comment %} {{ recipe_form.as_p }} {% endcomment %}
+
+      <p>Recette</p>
 
       <div class="">
         {{ recipe_form.title.label }}
@@ -22,19 +23,54 @@
       </div>
       
       <div class="">
+        {{ recipe_form.guest.label }}
+        {{ recipe_form.guest }}
+      </div>
+
+      <div class="">
         {{ recipe_form.prep_time.label }}
         {{ recipe_form.prep_time }}
       </div>
 
+      <div class="">
+        {{ recipe_form.cook_time.label }}
+        {{ recipe_form.cook_time }}
+      </div>
 
+      <div class="">
+        {{ recipe_form.source.label }}
+        {{ recipe_form.source }}
+      </div>
+
+
+      <p>&nbsp;</p>
       <p>Ingrédients</p>
 
-      {{ ingredient_form.as_p }}
+      <div class="">
+        {{ ingredient_form.as_p }}
+      </div>
 
-      {{ ingredient_form.name }}
 
 
-      {{ quantity_form.as_p }}
+<p>&nbsp;</p>
+
+{% for ingredient in ingredient_formset %}
+      <div class="">
+        {{ ingredient.as_table }}
+      </div>
+
+      <div class="">
+
+        {{ ingredient.quantity }}
+      </div>
+
+      <div class="">
+        {{ ingredient.measure }}
+      </div>
+
+{% endfor %}
+
+{{ ingredient_formset.as_table }}
 
 
       <div class="">
