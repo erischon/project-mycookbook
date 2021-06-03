@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.forms import ModelForm, modelformset_factory
+from django.utils.text import slugify
 
 from .forms import CookbookCreationForm, RecipeCreationForm, IngredientForm
 from .models import Cookbook, Ingredient, RecipeInfos
@@ -40,7 +41,8 @@ def create_recipe(request):
             # Recipe Infos
             creator = request.user
             owner = request.user
-            RecipeInfos.objects.create(creator=creator, owner=owner, recipe=recipe)
+            slug = slugify(recipe.title)
+            RecipeInfos.objects.create(creator=creator, owner=owner, slug=slug, recipe=recipe)
             # Ingredients
             ingredients = ingredient_formset.save(commit=False)
             for ingredient in ingredients:

@@ -7,8 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/mystyles.css' %}">
+    <link rel="stylesheet" href="{% static 'js/index.js' %}">
 
     <title>{% block title %}My CookBook{% endblock title%}</title>
 </head>
@@ -58,6 +61,5 @@
         </footer>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </body>
 </html>
