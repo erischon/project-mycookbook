@@ -25,10 +25,8 @@ def create_cookbook(request):
 def create_recipe(request):
     IngredientFormSet = modelformset_factory(Ingredient, form=IngredientForm)
     data = {
-        'form-TOTAL_FORMS': '3',
+        'form-TOTAL_FORMS': '1',
         'form-INITIAL_FORMS': '0',
-        'form-MIN_NUM_FORMS': '3',
-        'form-MAX_NUM_FORMS': '20',
     }
 
     if request.method == 'POST':

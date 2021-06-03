@@ -34,8 +34,8 @@ class IngredientForm(ModelForm):
         fields = ['name', 'measure', 'quantity']
         labels = {
             'name': 'Ingédient : ',
-            'measure': 'La mesure : ',
-            'quantity': 'La quantité : ',
+            'measure': 'Mesure : ',
+            'quantity': 'Quantité : ',
         }
         widgets = {
             'name': TextInput(attrs={'placeholder': 'Nom', 'size': '20'}),
