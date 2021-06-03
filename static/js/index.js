@@ -1,15 +1,16 @@
-<!-- Let's add Vue here -->
-<div id="app">
-le message : {$ message $}
-</div>
 
-<script>
+// Let's add Vue here -->
+// <div id="app">
+// le message : {$ message $}
+// </div>
 
-var app = new Vue({
-      delimiters: ['{$', '$}'],
-el: '#app',
-data: {
-message: 'Learning Vue',
-}
-});
-</script>
+// <script>
+
+// var app = new Vue({
+//       delimiters: ['{$', '$}'],
+// el: '#app',
+// data: {
+// message: 'Learning Vue',
+// }
+// });
+// </script>
