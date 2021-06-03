@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
-from cookbook.models import Cookbook
+from cookbook.models import Cookbook, Recipe
 
 
 def homePage(request):
@@ -16,5 +16,9 @@ def user_admin(request):
 
 @login_required
 def my_cookbook(request):
-    cookbook = Cookbook.objects.get(user=request.user)
-    return render(request, 'core/mycookbook.html', {'cookbook': cookbook})
+    cookbook_object = Cookbook.objects.get(user=request.user)
+    recipes = Recipe.objects.filter(cookbook=cookbook_object)
+
+    print(cookbook_object)
+    print('object :', recipes)
+    return render(request, 'core/mycookbook.html', {'cookbook': cookbook_object, 'recipes': recipes})

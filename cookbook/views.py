@@ -38,6 +38,7 @@ def create_recipe(request):
         if recipe_form.is_valid() and ingredient_formset.is_valid():
             # Recipe
             recipe = recipe_form.save()
+            recipe.cookbook.set([Cookbook.objects.get(user=request.user)])
             # Recipe Infos
             creator = request.user
             owner = request.user

@@ -9,6 +9,13 @@
 
 <p><a href="{% url 'recipe_create' %}">Créer une recette</a></p>
 
+<ul>
+{% for recipe in recipes %}
+
+<li><a href="#">{{ recipe.title }}</a></li>
+
+{% endfor %}
+</ul>
 
 </div>
 
