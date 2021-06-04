@@ -65,7 +65,7 @@ class CookbookTestsViews(TestCase):
         response = self.client.get(self.recipe_page_url)
 
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'cookbook/recipe-page.html')
+        self.assertTemplateUsed(response, 'cookbook/recipe-detail.html')
 
     def test_recipe_creation(self):
         """ Test the recipe creation in database. """
