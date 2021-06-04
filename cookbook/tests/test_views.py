@@ -1,4 +1,4 @@
-from cookbook.models import Cookbook
+from cookbook.models import Cookbook, Recipe
 from django.http import request
 from django.test import TestCase, Client
 from django.urls import reverse
@@ -16,8 +16,23 @@ class CookbookTestsViews(TestCase):
         )
         self.client.force_login(self.user)
 
+        # self.cookbook = Cookbook.objects.create(
+        #     name='Cookbook test',
+        #     user=self.user,
+        # )
+
+        self.recipe = Recipe.objects.create (
+            title='Recette test',
+            description='',
+            guest=3,
+            prep_time='0:0:0',
+            cook_time='0:0:0',
+            source='Aucune',
+        )
+
         self.cb_create_url = reverse('cookbook_create')
         self.r_create_url = reverse('recipe_create')
+        self.recipe_page_url = reverse('recipe_page', args=[self.recipe.id])
 
     def test_cookbook_creation_page_view(self):
         """ """
@@ -44,6 +59,13 @@ class CookbookTestsViews(TestCase):
 
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'cookbook/recipe-create.html')
+
+    def test_cookbook_recipe_page_view(self):
+        """ """
+        response = self.client.get(self.recipe_page_url)
+
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'cookbook/recipe-page.html')
 
     def test_recipe_creation(self):
         """ Test the recipe creation in database. """

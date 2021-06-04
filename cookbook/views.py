@@ -1,10 +1,10 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.forms import ModelForm, modelformset_factory
 from django.utils.text import slugify
 
 from .forms import CookbookCreationForm, RecipeCreationForm, IngredientForm, InstructionForm, TagForm
-from .models import Cookbook, Ingredient, RecipeInfos, Instruction, Tag, TagType
+from .models import Cookbook, Recipe, Ingredient, RecipeInfos, Instruction, Tag, TagType
 
 
 @login_required
@@ -84,3 +84,10 @@ def create_recipe(request):
         'tag_formset': tag_formset,
     }
     return render(request, 'cookbook/recipe-create.html', context)
+
+
+@login_required
+def recipe_page(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+
+    return render(request, 'cookbook/recipe-page.html', {'recipe': recipe,})
