@@ -36,10 +36,8 @@ class Tab(models.Model):
 class TagType(models.Model):
     name = models.CharField(max_length=200)
 
-
-class Tag(models.Model):
-    name = models.CharField(max_length=200)
-    tagtype = models.ForeignKey(TagType, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.name
 
 
 class Recipe(models.Model):
@@ -50,7 +48,6 @@ class Recipe(models.Model):
     cook_time = models.DurationField(blank=True)
     source = models.CharField(max_length=200, blank=True)
     cookbook = models.ManyToManyField(Cookbook)
-    tags = models.ManyToManyField(Tag, blank=True)
 
     def __str__(self):
         return self.title
@@ -70,7 +67,7 @@ class Ingredient(models.Model):
     name = models.CharField(max_length=200)
     measure = models.CharField(max_length=200, null=False)
     quantity = models.IntegerField(null=True)
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null= False)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null=False)
 
     def __str__(self):
         return str(self.recipe)
@@ -82,12 +79,21 @@ class Ingredient(models.Model):
 class Instruction(models.Model):
     step = models.IntegerField(null=True)
     instruction = models.TextField(null=True)
-    cookbook = models.ForeignKey(Cookbook, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null=False, default=1)
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=200)
+    tagtype = models.ForeignKey(TagType, on_delete=models.CASCADE, default=1)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null=False,  default=1)
+
+    def __str__(self):
+        return self.name
 
 
 class Tips(models.Model):
     tips = models.TextField(null=True)
-    cookbook = models.ForeignKey(Cookbook, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null=False, default=1)
 
 
 class Photo(models.Model):

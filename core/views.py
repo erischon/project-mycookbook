@@ -19,6 +19,4 @@ def my_cookbook(request):
     cookbook_object = Cookbook.objects.get(user=request.user)
     recipes = Recipe.objects.filter(cookbook=cookbook_object)
 
-    print(cookbook_object)
-    print('object :', recipes)
     return render(request, 'core/mycookbook.html', {'cookbook': cookbook_object, 'recipes': recipes})

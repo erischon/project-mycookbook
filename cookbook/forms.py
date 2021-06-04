@@ -2,7 +2,7 @@
 from django.forms import ModelForm, modelformset_factory
 from django.forms.widgets import TextInput, Textarea
 
-from .models import Cookbook, Recipe, Ingredient
+from .models import Cookbook, Recipe, Ingredient, Instruction, TagType, Tag
 
 
 class CookbookCreationForm(ModelForm):
@@ -24,7 +24,7 @@ class RecipeCreationForm(ModelForm):
             'source': 'Source de la recette'
         }
         widgets = {
-            'description': Textarea(attrs={'cols': 5, 'rows': 3}),
+            'description': Textarea(attrs={'cols': 20, 'rows': 3}),
         }
 
 
@@ -39,12 +39,29 @@ class IngredientForm(ModelForm):
         }
         widgets = {
             'name': TextInput(attrs={'placeholder': 'Nom', 'size': '20'}),
-            'measure': TextInput(attrs={'placeholder': 'Mesure',  'size': '10'}),
-            'quantity': TextInput(attrs={'placeholder': 'Quantité',  'size': '5'}),
+            'measure': TextInput(attrs={'placeholder': 'Mesure', 'size': '10'}),
+            'quantity': TextInput(attrs={'placeholder': 'Quantité', 'size': '5'}),
         }
 
-# IngredientFormSet = modelformset_factory(
-#     Ingredient,
-#     form=IngredientForm,
-#     # extra=3,
-# )
+
+class InstructionForm(ModelForm):
+    class Meta:
+        model = Instruction
+        fields = ['step', 'instruction']
+        labels = {
+            'step': 'Etape : ',
+            'instruction': 'Instruction : ',
+        }
+        widgets = {
+            'instruction': Textarea(attrs={'cols': 20, 'rows': 3}),
+        }
+
+
+class TagForm(ModelForm):
+    class Meta:
+        model = Tag
+        fields = ['name', 'tagtype']
+        labels = {
+            'name': 'Tag : ',
+            'tagtype': 'Catégorie : ',
+        }

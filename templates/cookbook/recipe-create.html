@@ -7,7 +7,7 @@
 
   <h1>Creation</h1>
 
-      <form method="post" action="{% url 'recipe_create' %}" id="recipe_form">
+      <form method="post" action="{% url 'recipe_create' %}">
       {% csrf_token %}
 
       <p>Recette</p>
@@ -46,11 +46,9 @@
       <p>&nbsp;</p>
       <p>Ingrédients</p>
 
-
-
 <p>&nbsp;</p>
 
-  <div class="m-4 p-4 border border-6 border-gray-500 ingredients-container">
+  <div class="m-4 p-4 border border-6 border-gray-500 ingredients-container" id="ingredient_form">
 
     {{ ingredient_formset.management_form }}
 
@@ -91,6 +89,88 @@
 
 
 
+  <p>&nbsp;</p>
+  <p>Instruction</p>
+
+  <div class="m-4 p-4 border border-6 border-gray-500 instruction-container" id="instruction_form">
+
+    {{ instruction_formset.management_form }}
+
+    <fieldset disabled class="empty-form" style="display: none">
+      <fieldset>
+        <div class="flex">
+
+          <div class="p-2 gap-2"> {{ instruction_formset.empty_form.step.label }} {{ instruction_formset.empty_form.step }} </div>
+          <div class="p-2 gap-2"> {{ instruction_formset.empty_form.instruction.label }} {{ instruction_formset.empty_form.instruction }} </div>
+        
+          <div class="flex">
+            <button type="button" data-formset-remove-form>DELETE</button>
+          </div>
+        
+        </div>
+
+      </fieldset>
+    </fieldset>
+
+    <fieldset class="forms">
+      <fieldset>
+        {% for instruction_set in instruction_formset %}
+          <div class="flex">
+            <div class="p-2 gap-2"> {{ instruction_set.step.label }} {{ instruction_set.step }} </div>
+            <div class="p-2 gap-2"> {{ instruction_set.instruction.label }} {{ instruction_set.instruction }} </div>
+          </div>
+        {% endfor %}
+      </fieldset>
+    </fieldset>
+
+    <fieldset class="controls inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">
+      <button type="button" data-formset-add-form>Add new form</button>
+    </fieldset>
+
+  </div>
+
+
+  <p>&nbsp;</p>
+  <p>Tags</p>
+
+  <div class="m-4 p-4 border border-6 border-gray-500 tag-container" id="tag_form">
+
+    {{ tag_formset.management_form }}
+
+    <fieldset disabled class="empty-form" style="display: none">
+      <fieldset>
+        <div class="flex">
+
+          <div class="p-2 gap-2"> {{ tag_formset.empty_form.tagtype.label }} {{ tag_formset.empty_form.tagtype }} </div>
+          <div class="p-2 gap-2"> {{ tag_formset.empty_form.name.label }} {{ tag_formset.empty_form.name }} </div>
+        
+          <div class="flex">
+            <button type="button" data-formset-remove-form>DELETE</button>
+          </div>
+        
+        </div>
+
+      </fieldset>
+    </fieldset>
+
+    <fieldset class="forms">
+      <fieldset>
+        {% for tag_set in tag_formset %}
+          <div class="flex">
+            <div class="p-2 gap-2"> {{ tag_set.tagtype.label }} {{ tag_set.tagtype }} </div>
+            <div class="p-2 gap-2"> {{ tag_set.name.label }} {{ tag_set.name }} </div>
+          </div>
+        {% endfor %}
+      </fieldset>
+    </fieldset>
+
+    <fieldset class="controls inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">
+      <button type="button" data-formset-add-form>Add new form</button>
+    </fieldset>
+
+  </div>
+
+
     <div class="">
       <button class="" type="submit">Envoyer</button>
     </div>
@@ -98,7 +178,12 @@
 
 </div>
 
+<!-- 
+
+ -->
+
 <script>
+
   function Formset(element) {
   /* 
       Dynamic Formset handler for Django formsets.
@@ -209,7 +294,10 @@
   this.addForm = addForm;
 }
 
-new Formset(document.querySelector('#recipe_form'));
+new Formset(document.querySelector('#ingredient_form'));
+new Formset(document.querySelector('#instruction_form'));
+new Formset(document.querySelector('#tag_form'));
+
 </script>
 
 

@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.contrib.auth import get_user_model
 
 
-class CoreTestsViews(TestCase):
+class CookbookTestsViews(TestCase):
 
     def setUp(self):
         self.client = Client()
@@ -44,3 +44,7 @@ class CoreTestsViews(TestCase):
 
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'cookbook/recipe-create.html')
+
+    def test_recipe_creation(self):
+        """ Test the recipe creation in database. """
+        pass
