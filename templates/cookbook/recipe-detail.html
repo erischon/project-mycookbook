@@ -9,17 +9,11 @@
 
 
 
-<ul>
-{% for recipe in recipes %}
+ {{ recipe.description }}
 
-<li><a href="#">{{ recipe.title }}</a></li>
+ {{ infos.creator }}
 
-{% endfor %}
-</ul>
+  <p><a href="{% url 'recipe_create' %}">Créer une recette</a></p>
 
 </div>
-
-
-<p><a href="{% url 'recipe_create' %}">Créer une recette</a></p>
-
 {% endblock content %}

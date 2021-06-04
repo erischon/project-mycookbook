@@ -32,7 +32,7 @@ class CookbookTestsViews(TestCase):
 
         self.cb_create_url = reverse('cookbook_create')
         self.r_create_url = reverse('recipe_create')
-        self.recipe_page_url = reverse('recipe_page', args=[self.recipe.id])
+        self.recipe_page_url = reverse('recipe-detail', args=[self.recipe.id])
 
     def test_cookbook_creation_page_view(self):
         """ """

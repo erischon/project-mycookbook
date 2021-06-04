@@ -12,7 +12,7 @@
 <ul>
 {% for recipe in recipes %}
 
-<li><a href="{% url 'recipe_page' recipe.id %}">{{ recipe.title }}</a></li>
+<li><a href="{% url 'recipe-detail' recipe.id %}">{{ recipe.title }}</a></li>
 
 {% endfor %}
 </ul>
