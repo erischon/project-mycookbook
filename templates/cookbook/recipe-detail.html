@@ -13,6 +13,20 @@
 
  {{ infos.creator }}
 
+{% for instruction in instructions %}
+  {{ instruction.step }} {{ instruction.instruction }} <br>
+{% endfor %}
+
+
+{% for ingredient in ingredients %}
+  {{ ingredient.quantity }} {{ ingredient.measure }} {{ ingredient.name }}<br>
+{% endfor %}
+
+{% for tag in tags %}
+  {{ tag.type }} {{ tag.name }}
+{% endfor %}
+
+
   <p><a href="{% url 'recipe_create' %}">Créer une recette</a></p>
 
 </div>
