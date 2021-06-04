@@ -93,6 +93,7 @@ def create_recipe(request):
 
 #     return render(request, 'cookbook/recipe-page.html', {'recipe': recipe,})
 
+
 class RecipeDetailView(DetailView):
 
     model = Recipe
