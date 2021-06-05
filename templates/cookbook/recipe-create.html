@@ -3,79 +3,56 @@
 {% block title %}My CookBook - Créer une Recette{% endblock title %}
 
 {% block content %}
-<div class="mx-auto grid-cols-12 w-full mb-10 lg:max-w-screen-lg">
+<div class="mx-auto w-screen mb-10 lg:max-w-screen-lg">
 
-  <h1>Creation</h1>
+  <h1 class="text-4xl font-semibold text-center mb-5">Créer une recette</h1>
 
-      <form method="post" action="{% url 'recipe_create' %}">
+    <form method="post" action="{% url 'recipe_create' %}">
       {% csrf_token %}
 
-      <p>Recette</p>
+      <div class="flex flex-col px-2">
+        <p class="text-xl font-semibold my-5">Informations générales</p>
 
-      <div class="">
-        {{ recipe_form.title.label }}
-        {{ recipe_form.title }}
+        <div class="">{{ recipe_form.title }}</div>
+        <div class="">{{ recipe_form.description }}</div>
+        <div class="">{{ recipe_form.guest }}</div>
+        <div class="">{{ recipe_form.prep_time }}</div>
+        <div class="">{{ recipe_form.cook_time }}</div>
+
+        <div class="">{{ recipe_form.source }}</div>
       </div>
 
-      <div class="">
-        {{ recipe_form.description.label }}
-        {{ recipe_form.description }}
-      </div>
-      
-      <div class="">
-        {{ recipe_form.guest.label }}
-        {{ recipe_form.guest }}
-      </div>
+      <div class="flex flex-col px-2">
 
-      <div class="">
-        {{ recipe_form.prep_time.label }}
-        {{ recipe_form.prep_time }}
-      </div>
+      <p class="text-xl font-semibold my-5">Les ingrédients pour cette recette</p>
 
-      <div class="">
-        {{ recipe_form.cook_time.label }}
-        {{ recipe_form.cook_time }}
-      </div>
+      <div class="m-4 p-4 border border-6 border-gray-500 ingredients-container" id="ingredient_form">
 
-      <div class="">
-        {{ recipe_form.source.label }}
-        {{ recipe_form.source }}
-      </div>
+        {{ ingredient_formset.management_form }}
 
+        <fieldset disabled class="empty-form" style="display: none">
+          <fieldset>
+            <div class="flex flex-col sm:flex-row my-2 py-2">
 
-      <p>&nbsp;</p>
-      <p>Ingrédients</p>
+              <div class="p-2 gap-2"> {{ ingredient_formset.empty_form.name }} </div>
+              <div class="p-2 gap-2"> {{ ingredient_formset.empty_form.quantity }} </div>
+              <div class="p-2 gap-2"> {{ ingredient_formset.empty_form.measure }} </div>
+            
+              <button type="button" data-formset-remove-form>DELETE</button>
 
-<p>&nbsp;</p>
+            
+            </div>
 
-  <div class="m-4 p-4 border border-6 border-gray-500 ingredients-container" id="ingredient_form">
-
-    {{ ingredient_formset.management_form }}
-
-    <fieldset disabled class="empty-form" style="display: none">
-      <fieldset>
-        <div class="flex">
-
-          <div class="p-2 gap-2"> {{ ingredient_formset.empty_form.name.label }} {{ ingredient_formset.empty_form.name }} </div>
-          <div class="p-2 gap-2"> {{ ingredient_formset.empty_form.quantity.label }} {{ ingredient_formset.empty_form.quantity }} </div>
-          <div class="p-2 gap-2"> {{ ingredient_formset.empty_form.measure.label }} {{ ingredient_formset.empty_form.measure }} </div>
-        
-          <div class="flex">
-            <button type="button" data-formset-remove-form>DELETE</button>
-          </div>
-        
-        </div>
-
-      </fieldset>
-    </fieldset>
+          </fieldset>
+        </fieldset>
 
     <fieldset class="forms">
       <fieldset>
         {% for ingredient_set in ingredient_formset %}
-          <div class="flex">
-            <div class="p-2 gap-2"> {{ ingredient_set.name.label }} {{ ingredient_set.name }} </div>
-            <div class="p-2 gap-2"> {{ ingredient_set.quantity.label }} {{ ingredient_set.quantity }} </div>
-            <div class="p-2 gap-2"> {{ ingredient_set.measure.label }} {{ ingredient_set.measure }} </div>
+          <div class="flex flex-col sm:flex-row my-2 py-2">
+            <div class="p-2 gap-2"> {{ ingredient_set.name }} </div>
+            <div class="p-2 gap-2"> {{ ingredient_set.quantity }} </div>
+            <div class="p-2 gap-2"> {{ ingredient_set.measure }} </div>
           </div>
         {% endfor %}
       </fieldset>
@@ -84,13 +61,13 @@
     <fieldset class="controls inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">
       <button type="button" data-formset-add-form>Add new form</button>
     </fieldset>
-
+    </div>
   </div>
 
 
 
   <p>&nbsp;</p>
-  <p>Instruction</p>
+  <p class="text-xl font-semibold my-5">Comment faire la recette :</p>
 
   <div class="m-4 p-4 border border-6 border-gray-500 instruction-container" id="instruction_form">
 

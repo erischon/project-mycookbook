@@ -1,3 +1,6 @@
+html, body {
+    overflow-x: hidden;
+}
 
 input {
     border-bottom: solid 2px #6B7280;
@@ -26,3 +29,7 @@ input:focus, textarea:focus {
 fieldset {
     border: none;
   }
+
+.bg-color-input {
+    background-color: #fafafa;
+}

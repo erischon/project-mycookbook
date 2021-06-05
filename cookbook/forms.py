@@ -24,7 +24,12 @@ class RecipeCreationForm(ModelForm):
             'source': 'Source de la recette'
         }
         widgets = {
-            'description': Textarea(attrs={'cols': 20, 'rows': 3}),
+            'title': TextInput(attrs={'placeholder': 'Nom de la recette', 'class': 'bg-gray-50 p-3 mb-4 w-full sm:w-1/2 shadow-md border-0 rounded'}),
+            'description': Textarea(attrs={'placeholder': 'Une description', 'class': 'bg-gray-100 p-3 mb-4 w-full sm:w-1/2 shadow-md rounded', 'rows': 3}),
+            'guest': TextInput(attrs={'placeholder': 'pour combien de personne ?', 'class': 'bg-gray-50 p-3 mb-4 w-full sm:w-1/2 shadow-md border-0 rounded'}),
+            'prep_time': TextInput(attrs={'placeholder': 'Temps de préparation (00:00:00)', 'class': 'bg-gray-50 p-3 mb-4 w-full sm:w-1/2 shadow-md border-0 rounded'}),
+            'cook_time': TextInput(attrs={'placeholder': 'Temps de cuisson (00:00:00)', 'class': 'bg-gray-50 p-3 mb-4 w-full sm:w-1/2 shadow-md border-0 rounded'}),
+            'source': TextInput(attrs={'placeholder': 'Source', 'class': 'bg-gray-100 p-3 mb-4 w-full sm:w-1/2 shadow-md border-0 rounded'}),
         }
 
 
@@ -38,9 +43,9 @@ class IngredientForm(ModelForm):
             'quantity': 'Quantité : ',
         }
         widgets = {
-            'name': TextInput(attrs={'placeholder': 'Nom', 'size': '20'}),
-            'measure': TextInput(attrs={'placeholder': 'Mesure', 'size': '10'}),
-            'quantity': TextInput(attrs={'placeholder': 'Quantité', 'size': '5'}),
+            'name': TextInput(attrs={'placeholder': 'Ingrédient', 'class': 'bg-gray-50 p-3 mb-2 w-full sm:w-1/2 shadow-md border-0 rounded'}),
+            'quantity': TextInput(attrs={'placeholder': 'Quantité', 'class': 'bg-gray-50 p-3 mb-2 w-40 sm:w-1/2 shadow-md border-0 rounded'}),
+            'measure': TextInput(attrs={'placeholder': 'Mesure', 'class': 'bg-gray-50 p-3 mb-2 w-40 sm:w-1/2 shadow-md border-0 rounded'}),
         }
 
 
