@@ -43,9 +43,9 @@ class IngredientForm(ModelForm):
             'quantity': 'Quantité : ',
         }
         widgets = {
-            'name': TextInput(attrs={'placeholder': 'Ingrédient', 'class': 'bg-gray-50 p-3 mb-2 w-full sm:w-1/2 shadow-md border-0 rounded'}),
-            'quantity': TextInput(attrs={'placeholder': 'Quantité', 'class': 'bg-gray-50 p-3 mb-2 w-40 sm:w-1/2 shadow-md border-0 rounded'}),
-            'measure': TextInput(attrs={'placeholder': 'Mesure', 'class': 'bg-gray-50 p-3 mb-2 w-40 sm:w-1/2 shadow-md border-0 rounded'}),
+            'name': TextInput(attrs={'placeholder': 'Ingrédient', 'class': 'bg-gray-50 p-3 mb-2 w-full sm:w-full shadow-md border-0 rounded'}),
+            'quantity': TextInput(attrs={'placeholder': 'Quantité', 'class': 'bg-gray-50 p-3 mb-2 w-40 sm:w-full shadow-md border-0 rounded'}),
+            'measure': TextInput(attrs={'placeholder': 'Mesure', 'class': 'bg-gray-50 p-3 mb-2 w-40 sm:w-full shadow-md border-0 rounded'}),
         }
 
 
