@@ -38,31 +38,31 @@
               <div class="p-2 gap-2"> {{ ingredient_formset.empty_form.quantity }} </div>
               <div class="p-2 gap-2"> {{ ingredient_formset.empty_form.measure }} </div>
             
-              <button type="button" data-formset-remove-form>DELETE</button>
+              <button type="button" data-formset-remove-form>Effacer</button>
 
-            
             </div>
 
           </fieldset>
         </fieldset>
 
-    <fieldset class="forms">
-      <fieldset>
-        {% for ingredient_set in ingredient_formset %}
-          <div class="flex flex-col sm:flex-row my-2 py-2">
-            <div class="p-2 gap-2"> {{ ingredient_set.name }} </div>
-            <div class="p-2 gap-2"> {{ ingredient_set.quantity }} </div>
-            <div class="p-2 gap-2"> {{ ingredient_set.measure }} </div>
-          </div>
-        {% endfor %}
-      </fieldset>
-    </fieldset>
+        <fieldset class="forms">
+          <fieldset>
+            {% for ingredient_set in ingredient_formset %}
+              <div class="flex flex-col sm:flex-row my-2 py-2">
+                <div class="p-2 gap-2"> {{ ingredient_set.name }} </div>
+                <div class="p-2 gap-2"> {{ ingredient_set.quantity }} </div>
+                <div class="p-2 gap-2"> {{ ingredient_set.measure }} </div>
+              </div>
+            {% endfor %}
+          </fieldset>
+        </fieldset>
 
-    <fieldset class="controls inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">
-      <button type="button" data-formset-add-form>Add new form</button>
-    </fieldset>
-    </div>
-  </div>
+        <fieldset class="controls inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">
+          <button type="button" data-formset-add-form>Ajouter un ingrédient</button>
+        </fieldset>
+
+      </div>
+  <!-- </div> -->
 
 
 
@@ -155,9 +155,6 @@
 
 </div>
 
-<!-- 
-
- -->
 
 <script>
 
