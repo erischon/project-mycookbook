@@ -58,7 +58,8 @@ class InstructionForm(ModelForm):
             'instruction': 'Instruction : ',
         }
         widgets = {
-            'instruction': Textarea(attrs={'cols': 20, 'rows': 3}),
+            'step': TextInput(attrs={'placeholder': 'Etape', 'class': 'bg-gray-50 p-3 mb-2 w-40 sm:w-full shadow-md border-0 rounded'}),
+            'instruction': Textarea(attrs={'placeholder': 'Instructions...', 'class': 'bg-gray-50 p-3 mb-4 w-full shadow-md rounded', 'rows': 3}),
         }
 
 
@@ -69,4 +70,7 @@ class TagForm(ModelForm):
         labels = {
             'name': 'Tag : ',
             'tagtype': 'Catégorie : ',
+        }
+        widgets = {
+            'name': TextInput(attrs={'placeholder': 'Nom du tag', 'class': 'bg-gray-50 p-3 mb-2 w-full sm:w-full shadow-md border-0 rounded'}),
         }

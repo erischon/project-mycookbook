@@ -24,132 +24,133 @@
 
       <div class="flex flex-col px-2">
 
-      <p class="text-xl font-semibold my-5">Les ingrédients pour cette recette</p>
+        <p class="text-xl font-semibold my-5">Les ingrédients pour cette recette</p>
 
-      <div class="m-4 p-4 border border-6 border-gray-500 ingredients-container" id="ingredient_form">
+        <div class="m-4 p-4 border border-6 border-gray-500 ingredients-container" id="ingredient_form">
 
-        {{ ingredient_formset.management_form }}
+          {{ ingredient_formset.management_form }}
 
-        <fieldset disabled class="empty-form" style="display: none">
-          <fieldset>
-            <div class="flex flex-col sm:flex-row my-2 py-2">
-
-              <div class="p-2 gap-2"> {{ ingredient_formset.empty_form.name }} </div>
-              <div class="p-2 gap-2"> {{ ingredient_formset.empty_form.quantity }} </div>
-              <div class="p-2 gap-2"> {{ ingredient_formset.empty_form.measure }} </div>
-            
-              <button type="button" data-formset-remove-form>Effacer</button>
-
-            </div>
-
-          </fieldset>
-        </fieldset>
-
-        <fieldset class="forms">
-          <fieldset>
-            {% for ingredient_set in ingredient_formset %}
+          <fieldset disabled class="empty-form" style="display: none">
+            <fieldset>
               <div class="flex flex-col sm:flex-row my-2 py-2">
-                <div class="p-2 gap-2"> {{ ingredient_set.name }} </div>
-                <div class="p-2 gap-2"> {{ ingredient_set.quantity }} </div>
-                <div class="p-2 gap-2"> {{ ingredient_set.measure }} </div>
+
+                <div class="p-2 gap-2"> {{ ingredient_formset.empty_form.name }} </div>
+                <div class="p-2 gap-2"> {{ ingredient_formset.empty_form.quantity }} </div>
+                <div class="p-2 gap-2"> {{ ingredient_formset.empty_form.measure }} </div>
+              
+                <button type="button" data-formset-remove-form class="m-5 w-9 h-9 focus:outline-none">
+                  <img class="fill-current h-6 w-6 m-2" width="54" height="54" src="{% static 'assets/img/delete.svg' %}">
+                </button>
+
               </div>
-            {% endfor %}
+
+            </fieldset>
           </fieldset>
-        </fieldset>
 
-        <fieldset class="controls inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">
-          <button type="button" data-formset-add-form>Ajouter un ingrédient</button>
-        </fieldset>
+          <fieldset class="forms">
+            <fieldset>
+              {% for ingredient_set in ingredient_formset %}
+                <div class="flex flex-col sm:flex-row my-2 py-2">
+                  <div class="p-2 gap-2"> {{ ingredient_set.name }} </div>
+                  <div class="p-2 gap-2"> {{ ingredient_set.quantity }} </div>
+                  <div class="p-2 gap-2"> {{ ingredient_set.measure }} </div>
+                </div>
+              {% endfor %}
+            </fieldset>
+          </fieldset>
 
+          <fieldset>
+            <button type="button" class="controls inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 shadow rounded" data-formset-add-form>Ajouter un ingrédient</button>
+          </fieldset>
+
+        </div>
       </div>
-  <!-- </div> -->
 
+      <div class="flex flex-col px-2">  
+        <p class="text-xl font-semibold my-5">Comment faire la recette :</p>
 
+        <div class="m-4 p-4 border border-6 border-gray-500 instruction-container" id="instruction_form">
 
-  <p>&nbsp;</p>
-  <p class="text-xl font-semibold my-5">Comment faire la recette :</p>
+          {{ instruction_formset.management_form }}
 
-  <div class="m-4 p-4 border border-6 border-gray-500 instruction-container" id="instruction_form">
+          <fieldset disabled class="empty-form" style="display: none">
+            <fieldset>
+              <div class="flex">
 
-    {{ instruction_formset.management_form }}
+                <div class="p-2 gap-2"> {{ instruction_formset.empty_form.step }} </div>
+                <div class="p-2 gap-2"> {{ instruction_formset.empty_form.instruction }} </div>
+              
+                <div class="flex">
+                  <button type="button" data-formset-remove-form class="m-5 w-9 h-9 focus:outline-none">
+                    <img class="fill-current h-6 w-6 m-2" width="54" height="54" src="{% static 'assets/img/delete.svg' %}">
+                  </button>            
+                </div>
+              
+              </div>
 
-    <fieldset disabled class="empty-form" style="display: none">
-      <fieldset>
-        <div class="flex">
+            </fieldset>
+          </fieldset>
 
-          <div class="p-2 gap-2"> {{ instruction_formset.empty_form.step.label }} {{ instruction_formset.empty_form.step }} </div>
-          <div class="p-2 gap-2"> {{ instruction_formset.empty_form.instruction.label }} {{ instruction_formset.empty_form.instruction }} </div>
-        
-          <div class="flex">
-            <button type="button" data-formset-remove-form>DELETE</button>
-          </div>
-        
+          <fieldset class="forms">
+            <fieldset>
+              {% for instruction_set in instruction_formset %}
+                <div class="flex">
+                  <div class="p-2 gap-2"> {{ instruction_set.step }} </div>
+                  <div class="p-2 gap-2"> {{ instruction_set.instruction }} </div>
+                </div>
+              {% endfor %}
+            </fieldset>
+          </fieldset>
+
+          <fieldset>
+            <button type="button" class="controls inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 shadow rounded" data-formset-add-form>Ajouter une étape</button>
+          </fieldset>
         </div>
+      </div>
 
-      </fieldset>
-    </fieldset>
+      <div class="flex flex-col px-2">
+        <p class="text-xl font-semibold my-5">Tags :</p>
 
-    <fieldset class="forms">
-      <fieldset>
-        {% for instruction_set in instruction_formset %}
-          <div class="flex">
-            <div class="p-2 gap-2"> {{ instruction_set.step.label }} {{ instruction_set.step }} </div>
-            <div class="p-2 gap-2"> {{ instruction_set.instruction.label }} {{ instruction_set.instruction }} </div>
-          </div>
-        {% endfor %}
-      </fieldset>
-    </fieldset>
+        <div class="m-4 p-4 border border-6 border-gray-500 tag-container" id="tag_form">
 
-    <fieldset class="controls inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">
-      <button type="button" data-formset-add-form>Add new form</button>
-    </fieldset>
+          {{ tag_formset.management_form }}
 
-  </div>
+          <fieldset disabled class="empty-form" style="display: none">
+            <fieldset>
+              <div class="flex">
 
+                <div class="p-2 gap-2"> {{ tag_formset.empty_form.tagtype }} </div>
+                <div class="p-2 gap-2"> {{ tag_formset.empty_form.name }} </div>
+              
+                <button type="button" data-formset-remove-form class="m-5 w-9 h-9 focus:outline-none">
+                  <img class="fill-current h-6 w-6 m-2" width="54" height="54" src="{% static 'assets/img/delete.svg' %}">
+                </button>
+              
+              </div>
 
-  <p>&nbsp;</p>
-  <p>Tags</p>
+            </fieldset>
+          </fieldset>
 
-  <div class="m-4 p-4 border border-6 border-gray-500 tag-container" id="tag_form">
+          <fieldset class="forms">
+            <fieldset>
+              {% for tag_set in tag_formset %}
+                <div class="flex">
+                  <div class="p-2 gap-2"> {{ tag_set.tagtype }} </div>
+                  <div class="p-2 gap-2"> {{ tag_set.name }} </div>
+                </div>
+              {% endfor %}
+            </fieldset>
+          </fieldset>
 
-    {{ tag_formset.management_form }}
+          <fieldset>
+            <button type="button" class="controls inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 shadow rounded" data-formset-add-form>Ajouter un tag</button>
+          </fieldset>
 
-    <fieldset disabled class="empty-form" style="display: none">
-      <fieldset>
-        <div class="flex">
-
-          <div class="p-2 gap-2"> {{ tag_formset.empty_form.tagtype.label }} {{ tag_formset.empty_form.tagtype }} </div>
-          <div class="p-2 gap-2"> {{ tag_formset.empty_form.name.label }} {{ tag_formset.empty_form.name }} </div>
-        
-          <div class="flex">
-            <button type="button" data-formset-remove-form>DELETE</button>
-          </div>
-        
         </div>
-
-      </fieldset>
-    </fieldset>
-
-    <fieldset class="forms">
-      <fieldset>
-        {% for tag_set in tag_formset %}
-          <div class="flex">
-            <div class="p-2 gap-2"> {{ tag_set.tagtype.label }} {{ tag_set.tagtype }} </div>
-            <div class="p-2 gap-2"> {{ tag_set.name.label }} {{ tag_set.name }} </div>
-          </div>
-        {% endfor %}
-      </fieldset>
-    </fieldset>
-
-    <fieldset class="controls inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">
-      <button type="button" data-formset-add-form>Add new form</button>
-    </fieldset>
-
-  </div>
-
+      </div>
 
     <div class="">
-      <button class="" type="submit">Envoyer</button>
+      <button class="controls inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded" type="submit">Envoyer</button>
     </div>
   </form>
 

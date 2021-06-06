@@ -42,11 +42,11 @@
 
                         <a href="{% url 'user_admin' %}" class="block mt-4 lg:inline-block lg:mt-0 mr-4"><img class="fill-current h-6 w-6 mr-2" width="54" height="54" src="{% static 'assets/img/user.svg' %}"></a>
 
-                        <a href="{% url 'logout' %}" class="block mt-4 lg:inline-block lg:mt-0 mr-4"><img class="fill-current h-6 w-6 mr-2" width="54" height="54" src="{% static 'assets/img/logout.svg' %}"></a>
+                        <a href="{% url 'logout' %}" class="block mt-4 lg:inline-block lg:mt-0 mr-4"><img class="fill-current h-5 w-5 mr-2" width="54" height="54" src="{% static 'assets/img/logout.svg' %}"></a>
 
                     {% else %}
                         <a href="{% url 'login' %}" class="block mt-4 lg:inline-block lg:mt-0 border-b-2 border-transparent hover:border-gray-500 mr-4">Log In</a>
-                        <a href="{% url 'signup' %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Inscription</a>
+                        <a href="{% url 'signup' %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Créer un Cookbook</a>
 
                     {% endif %}
                 </div>
