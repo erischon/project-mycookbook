@@ -13,7 +13,7 @@
         <h1 class="font-extrabold text-4xl md:text-5xl lg:text-6xl mb-2">My CookBook</h1>
         <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold mb-4">Ne perdez plus vos recettes,<br> Organisez vos repas,<br> Faites vos courses facilement.</h2>
         {% if user.is_authenticated %}
-          <a href="{% url 'user_admin' %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Accéder à mon compte</a>
+          <a href="{% url 'my_cookbook' %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Accéder à mon Cookbook</a>
         {% else %}
           <a href="{% url 'signup' %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Créer un Cookbook</a>
         {% endif %}
