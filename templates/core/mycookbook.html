@@ -5,17 +5,21 @@
 {% block content %}
 <div class="mx-auto grid-cols-12 w-full mb-10 lg:max-w-screen-lg">
 
-  <h1 class="text-4xl font-semibold text-center mb-5"><span class="text-sm">My Cookbook</span> : {{ cookbook.name }}</h1>
+  <p class="text-sm font-semibold text-center">My Cookbook</p>
+  <h1 class="text-4xl font-semibold text-center mb-5">{{ cookbook.name }}</h1>
 
-<p><a href="{% url 'recipe_create' %}">Créer une recette</a></p>
+<p class="mx-auto text-center"><a href="{% url 'recipe_create' %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Créer une recette</a></p>
 
-<ul>
-{% for recipe in recipes %}
+<div class="container">
+  <ul class="list-disc">
+    {% for recipe in recipes %}
 
-<li><a href="{% url 'recipe-detail' recipe.id %}">{{ recipe.title }}</a></li>
+      <li><a href="{% url 'recipe-detail' recipe.id %}">{{ recipe.title }}</a></li>
 
-{% endfor %}
-</ul>
+    {% endfor %}
+  </ul>
+</div>
+
 
 </div>
 
