@@ -6,8 +6,7 @@ from django.utils.translation import gettext as _
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = get_user_model()
-        fields = ('email', 'username', )
-
+        fields = ('email', 'username')
         labels = {
             'username': 'Prénom :',
             'email': 'Adresse mail :',
