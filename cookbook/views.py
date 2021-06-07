@@ -46,7 +46,7 @@ def create_recipe(request):
         instruction_formset = InstructionFormSet(request.POST, prefix='instruction')
         tag_formset = TagFormSet(request.POST, prefix='tag')
 
-        if recipe_form.is_valid() and ingredient_formset.is_valid():
+        if recipe_form.is_valid() and ingredient_formset.is_valid() and instruction_formset.is_valid():
             # Recipe
             recipe = recipe_form.save()
             recipe.cookbook.set([Cookbook.objects.get(user=request.user)])

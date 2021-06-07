@@ -85,36 +85,39 @@ class CookbookTestViews(TestCase):
         self.assertTemplateUsed(response, 'cookbook/recipe-detail.html')
 
 
-# class CreateRecipeTestPostView(TestCase):
+class CreateRecipeTestPostView(TestCase):
 
-    # def setUp(self):
-    #     self.client = Client()
-    #     # Users
-    #     self.user = get_user_model().objects.create_user(
-    #         username='usertest',
-    #         email='usertest@erischon.dev',
-    #         password='testpass123'
-    #     )
-    #     self.client.force_login(self.user)
-    #     self.cookbook = Cookbook.objects.create(
-    #         name='Cookbook test',
-    #         user=self.user,
-    #     )
-    #     self.tagtype = TagType.objects.create(
-    #         name='tagtype'
-    #     )
+    def setUp(self):
+        self.client = Client()
+        # Users
+        self.user = get_user_model().objects.create_user(
+            username='usertest',
+            email='usertest@erischon.dev',
+            password='testpass123'
+        )
+        self.client.force_login(self.user)
+        # Cookbook
+        self.cookbook = Cookbook.objects.create(
+            name='Cookbook test',
+            user=self.user,
+        )
+        # Tagtype
+        self.tagtype = TagType.objects.create(
+            id=1,
+            name='tagtype',
+        )
 
-    #     self.recipe_create_url = reverse('recipe_create')
+        self.recipe_create_url = reverse('recipe_create')
 
-    # def test_recipe_creation_POST(self):
-    #     """ Test the recipe creation in database. """
-    #     query = {
-    #         'recipe_form': 'True', 'title': 'Recette test', 'description': 'none', 'guest': '1', 'prep_time': '5:00', 'cook_time': '5:00', 'source': 'none',
-    #         'ingredient_formset': 'True', 'name': 'ingredient test', 'measure': 'kg', 'quantity': '1',
-    #         'instruction_formset': 'True', 'step': '1', 'instruction': 'none',
-    #          'tag_formset': 'True', 'name': 'tag test', 'tagtype': self.tagtype,
-    #     }
+    def test_recipe_creation_POST(self):
+        """ Test the recipe creation in database. """
+        kwargs = {
+            'title': 'Recette test', 'description': 'none', 'guest': '1', 'prep_time': '5:00', 'cook_time': '5:00', 'source': 'none',
+            'ingredient-TOTAL_FORMS': '1', 'ingredient-INITIAL_FORMS': '0', 'ingredient-0-name': 'ingredient test', 'ingredient-0-measure': 'kg', 'ingredient-0-quantity': '1',
+            'instruction-TOTAL_FORMS': '1', 'instruction-INITIAL_FORMS': '0', 'instruction-0-step': '1', 'instruction-0-instruction': 'none',
+            'tag-TOTAL_FORMS': '1', 'tag-INITIAL_FORMS': '0', 'tag-0-name': 'tag test', 'tag-0-tagtype': '1',
+        }
 
-    #     response = self.client.post(self.recipe_create_url, query)
+        response = self.client.post(self.recipe_create_url, kwargs)
 
-    #     self.assertEquals(response.status_code, 302)
+        self.assertEquals(response.status_code, 302)
