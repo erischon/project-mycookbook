@@ -41,7 +41,7 @@ class TagType(models.Model):
 
 
 class Recipe(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, unique=True)
     description = models.TextField(null=True)
     guest = models.IntegerField(null=True)
     prep_time = models.DurationField(blank=True)
