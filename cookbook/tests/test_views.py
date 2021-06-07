@@ -121,3 +121,4 @@ class CreateRecipeTestPostView(TestCase):
         response = self.client.post(self.recipe_create_url, kwargs)
 
         self.assertEquals(response.status_code, 302)
+        self.assertRedirects(response, '/mycookbook/')
