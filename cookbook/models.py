@@ -85,7 +85,7 @@ class Instruction(models.Model):
 class Tag(models.Model):
     name = models.CharField(max_length=200)
     tagtype = models.ForeignKey(TagType, on_delete=models.CASCADE, default=1)
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null=False,  default=1)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null=False, default=1)
 
     def __str__(self):
         return self.name

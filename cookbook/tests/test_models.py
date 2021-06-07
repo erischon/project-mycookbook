@@ -18,7 +18,7 @@ class CookbookModelsTest(TestCase):
             name='Cookbook test',
             user=self.user,
         )
-        self.recipe = Recipe.objects.create (
+        self.recipe = Recipe.objects.create(
             title='Recette test',
             description='Une description Test',
             guest=3,

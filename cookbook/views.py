@@ -109,6 +109,3 @@ class RecipeDetailView(DetailView):
         context['tags'] = Tag.objects.filter(recipe=context['object'])
 
         return context
-
-
-
