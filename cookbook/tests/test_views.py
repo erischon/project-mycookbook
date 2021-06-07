@@ -110,10 +110,10 @@ class CreateRecipeTestPostView(TestCase):
     def test_recipe_creation_POST(self):
         """ Test the recipe creation in database. """
         response = self.client.post(self.recipe_create_url, {
-            'recipe_form': 'True', 'title': '', 'description': '', 'guest': '', 'prep_time': '', 'cook_time': '', 'source': '',
-            'ingredient_formset': 'True', 'name': '', 'measure': '', 'quantity': '',
-            'instruction_formset': 'True', 'step': '', 'instruction': '',
-             'tag_formset': 'True', 'name': '', 'tagtype': '',
+            'recipe_form': 'True', 'title': 'Recette test', 'description': 'none', 'guest': '1', 'prep_time': '5:00', 'cook_time': '5:00', 'source': 'none',
+            'ingredient_formset': 'True', 'name': 'ingredient test', 'measure': 'kg', 'quantity': '1',
+            'instruction_formset': 'True', 'step': '1', 'instruction': 'none',
+             'tag_formset': 'True', 'name': 'tag test', 'tagtype': 'type',
         })
 
         self.assertEquals(response.status_code, 302)
