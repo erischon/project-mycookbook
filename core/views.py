@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from cookbook.models import Cookbook, Recipe
@@ -10,7 +10,10 @@ def homePage(request):
 
 @login_required
 def user_admin(request):
-    cookbook = Cookbook.objects.get(user=request.user)
+    try:
+        cookbook = Cookbook.objects.get(user=request.user)
+    except Cookbook.DoesNotExist:
+        cookbook = Cookbook.objects.create(name=request.user.username, user=request.user)
     return render(request, 'core/user_admin.html', {'cookbook': cookbook})
 
 
