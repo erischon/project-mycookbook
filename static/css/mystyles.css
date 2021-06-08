@@ -1,5 +1,8 @@
+html, body {
+    overflow-x: hidden;
+}
 
-input, textarea {
+input {
     border-bottom: solid 2px #6B7280;
     background-color: #F9FAFB;
 }
@@ -18,3 +21,15 @@ input:focus, textarea:focus {
     background-position: center;
 }
 
+::placeholder {
+    color: #000;
+}
+
+
+fieldset {
+    border: none;
+  }
+
+.bg-color-input {
+    background-color: #fafafa;
+}

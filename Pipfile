@@ -10,6 +10,7 @@ flake8 = "*"
 coverage = "*"
 sentry-sdk = "*"
 gunicorn = "*"
+pillow = "*"
 
 [dev-packages]
 

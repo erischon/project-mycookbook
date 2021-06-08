@@ -1,0 +1,26 @@
+{% extends 'core/_base.html' %}{% load static %}
+
+{% block title %}My CookBook - Mon CookBook{% endblock title %}
+
+{% block content %}
+<div class="mx-auto grid-cols-12 w-full mb-10 lg:max-w-screen-lg">
+
+  <p class="text-sm font-semibold text-center">My Cookbook</p>
+  <h1 class="text-4xl font-semibold text-center mb-5">{{ cookbook.name }}</h1>
+
+<p class="mx-auto text-center"><a href="{% url 'recipe_create' %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Créer une recette</a></p>
+
+<div class="container">
+  <ul class="list-disc">
+    {% for recipe in recipes %}
+
+      <li><a href="{% url 'recipe-detail' recipe.id %}">{{ recipe.title }}</a></li>
+
+    {% endfor %}
+  </ul>
+</div>
+
+
+</div>
+
+{% endblock content %}

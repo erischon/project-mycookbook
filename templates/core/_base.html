@@ -7,16 +7,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+
+    <!-- <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
     <link rel="stylesheet" href="{% static 'css/mystyles.css' %}">
+    <link rel="stylesheet" href="{% static 'js/index.js' %}">
 
     <title>{% block title %}My CookBook{% endblock title%}</title>
 </head>
 <body class="font-sans tracking-wide leading-relaxed">
-    <div class="flex flex-col justify-content-center grid-flow-row">
+    <div class="flex flex-col justify-content-center">
 
         <!-- Header -->
-        <nav class="flex justify-between justify-self-center flex-wrap bg-white py-4 px-2 border border-b-1 border-gray-200 lg:max-w-screen-lg w-full mx-auto my-5">
+        <nav class="flex justify-between justify-self-center flex-wrap border-0 border-b-2 border-gray-200 py-4 px-2 lg:max-w-screen-lg w-full mx-auto my-5">
             <div class="flex items-center flex-shrink-0 text-black mr-8">
                 <img class="fill-current h-8 w-8 mr-2" width="54" height="54" src="{% static 'assets/img/chef.svg' %}">
                 <span class="font-semibold text-xl tracking-tight border-b-2 border-transparent">My CookBook</span>
@@ -28,36 +32,51 @@
             </div> -->
             <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
                 <div class="font-semibold lg:flex-grow">
-                    <a href="{% url 'home' %}" class="block mt-4 lg:inline-block lg:mt-0 border-b-2 border-transparent hover:border-yellow-700 mr-4">Accueil</a>
+                    <a href="{% url 'home' %}" class="block mt-4 lg:inline-block lg:mt-0 border-b-2 border-transparent hover:border-gray-500 mr-4">Accueil</a>
                 </div>
                 <div class="font-semibold">
                     {% if user.is_authenticated %}
-                        <a href="#" class="block mt-4 lg:inline-block lg:mt-0 border-b-2 border-transparent hover:border-yellow-700 mr-4">Mon Compte</a>
-                        <a href="{% url 'logout' %}" class="block mt-4 lg:inline-block lg:mt-0 border-b-2 border-transparent hover:border-yellow-700 mr-4">Log Out</a>
+                        <a href="{% url 'my_cookbook' %}" class="block mt-4 lg:inline-block lg:mt-0 mr-4">
+                        <img class="fill-current h-6 w-6 mr-2" width="54" height="54" src="{% static 'assets/img/cookbook.svg' %}">
+                        </a>
+
+                        <a href="{% url 'user_admin' %}" class="block mt-4 lg:inline-block lg:mt-0 mr-4"><img class="fill-current h-6 w-6 mr-2" width="54" height="54" src="{% static 'assets/img/user.svg' %}"></a>
+
+                        <a href="{% url 'logout' %}" class="block mt-4 lg:inline-block lg:mt-0 mr-4"><img class="fill-current h-5 w-5 mr-2" width="54" height="54" src="{% static 'assets/img/logout.svg' %}"></a>
 
                     {% else %}
-                        <a href="{% url 'login' %}" class="block mt-4 lg:inline-block lg:mt-0 border-b-2 border-transparent hover:border-yellow-700 mr-4">Log In</a>
-                        <a href="{% url 'signup' %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Inscription</a>
+                        <a href="{% url 'login' %}" class="block mt-4 lg:inline-block lg:mt-0 border-b-2 border-transparent hover:border-gray-500 mr-4">Log In</a>
+                        <a href="{% url 'signup' %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Créer un Cookbook</a>
 
                     {% endif %}
                 </div>
             </div>
         </nav>
 
+        <!-- Copy -->
+        <div class="w-screen">
+            {% include 'core/copy.html' %}
+        </div>
+
         <!-- Body --> 
-        <div class="justify-self-center w-screen px-10 my-5">
+        <div class="w-screen my-5">
             {% block content %}
             {% endblock content %}
         </div>
 
         <!-- Footer -->
-        <footer class="flex bg-gray-700 w-screen my-5 p-5">
+        <footer class="flex justify-around bg-gray-700 w-screen my-5 p-5">
             <div class="text-white py-5">
                 <p class="text-sm font-semibold">&copy; 2021 - Eri Schön</p>
+            </div>
+            <div class="text-white py-5">
+                <p class="text-sm font-semibold">v 0.1.0-a-1</p>
+            </div>
+            <div class="my-auto">
+                <img class="fill-current h-8 w-8 mr-2" width="54" height="54" src="{% static 'assets/img/logo-esdev-fff-transp-2.png' %}">
             </div>
         </footer>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 </body>
 </html>

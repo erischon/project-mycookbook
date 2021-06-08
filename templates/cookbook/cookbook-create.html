@@ -1,0 +1,19 @@
+{% extends 'core/_base.html' %}{% load static %}
+
+{% block title %}My CookBook - Création{% endblock title %}
+
+{% block content %}
+  <div class="mx-auto grid-cols-12 w-full mb-10 lg:max-w-screen-lg">
+
+    <h1>Créer un Cookbook</h1>
+
+    <form method="post" action="{% url 'cookbook_create' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="">
+        <button class="" type="submit">Envoyer</button>
+      </div>
+    </form>
+  
+  </div>
+{% endblock content %}

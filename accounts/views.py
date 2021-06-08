@@ -1,6 +1,8 @@
 from django.urls import reverse_lazy
 from django.views import generic
+
 from .forms import CustomUserCreationForm
+from cookbook.models import Cookbook
 
 
 class SignupPageView(generic.CreateView):
