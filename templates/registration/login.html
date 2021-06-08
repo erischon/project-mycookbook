@@ -8,11 +8,11 @@
     <h1 class="text-4xl font-semibold text-center mb-10">Log In</h1>
 
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
-      <div class="bg-gray-100 py-8 px-6 shadow rounded-lg sm:px-10">
+      <div class="bg-gray-100 py-8 px-6 shadow-md rounded-lg sm:px-10">
         <form method="post" class="mb-0 space-y-6">
           {% csrf_token %}
           {{ form.as_p }}
-          <button type="submit">Log In</button>
+          <button type="submit" class="inline-block text-sm text-white px-5 py-2 font-bold leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 shadow rounded">Log In</button>
         </form>
       </div>
     </div>
