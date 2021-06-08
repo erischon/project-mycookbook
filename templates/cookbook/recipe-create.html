@@ -3,7 +3,7 @@
 {% block title %}My CookBook - Créer une Recette{% endblock title %}
 
 {% block content %}
-<div class="mx-auto w-screen mb-10 lg:max-w-screen-lg">
+<div class="mx-auto w-screen mb-10 lg:max-w-screen-lg px-4">
 
   <h1 class="text-4xl font-semibold text-center mb-5">Créer une recette</h1>
 
@@ -18,9 +18,16 @@
         <div class="">{{ recipe_form.guest }}</div>
         <div class="">{{ recipe_form.prep_time }}</div>
         <div class="">{{ recipe_form.cook_time }}</div>
-
         <div class="">{{ recipe_form.source }}</div>
       </div>
+
+      {% if recipe_form.errors %}
+        <div class="text-red-500 font-semibold">
+          {% for fields in recipe_form.errors %}
+            {{ fields }}
+          {% endfor %}
+        </div>
+      {% endif %}
 
       <div class="flex flex-col px-2">
 
@@ -41,7 +48,6 @@
                 <button type="button" data-formset-remove-form class="m-5 w-9 h-9 focus:outline-none">
                   <img class="fill-current h-6 w-6 m-2" width="54" height="54" src="{% static 'assets/img/delete.svg' %}">
                 </button>
-
               </div>
 
             </fieldset>
@@ -58,6 +64,14 @@
               {% endfor %}
             </fieldset>
           </fieldset>
+
+          {% if ingredient_formset.errors %}
+            <div class="text-red-500 font-semibold">
+              {% for fields in ingredient_formset.errors %}
+                {{ fields }}
+              {% endfor %}
+            </div>
+          {% endif %}
 
           <fieldset>
             <button type="button" class="controls inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 shadow rounded" data-formset-add-form>Ajouter un ingrédient</button>
@@ -101,6 +115,14 @@
               {% endfor %}
             </fieldset>
           </fieldset>
+
+          {% if instruction_set.errors %}
+            <div class="text-red-500 font-semibold">
+              {% for fields in instruction_set.errors %}
+                {{ fields }}
+              {% endfor %}
+            </div>
+          {% endif %}
 
           <fieldset>
             <button type="button" class="controls inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 shadow rounded" data-formset-add-form>Ajouter une étape</button>

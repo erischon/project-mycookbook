@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.forms import ModelForm, modelformset_factory
 from django.utils.text import slugify
 from django.views.generic.detail import DetailView
+from django.contrib import messages
 
 from .forms import CookbookCreationForm, RecipeCreationForm, IngredientForm, InstructionForm, TagForm
 from .models import Cookbook, Recipe, Ingredient, RecipeInfos, Instruction, Tag, TagType
@@ -72,6 +73,7 @@ def create_recipe(request):
                 tag.save()
 
             return redirect('my_cookbook')
+
     else:
         recipe_form = RecipeCreationForm()
         ingredient_formset = IngredientFormSet(data_ingredient, prefix='ingredient')
