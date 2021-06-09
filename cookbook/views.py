@@ -3,8 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.forms import ModelForm, modelformset_factory
 from django.utils.text import slugify
 from django.views.generic.detail import DetailView
-from django.contrib import messages
 from django.views.generic.edit import UpdateView
+from django.contrib import messages
+
 
 from .forms import CookbookCreationForm, RecipeCreationForm, IngredientForm, InstructionForm, TagForm
 from .models import Cookbook, Recipe, Ingredient, RecipeInfos, Instruction, Tag, TagType
@@ -100,8 +101,10 @@ def create_recipe(request):
 class RecipeEditView(UpdateView):
 
     model = Recipe
+    # fields = ['title']
     form_class = RecipeCreationForm
     template_name = 'cookbook/recipe-edit.html'
+    success_url = '/mycookbook/'
 
 
 class RecipeDetailView(DetailView):
