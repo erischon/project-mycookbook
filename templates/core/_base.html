@@ -38,7 +38,7 @@
                 <!-- <div class="font-semibold lg:flex-grow">
                     <a href="{% url 'home' %}" class="block mt-4 lg:inline-block lg:mt-0 border-b-2 border-transparent hover:border-gray-500 mr-4">Accueil</a>
                 </div> -->
-                <div class="font-semibold flex sm:flex-none">
+                <div class="font-semibold flex sm:flex-none items-end">
                     {% if user.is_authenticated %}
                         <a href="{% url 'my_cookbook' %}" class="block mt-4 lg:inline-block lg:mt-0 mr-4">
                         <img class="fill-current h-6 w-6 mr-2" width="54" height="54" src="{% static 'assets/img/cookbook.svg' %}" alt="Mon Cookbook" title="Mon Cookbook">
@@ -47,7 +47,7 @@
                         <a href="{% url 'logout' %}" class="block mt-4 lg:inline-block lg:mt-0 mr-4"><img class="fill-current h-5 w-5 mr-2" width="54" height="54" src="{% static 'assets/img/logout.svg' %}" alt="Déconnection" title="Déconnection"></a>
 
                     {% else %}
-                        <a href="{% url 'login' %}" class="block mt-4 lg:inline-block lg:mt-0 border-b-2 border-transparent hover:border-gray-500 mr-4">Log In</a>
+                         <a href="{% url 'login' %}" class="block lg:inline-block lg:mt-0 mr-4"><img class="fill-current h-7 w-7 mr-2 mb-1" width="54" height="54" src="{% static 'assets/img/login.svg' %}" alt="Connection" title="Connection"></a>
                         <a href="{% url 'signup' %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Créer un Cookbook</a>
 
                     {% endif %}
