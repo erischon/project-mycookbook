@@ -20,11 +20,13 @@
     <div class="flex flex-col justify-between w-screen h-screen">
 
         <!-- Header -->
-        <nav class="flex justify-between justify-self-center flex-wrap border-0 border-b-2 border-gray-200 py-4 px-2 lg:max-w-screen-lg w-full mx-auto my-5">
+        <header class="flex justify-between flex-wrap border-0 border-b-2 border-gray-200 py-4 px-2 lg:max-w-screen-lg w-full mx-auto my-5">
             <div class="flex items-center flex-shrink-0 text-black mr-8">
                 <img class="fill-current h-8 w-8 mr-2" width="54" height="54" src="{% static 'assets/img/chef.svg' %}" alt="My Cookbook" title="My Cookbook">
                 <a href="{% url 'home' %}">
-                    <span class="font-semibold text-xl tracking-tight border-b-2 border-transparent">My CookBook</span>
+                    <span class="font-semibold text-xl tracking-tight border-b-2 border-transparent">My CookBook
+                        <span class="text-gray-400 text-sm italic">Alpha</span>
+                    </span>
                 </a>
             </div>
             <!-- <div class="block lg:hidden">
@@ -32,10 +34,10 @@
                     <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
                 </button>
             </div> -->
-            <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-                <div class="font-semibold lg:flex-grow">
+            <nav class="block flex">
+                <!-- <div class="font-semibold lg:flex-grow">
                     <a href="{% url 'home' %}" class="block mt-4 lg:inline-block lg:mt-0 border-b-2 border-transparent hover:border-gray-500 mr-4">Accueil</a>
-                </div>
+                </div> -->
                 <div class="font-semibold">
                     {% if user.is_authenticated %}
                         <a href="{% url 'my_cookbook' %}" class="block mt-4 lg:inline-block lg:mt-0 mr-4">
@@ -52,8 +54,8 @@
 
                     {% endif %}
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </header>
 
         <!-- Copy -->
         <div class="w-screen">

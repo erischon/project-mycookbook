@@ -7,3 +7,5 @@ db.sqlite3
 
 .coverage
 htmlcov
+
+codes.html
