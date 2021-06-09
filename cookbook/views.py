@@ -4,6 +4,7 @@ from django.forms import ModelForm, modelformset_factory
 from django.utils.text import slugify
 from django.views.generic.detail import DetailView
 from django.contrib import messages
+from django.views.generic.edit import UpdateView
 
 from .forms import CookbookCreationForm, RecipeCreationForm, IngredientForm, InstructionForm, TagForm
 from .models import Cookbook, Recipe, Ingredient, RecipeInfos, Instruction, Tag, TagType
@@ -95,6 +96,12 @@ def create_recipe(request):
 
 #     return render(request, 'cookbook/recipe-page.html', {'recipe': recipe,})
 
+
+class RecipeEditView(UpdateView):
+    
+    model = Recipe
+    template_name = 'cookbook/recipe-detail.html'
+    context_object_name = 'recipe'
 
 class RecipeDetailView(DetailView):
 
