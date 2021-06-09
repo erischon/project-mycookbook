@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth.decorators import login_required
 
-from .views import RecipeDetailView
+from .views import RecipeDetailView, RecipeEditView
 from . import views
 
 

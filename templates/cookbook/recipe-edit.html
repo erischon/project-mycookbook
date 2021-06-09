@@ -1,0 +1,35 @@
+{% extends 'core/_base.html' %}{% load static %}
+
+{% block title %}My CookBook - {% endblock title %}
+
+{% block content %}
+<div class="mx-auto grid-cols-12 w-full mb-10 lg:max-w-screen-lg px-3">
+
+  <h1 class="text-4xl font-semibold text-center mb-5">{{ recipe.title }} Edition</h1>
+
+  <div class="flex flex-col sm:flex-row justify-center">
+    <div class="flex justify-center mr-3">
+      <p><img class="fill-current h-5 w-5 m-2" width="20" height="20" src="{% static 'assets/img/users.svg' %}" alt="Nombre de convives" title="Nombre de convives"></p>
+      <p class="my-auto">{{ recipe.guest }}</p>
+    </div>
+    <div class="flex justify-center mr-3">
+      <p><img class="fill-current h-5 w-5 m-2" width="20" height="20" src="{% static 'assets/img/timer.svg' %}" alt="Temps de préparation" title="Temps de préparation"></p>
+      <p class="my-auto">{{ recipe.prep_time }}</p>
+    </div>
+    <div class="flex content-center mr-3">
+      <p class=""><img class="fill-current h-5 w-5 m-2" width="20" height="20" src="{% static 'assets/img/pot.svg' %}" alt="Temps de cuisson" title="Temps de cuisson"></p>
+      <p class="my-auto">{{ recipe.cook_time }}</p>
+    </div>
+  </div>
+
+  <p class="text-center text-sm">Une recette de {{ infos.creator }}</p>
+
+  <div class="flex flex-col my-5 py-4">
+
+    <div class="mb-4">
+      <p class="font-semibold mb-2">Description :</p>
+      {{ recipe.description }}
+    </div>
+
+</div>
+{% endblock content %}

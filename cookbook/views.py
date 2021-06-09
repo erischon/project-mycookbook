@@ -98,10 +98,11 @@ def create_recipe(request):
 
 
 class RecipeEditView(UpdateView):
-    
+
     model = Recipe
-    template_name = 'cookbook/recipe-detail.html'
-    context_object_name = 'recipe'
+    form_class = RecipeCreationForm
+    template_name = 'cookbook/recipe-edit.html'
+
 
 class RecipeDetailView(DetailView):
 
