@@ -145,27 +145,6 @@ def create_recipe(request):
     return render(request, 'cookbook/recipe-create.html', context)
 
 
-# @login_required
-# def recipe_page(request, recipe_id):
-#     recipe = get_object_or_404(Recipe, id=recipe_id)
-
-#     return render(request, 'cookbook/recipe-page.html', {'recipe': recipe,})
-
-
-class RecipeEditView(UpdateView):
-
-    model = Recipe
-    # fields = ['title']
-    form_class = RecipeCreationForm
-    template_name = 'cookbook/recipe-edit.html'
-    success_url = '/mycookbook/'
-
-class IngredientEditView(UpdateView):
-    model = Ingredient
-    form_class = IngredientForm
-    template_name = 'cookbook/ingredient-edit.html'
-    success_url = '/mycookbook/'
-
 class RecipeDetailView(DetailView):
 
     model = Recipe
@@ -181,16 +160,3 @@ class RecipeDetailView(DetailView):
         context['tags'] = Tag.objects.filter(recipe=context['object'])
 
         return context
-
-
-# class RecipeCreateView(CreateView):
-#     model = Recipe
-#     form_class = RecipeCreationForm
-#     template_name = 'cookbook/recipe-creation.html'
-#     # success_url = '/mycookbook/'
-
-#     def form_valid(self, form):
-#         recipe = form.save()
-#         recipe.cookbook.set([Cookbook.objects.get(user=self.request.user)])
-#         print(recipe)
-#         return HttpResponseRedirect('/mycookbook/')
