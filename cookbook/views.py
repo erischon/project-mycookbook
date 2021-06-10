@@ -26,58 +26,6 @@ def create_cookbook(request):
 
     return render(request, 'cookbook/cookbook-create.html', {'form': form})
 
-@login_required
-def update_recipe(request, pk):
-    # Formsets
-    IngredientFormSet = modelformset_factory(Ingredient, form=IngredientForm, extra=0)
-    InstructionFormSet = modelformset_factory(Instruction, form=InstructionForm, extra=0)
-    TagFormSet = modelformset_factory(Tag, form=TagForm, extra=0)
-    # Query
-    recipe = Recipe.objects.get(id=pk)
-    ingredient_queryset = Ingredient.objects.filter(recipe=recipe)
-    instruction_queryset = Instruction.objects.filter(recipe=recipe)
-    tag_queryset = Tag.objects.filter(recipe=recipe)
-    # Form
-    recipe_form = RecipeCreationForm(request.POST or None, instance=recipe)
-    ingredient_formset = IngredientFormSet(request.POST or None, prefix='ingredient', queryset=ingredient_queryset)
-    instruction_formset = InstructionFormSet(request.POST or None, prefix='instruction', queryset= instruction_queryset)
-    tag_formset = TagFormSet(request.POST or None, prefix='tag', queryset=tag_queryset)
-
-    if recipe_form.is_valid() and ingredient_formset.is_valid() and instruction_formset.is_valid():
-        # Recipe
-        recipe = recipe_form.save()
-        recipe.cookbook.set([Cookbook.objects.get(user=request.user)])
-        # Recipe Infos
-        creator = request.user
-        owner = request.user
-        slug = slugify(recipe.title)
-        RecipeInfos.objects.create(creator=creator, owner=owner, slug=slug, recipe=recipe)
-        # Ingredients
-        ingredients = ingredient_formset.save(commit=False)
-        for ingredient in ingredients:
-            ingredient.recipe = recipe
-            ingredient.save()
-        # Instructions
-        instructions = instruction_formset.save(commit=False)
-        for instruction in instructions:
-            instruction.recipe = recipe
-            instruction.save()
-        # Tags
-        tags = tag_formset.save(commit=False)
-        for tag in tags:
-            tag.recipe = recipe
-            tag.save()
-
-        return redirect('my_cookbook')
-
-    context = {
-        'recipe_form': recipe_form,
-        'ingredient_formset': ingredient_formset,
-        'instruction_formset': instruction_formset,
-        'tag_formset': tag_formset,
-    }
-    return render(request, 'cookbook/recipe-create.html', context)
-
 
 @login_required
 def create_recipe(request):
@@ -135,6 +83,59 @@ def create_recipe(request):
         ingredient_formset = IngredientFormSet(data_ingredient, prefix='ingredient')
         instruction_formset = InstructionFormSet(data_instruction, prefix='instruction')
         tag_formset = TagFormSet(data_tag, prefix='tag')
+
+    context = {
+        'recipe_form': recipe_form,
+        'ingredient_formset': ingredient_formset,
+        'instruction_formset': instruction_formset,
+        'tag_formset': tag_formset,
+    }
+    return render(request, 'cookbook/recipe-create.html', context)
+
+
+@login_required
+def update_recipe(request, pk):
+    # Formsets
+    IngredientFormSet = modelformset_factory(Ingredient, form=IngredientForm, extra=0)
+    InstructionFormSet = modelformset_factory(Instruction, form=InstructionForm, extra=0)
+    TagFormSet = modelformset_factory(Tag, form=TagForm, extra=0)
+    # Query
+    recipe = Recipe.objects.get(id=pk)
+    ingredient_queryset = Ingredient.objects.filter(recipe=recipe)
+    instruction_queryset = Instruction.objects.filter(recipe=recipe)
+    tag_queryset = Tag.objects.filter(recipe=recipe)
+    # Form
+    recipe_form = RecipeCreationForm(request.POST, instance=recipe)
+    ingredient_formset = IngredientFormSet(request.POST, prefix='ingredient', queryset=ingredient_queryset)
+    instruction_formset = InstructionFormSet(request.POST, prefix='instruction', queryset= instruction_queryset)
+    tag_formset = TagFormSet(request.POST, prefix='tag', queryset=tag_queryset)
+
+    if recipe_form.is_valid() and ingredient_formset.is_valid() and instruction_formset.is_valid():
+        # Recipe
+        recipe = recipe_form.save()
+        recipe.cookbook.set([Cookbook.objects.get(user=request.user)])
+        # Recipe Infos
+        creator = request.user
+        owner = request.user
+        slug = slugify(recipe.title)
+        RecipeInfos.objects.create(creator=creator, owner=owner, slug=slug, recipe=recipe)
+        # Ingredients
+        ingredients = ingredient_formset.save(commit=False)
+        for ingredient in ingredients:
+            ingredient.recipe = recipe
+            ingredient.save()
+        # Instructions
+        instructions = instruction_formset.save(commit=False)
+        for instruction in instructions:
+            instruction.recipe = recipe
+            instruction.save()
+        # Tags
+        tags = tag_formset.save(commit=False)
+        for tag in tags:
+            tag.recipe = recipe
+            tag.save()
+
+        return redirect('my_cookbook')
 
     context = {
         'recipe_form': recipe_form,
