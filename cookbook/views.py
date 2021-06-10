@@ -4,8 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.forms import ModelForm, modelformset_factory
 from django.utils.text import slugify
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView, CreateView
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 
 
 from .forms import CookbookCreationForm, RecipeCreationForm, IngredientForm, InstructionForm, TagForm
@@ -27,19 +28,6 @@ def create_cookbook(request):
 
 @login_required
 def update_recipe(request, pk):
-    # Data
-    data_ingredient = {
-        'ingredient-TOTAL_FORMS': '1',
-        'ingredient-INITIAL_FORMS': '0',
-    }
-    data_instruction = {
-        'instruction-TOTAL_FORMS': '1',
-        'instruction-INITIAL_FORMS': '0',
-    }
-    data_tag = {
-        'tag-TOTAL_FORMS': '1',
-        'tag-INITIAL_FORMS': '0',
-    }
     # Formsets
     IngredientFormSet = modelformset_factory(Ingredient, form=IngredientForm, extra=0)
     InstructionFormSet = modelformset_factory(Instruction, form=InstructionForm)
@@ -190,3 +178,14 @@ class RecipeDetailView(DetailView):
         return context
 
 
+class RecipeCreateView(CreateView):
+    model = Recipe
+    form_class = RecipeCreationForm
+    template_name = 'cookbook/recipe-creation.html'
+    # success_url = '/mycookbook/'
+
+    def form_valid(self, form):
+        recipe = form.save()
+        recipe.cookbook.set([Cookbook.objects.get(user=self.request.user)])
+        print(recipe)
+        return HttpResponseRedirect('/mycookbook/')
