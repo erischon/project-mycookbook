@@ -27,25 +27,29 @@ def create_cookbook(request):
 
 @login_required
 def update_recipe(request, pk):
-    # IngredientFormset = modelformset_factory(Ingredient, form=IngredientForm)
-    # formset = IngredientFormset(request.POST or None)
-    # context = {
-    #     'formset': formset,
-    # }
-    # return render(request, 'cookbook/recipe-create.html', context)
-
+    # Data
+    data_ingredient = {
+        'ingredient-TOTAL_FORMS': '1',
+        'ingredient-INITIAL_FORMS': '0',
+    }
+    data_instruction = {
+        'instruction-TOTAL_FORMS': '1',
+        'instruction-INITIAL_FORMS': '0',
+    }
+    data_tag = {
+        'tag-TOTAL_FORMS': '1',
+        'tag-INITIAL_FORMS': '0',
+    }
     # Formsets
-    IngredientFormSet = modelformset_factory(Ingredient, form=IngredientForm)
+    IngredientFormSet = modelformset_factory(Ingredient, form=IngredientForm, extra=0)
     InstructionFormSet = modelformset_factory(Instruction, form=InstructionForm)
     TagFormSet = modelformset_factory(Tag, form=TagForm)
-    # Formset Data
-
+    # Query
     recipe = Recipe.objects.get(id=pk)
-
     ingredient_queryset = Ingredient.objects.filter(recipe=recipe)
     instruction_queryset = Instruction.objects.filter(recipe=recipe)
     tag_queryset = Tag.objects.filter(recipe=recipe)
-
+    # Form
     recipe_form = RecipeCreationForm(request.POST or None, instance=recipe)
     ingredient_formset = IngredientFormSet(request.POST or None, prefix='ingredient', queryset=ingredient_queryset)
     instruction_formset = InstructionFormSet(request.POST or None, prefix='instruction', queryset= instruction_queryset)
@@ -85,8 +89,6 @@ def update_recipe(request, pk):
         'tag_formset': tag_formset,
     }
     return render(request, 'cookbook/recipe-create.html', context)
-
-
 
 
 @login_required
