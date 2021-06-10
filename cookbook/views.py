@@ -107,12 +107,13 @@ def update_recipe(request, pk):
     # Form
     recipe_form = RecipeCreationForm(request.POST, instance=recipe)
     ingredient_formset = IngredientFormSet(request.POST, prefix='ingredient', queryset=ingredient_queryset)
-    instruction_formset = InstructionFormSet(request.POST, prefix='instruction', queryset= instruction_queryset)
+    instruction_formset = InstructionFormSet(request.POST, prefix='instruction', queryset=instruction_queryset)
     tag_formset = TagFormSet(request.POST, prefix='tag', queryset=tag_queryset)
 
     if recipe_form.is_valid() and ingredient_formset.is_valid() and instruction_formset.is_valid():
         # Recipe
-        recipe = recipe_form.save()
+        recipe = recipe_form.save(commit=False)
+        recipe.save()
         recipe.cookbook.set([Cookbook.objects.get(user=request.user)])
         # Recipe Infos
         creator = request.user
