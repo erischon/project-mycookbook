@@ -30,8 +30,8 @@ def create_cookbook(request):
 def update_recipe(request, pk):
     # Formsets
     IngredientFormSet = modelformset_factory(Ingredient, form=IngredientForm, extra=0)
-    InstructionFormSet = modelformset_factory(Instruction, form=InstructionForm)
-    TagFormSet = modelformset_factory(Tag, form=TagForm)
+    InstructionFormSet = modelformset_factory(Instruction, form=InstructionForm, extra=0)
+    TagFormSet = modelformset_factory(Tag, form=TagForm, extra=0)
     # Query
     recipe = Recipe.objects.get(id=pk)
     ingredient_queryset = Ingredient.objects.filter(recipe=recipe)
@@ -178,14 +178,14 @@ class RecipeDetailView(DetailView):
         return context
 
 
-class RecipeCreateView(CreateView):
-    model = Recipe
-    form_class = RecipeCreationForm
-    template_name = 'cookbook/recipe-creation.html'
-    # success_url = '/mycookbook/'
+# class RecipeCreateView(CreateView):
+#     model = Recipe
+#     form_class = RecipeCreationForm
+#     template_name = 'cookbook/recipe-creation.html'
+#     # success_url = '/mycookbook/'
 
-    def form_valid(self, form):
-        recipe = form.save()
-        recipe.cookbook.set([Cookbook.objects.get(user=self.request.user)])
-        print(recipe)
-        return HttpResponseRedirect('/mycookbook/')
+#     def form_valid(self, form):
+#         recipe = form.save()
+#         recipe.cookbook.set([Cookbook.objects.get(user=self.request.user)])
+#         print(recipe)
+#         return HttpResponseRedirect('/mycookbook/')
