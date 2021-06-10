@@ -1,3 +1,4 @@
+from django.db.models import query
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.forms import ModelForm, modelformset_factory
@@ -23,6 +24,69 @@ def create_cookbook(request):
         form = CookbookCreationForm()
 
     return render(request, 'cookbook/cookbook-create.html', {'form': form})
+
+@login_required
+def update_recipe(request, pk):
+    # IngredientFormset = modelformset_factory(Ingredient, form=IngredientForm)
+    # formset = IngredientFormset(request.POST or None)
+    # context = {
+    #     'formset': formset,
+    # }
+    # return render(request, 'cookbook/recipe-create.html', context)
+
+    # Formsets
+    IngredientFormSet = modelformset_factory(Ingredient, form=IngredientForm)
+    InstructionFormSet = modelformset_factory(Instruction, form=InstructionForm)
+    TagFormSet = modelformset_factory(Tag, form=TagForm)
+    # Formset Data
+
+    recipe = Recipe.objects.get(id=pk)
+
+    ingredient_queryset = Ingredient.objects.filter(recipe=recipe)
+    instruction_queryset = Instruction.objects.filter(recipe=recipe)
+    tag_queryset = Tag.objects.filter(recipe=recipe)
+
+    recipe_form = RecipeCreationForm(request.POST or None, instance=recipe)
+    ingredient_formset = IngredientFormSet(request.POST or None, prefix='ingredient', queryset=ingredient_queryset)
+    instruction_formset = InstructionFormSet(request.POST or None, prefix='instruction', queryset= instruction_queryset)
+    tag_formset = TagFormSet(request.POST or None, prefix='tag', queryset=tag_queryset)
+
+    if recipe_form.is_valid() and ingredient_formset.is_valid() and instruction_formset.is_valid():
+        # Recipe
+        recipe = recipe_form.save()
+        recipe.cookbook.set([Cookbook.objects.get(user=request.user)])
+        # Recipe Infos
+        creator = request.user
+        owner = request.user
+        slug = slugify(recipe.title)
+        RecipeInfos.objects.create(creator=creator, owner=owner, slug=slug, recipe=recipe)
+        # Ingredients
+        ingredients = ingredient_formset.save(commit=False)
+        for ingredient in ingredients:
+            ingredient.recipe = recipe
+            ingredient.save()
+        # Instructions
+        instructions = instruction_formset.save(commit=False)
+        for instruction in instructions:
+            instruction.recipe = recipe
+            instruction.save()
+        # Tags
+        tags = tag_formset.save(commit=False)
+        for tag in tags:
+            tag.recipe = recipe
+            tag.save()
+
+        return redirect('my_cookbook')
+
+    context = {
+        'recipe_form': recipe_form,
+        'ingredient_formset': ingredient_formset,
+        'instruction_formset': instruction_formset,
+        'tag_formset': tag_formset,
+    }
+    return render(request, 'cookbook/recipe-create.html', context)
+
+
 
 
 @login_required
@@ -98,13 +162,13 @@ def create_recipe(request):
 #     return render(request, 'cookbook/recipe-page.html', {'recipe': recipe,})
 
 
-class RecipeEditView(UpdateView):
+# class RecipeEditView(UpdateView):
 
-    model = Recipe
-    # fields = ['title']
-    form_class = RecipeCreationForm
-    template_name = 'cookbook/recipe-edit.html'
-    success_url = '/mycookbook/'
+#     model = Recipe
+#     # fields = ['title']
+#     form_class = RecipeCreationForm
+#     template_name = 'cookbook/recipe-edit.html'
+#     success_url = '/mycookbook/'
 
 
 class RecipeDetailView(DetailView):
@@ -122,3 +186,5 @@ class RecipeDetailView(DetailView):
         context['tags'] = Tag.objects.filter(recipe=context['object'])
 
         return context
+
+
