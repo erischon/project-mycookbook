@@ -152,14 +152,19 @@ def create_recipe(request):
 #     return render(request, 'cookbook/recipe-page.html', {'recipe': recipe,})
 
 
-# class RecipeEditView(UpdateView):
+class RecipeEditView(UpdateView):
 
-#     model = Recipe
-#     # fields = ['title']
-#     form_class = RecipeCreationForm
-#     template_name = 'cookbook/recipe-edit.html'
-#     success_url = '/mycookbook/'
+    model = Recipe
+    # fields = ['title']
+    form_class = RecipeCreationForm
+    template_name = 'cookbook/recipe-edit.html'
+    success_url = '/mycookbook/'
 
+class IngredientEditView(UpdateView):
+    model = Ingredient
+    form_class = IngredientForm
+    template_name = 'cookbook/ingredient-edit.html'
+    success_url = '/mycookbook/'
 
 class RecipeDetailView(DetailView):
 
