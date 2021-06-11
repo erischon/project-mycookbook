@@ -5,9 +5,10 @@
 {% block content %}
 <div class="mx-auto grid-cols-12 w-full mb-10 lg:max-w-screen-lg px-3">
 
-  <h1 class="text-4xl font-semibold text-center mb-5">{{ recipe.title }}</h1>
+  <h1 class="text-4xl font-semibold text-center mb-2">{{ recipe.title }}</h1>
+  <p class="text-center text-sm mb-5">Une recette de {{ infos.creator }}</p>
 
-  <div class="flex flex-col sm:flex-row justify-center">
+  <div class="flex flex-wrap justify-center">
     <div class="flex justify-center mr-3">
       <p><img class="fill-current h-5 w-5 m-2" width="20" height="20" src="{% static 'assets/img/users.svg' %}" alt="Nombre de convives" title="Nombre de convives"></p>
       <p class="my-auto">{{ recipe.guest }}</p>
@@ -16,13 +17,11 @@
       <p><img class="fill-current h-5 w-5 m-2" width="20" height="20" src="{% static 'assets/img/timer.svg' %}" alt="Temps de préparation" title="Temps de préparation"></p>
       <p class="my-auto">{{ recipe.prep_time }}</p>
     </div>
-    <div class="flex content-center mr-3">
+    <div class="flex justify-center mr-3">
       <p class=""><img class="fill-current h-5 w-5 m-2" width="20" height="20" src="{% static 'assets/img/pot.svg' %}" alt="Temps de cuisson" title="Temps de cuisson"></p>
       <p class="my-auto">{{ recipe.cook_time }}</p>
     </div>
   </div>
-
-  <p class="text-center text-sm">Une recette de {{ infos.creator }}</p>
 
   <div class="flex flex-col my-5 py-4">
 
@@ -35,12 +34,12 @@
       <p class="font-semibold mb-2">Ingrédients :</p>
         <div class="flex flex-col">
           {% for ingredient in ingredients %}
-            <p>
+            <p class="my-2">
               {{ ingredient.quantity }} {{ ingredient.measure }} de {{ ingredient.name }} 
-              <a href="{% url 'ingredient-edit' ingredient.id %}">(modifier)</a>
+              <a href="{% url 'ingredient-edit' ingredient.id %}" class="mx-5"><img class="fill-current h-4 w-4 m-2 inline-block" width="20" height="20" src="{% static 'assets/img/edit.svg' %}" alt="Modifier" title="Modifier"></a>
             </p>
           {% endfor %}
-          <a href="{% url 'ingredient-add' recipe.id %}">(ajouter)</a>
+          <p><a class="inline-block text-xs my-4 border border-1 border-gray-600 px-4 py-2 rounded shadow" href="{% url 'ingredient-add' recipe.id %}">Ajouter un ingrédient</a></p>
         </div>
     </div>
 
@@ -69,12 +68,10 @@
   </div>
 
 
+  <div class="flex">
+    <p class="mx-auto text-center"><a href="{% url 'recipe-edit' recipe.id %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Editer la recette</a></p>
 
-  <p class="mx-auto text-center"><a href="{% url 'recipe_create' %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Créer une recette</a></p>
-
-  <p class="mx-auto text-center"><a href="{% url 'recipe-edit' recipe.id %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Editer la recette</a></p>
-
-  <p class="mx-auto text-center"><a href="{% url 'recipe-delete' recipe.id %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Effacer la recette</a></p>
-
-</div>
+    <p class="mx-auto text-center"><a href="{% url 'recipe-delete' recipe.id %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Effacer la recette</a></p>
+  </div>
+  </div>
 {% endblock content %}
