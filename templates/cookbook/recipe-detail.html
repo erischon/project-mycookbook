@@ -36,10 +36,10 @@
           {% for ingredient in ingredients %}
             <p class="my-2">
               {{ ingredient.quantity }} {{ ingredient.measure }} de {{ ingredient.name }} 
-              <a href="{% url 'ingredient-edit' ingredient.id %}" class="mx-5"><img class="fill-current h-4 w-4 m-2 inline-block" width="20" height="20" src="{% static 'assets/img/edit.svg' %}" alt="Modifier" title="Modifier"></a>
+              <a href="{% url 'ingredient-edit' ingredient.id %}" class="mx-5"><img class="fill-current h-3 w-3 m-2 inline-block" width="20" height="20" src="{% static 'assets/img/edit.svg' %}" alt="Modifier" title="Modifier"></a>
             </p>
           {% endfor %}
-          <p><a class="inline-block text-xs my-4 border border-1 border-gray-600 px-4 py-2 rounded shadow" href="{% url 'ingredient-add' recipe.id %}">Ajouter un ingrédient</a></p>
+          <p><a class="inline-block text-xs text-gray-500 my-4 border border-1 border-gray-200 px-4 py-2 rounded-full shadow-md" href="{% url 'ingredient-add' recipe.id %}">Ajouter un ingrédient</a></p>
         </div>
     </div>
 
