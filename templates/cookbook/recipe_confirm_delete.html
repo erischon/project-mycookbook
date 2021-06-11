@@ -1,0 +1,14 @@
+{% extends 'core/_base.html' %}{% load static %}
+
+{% block title %}My CookBook - {% endblock title %}
+
+{% block content %}
+<div class="mx-auto grid-cols-12 w-full mb-10 lg:max-w-screen-lg px-3">
+
+<form method="post">{% csrf_token %}
+    <p>Vous êtes sûr de vouloir effacer la recette "{{ object }}"?</p>
+    <input type="submit" value="Confirmer">
+</form>
+
+</div>
+{% endblock content %}

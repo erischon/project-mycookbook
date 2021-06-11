@@ -33,27 +33,36 @@
 
     <div class="mb-4">
       <p class="font-semibold mb-2">Ingrédients :</p>
-        <div class="flex flex-row">
+        <div class="flex flex-col">
           {% for ingredient in ingredients %}
-            {{ ingredient.quantity }} {{ ingredient.measure }} de {{ ingredient.name }},
+            <p>
+              {{ ingredient.quantity }} {{ ingredient.measure }} de {{ ingredient.name }} 
+              <a href="{% url 'ingredient-edit' ingredient.id %}">(modifier)</a>
+            </p>
           {% endfor %}
+          <a href="{% url 'ingredient-add' recipe.id %}">(ajouter)</a>
         </div>
     </div>
 
     <div class="mb-4">
       <p class="font-semibold mb-2">Instructions :</p>
-      
-      {% for instruction in instructions %}
-        {{ instruction.step }} {{ instruction.instruction }} <br>
-      {% endfor %}
+        <div class="flex flex-col">
+          {% for instruction in instructions %}
+            {{ instruction.step }} {{ instruction.instruction }}
+            <a href="{% url 'instruction-edit' instruction.id %}">(modifier)</a>
+          {% endfor %}
+          <a href="{% url 'instruction-add' recipe.id %}">(ajouter)</a>
+        </div>
     </div>
 
     <div class="mb-4">
       <p class="font-semibold mb-2">Tags :</p>
       <div class="flex flex-row">
         {% for tag in tags %}
-          <div class="py-2 px-4 mx-2 bg-gray-300 text-sm">{{ tag.tagtype }} : {{ tag.name }}</div> 
+          <div class="py-2 px-4 mx-2 bg-gray-300 text-sm">{{ tag.tagtype }} : {{ tag.name }}</div>
+          <a href="{% url 'tag-edit' tag.id %}">(modifier)</a>
         {% endfor %}
+        <a href="{% url 'tag-add' recipe.id %}">(ajouter)</a>
       </div>
     </div>
 
@@ -62,6 +71,10 @@
 
 
   <p class="mx-auto text-center"><a href="{% url 'recipe_create' %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Créer une recette</a></p>
+
+  <p class="mx-auto text-center"><a href="{% url 'recipe-edit' recipe.id %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Editer la recette</a></p>
+
+  <p class="mx-auto text-center"><a href="{% url 'recipe-delete' recipe.id %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Effacer la recette</a></p>
 
 </div>
 {% endblock content %}
