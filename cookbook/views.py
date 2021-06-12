@@ -124,7 +124,7 @@ class RecipeEditView(UpdateView):
 class IngredientEditView(UpdateView):
     model = Ingredient
     form_class = IngredientForm
-    template_name = 'cookbook/ingredient-edit.html'
+    template_name = 'cookbook/recipe-edit.html'
 
     def get_success_url(self):
         return reverse_lazy('recipe-detail', args=(self.object.recipe.id,))
@@ -133,7 +133,7 @@ class IngredientEditView(UpdateView):
 class IngredientAddView(CreateView):
     model = Ingredient
     form_class = IngredientForm
-    template_name = 'cookbook/ingredient-edit.html'
+    template_name = 'cookbook/recipe-edit.html'
 
     def form_valid(self, form):
         form.instance.recipe = Recipe.objects.get(pk=self.kwargs.get('pk'))
@@ -146,7 +146,7 @@ class IngredientAddView(CreateView):
 class InstructionEditView(UpdateView):
     model = Instruction
     form_class = InstructionForm
-    template_name = 'cookbook/instruction-edit.html'
+    template_name = 'cookbook/recipe-edit.html'
 
     def get_success_url(self):
         return reverse_lazy('recipe-detail', args=(self.object.recipe.id,))
@@ -155,7 +155,7 @@ class InstructionEditView(UpdateView):
 class InstructionAddView(CreateView):
     model = Instruction
     form_class = InstructionForm
-    template_name = 'cookbook/instruction-edit.html'
+    template_name = 'cookbook/recipe-edit.html'
 
     def form_valid(self, form):
         form.instance.recipe = Recipe.objects.get(pk=self.kwargs.get('pk'))
@@ -168,7 +168,7 @@ class InstructionAddView(CreateView):
 class TagEditView(UpdateView):
     model = Tag
     form_class = TagForm
-    template_name = 'cookbook/tag-edit.html'
+    template_name = 'cookbook/recipe-edit.html'
 
     def get_success_url(self):
         return reverse_lazy('recipe-detail', args=(self.object.recipe.id,))
@@ -177,7 +177,7 @@ class TagEditView(UpdateView):
 class TagAddView(CreateView):
     model = Tag
     form_class = TagForm
-    template_name = 'cookbook/tag-edit.html'
+    template_name = 'cookbook/recipe-edit.html'
 
     def form_valid(self, form):
         form.instance.recipe = Recipe.objects.get(pk=self.kwargs.get('pk'))

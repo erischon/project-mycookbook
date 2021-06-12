@@ -38,9 +38,9 @@ class IngredientForm(ModelForm):
         model = Ingredient
         fields = ['name', 'measure', 'quantity']
         labels = {
-            'name': 'Ingédient : ',
-            'measure': 'Mesure : ',
-            'quantity': 'Quantité : ',
+            'name': 'Ingédient ',
+            'measure': 'Mesure ',
+            'quantity': 'Quantité ',
         }
         widgets = {
             'name': TextInput(attrs={'placeholder': 'Ingrédient', 'class': 'bg-gray-50 p-3 mb-2 w-full sm:w-full shadow-md border-0 rounded'}),
@@ -54,8 +54,8 @@ class InstructionForm(ModelForm):
         model = Instruction
         fields = ['step', 'instruction']
         labels = {
-            'step': 'Etape : ',
-            'instruction': 'Instruction : ',
+            'step': 'Etape ',
+            'instruction': 'Instruction ',
         }
         widgets = {
             'step': TextInput(attrs={'placeholder': 'Etape n°', 'class': 'bg-gray-50 p-3 mb-2 w-40 sm:w-full shadow-md border-0 rounded'}),
@@ -68,8 +68,8 @@ class TagForm(ModelForm):
         model = Tag
         fields = ['name', 'tagtype']
         labels = {
-            'name': 'Tag : ',
-            'tagtype': 'Catégorie : ',
+            'name': 'Tag ',
+            'tagtype': 'Catégorie ',
         }
         widgets = {
             'name': TextInput(attrs={'placeholder': 'Nom du tag', 'class': 'bg-gray-50 p-3 mb-2 w-full sm:w-full shadow-md border-0 rounded'}),

@@ -3,7 +3,7 @@
 {% block title %}My CookBook - {% endblock title %}
 
 {% block content %}
-<div class="mx-auto grid-cols-12 w-full mb-10 lg:max-w-screen-lg px-3">
+<div class="mx-auto grid-cols-12 w-full mb-10 lg:max-w-screen-lg px-5">
 
   <h1 class="text-4xl font-semibold text-center mb-2">{{ recipe.title }}</h1>
   <p class="text-center text-sm mb-5">Une recette de {{ infos.creator }}</p>
@@ -26,52 +26,64 @@
   <div class="flex flex-col my-5 py-4">
 
     <div class="mb-4">
-      <p class="font-semibold mb-2">Description :</p>
+      <p class="font-light text-xl mb-4 pb-2 border-0 border-b-2">Description</p>
       {{ recipe.description }}
     </div>
 
-    <div class="mb-4">
-      <p class="font-semibold mb-2">Ingrédients :</p>
-        <div class="flex flex-col">
-          {% for ingredient in ingredients %}
-            <p class="my-2">
-              {{ ingredient.quantity }} {{ ingredient.measure }} de {{ ingredient.name }} 
-              <a href="{% url 'ingredient-edit' ingredient.id %}" class="mx-5"><img class="fill-current h-3 w-3 m-2 inline-block" width="20" height="20" src="{% static 'assets/img/edit.svg' %}" alt="Modifier" title="Modifier"></a>
-            </p>
-          {% endfor %}
-          <p><a class="inline-block text-xs text-gray-500 my-4 border border-1 border-gray-200 px-4 py-2 rounded-full shadow-md" href="{% url 'ingredient-add' recipe.id %}">Ajouter un ingrédient</a></p>
-        </div>
+    <div class="flex flex-col sm:flex-row-reverse">
+
+      <div class="mb-4 cont-ingredient sm:w-1/3 sm:ml-4">
+        <p class="font-light text-xl mb-4 pb-2 border-0 border-b-2">Ingrédients</p>
+          <div class="flex flex-col">
+            {% for ingredient in ingredients %}
+              <p class="my-1">
+                <a href="{% url 'ingredient-edit' ingredient.id %}" class="mr-2"><img class="fill-current h-3 w-3 m-2 hidden sm:inline-block" width="20" height="20" src="{% static 'assets/img/edit.svg' %}" alt="Modifier" title="Modifier"></a>
+                <span class="font-semibold">{{ ingredient.name }}</span> : {{ ingredient.quantity }} {{ ingredient.measure }}  
+              </p>
+            {% endfor %}
+            <p><a class="inline-block text-xs text-gray-500 my-4 border border-1 border-gray-200 px-4 py-2 rounded-full shadow-md" href="{% url 'ingredient-add' recipe.id %}">Ajouter un ingrédient</a></p>
+          </div>
+      </div>
+
+      <div class="flex-1 mb-4 cont-instruction sm:w-2/3">
+        <p class="font-light text-xl mb-4 pb-2 border-0 border-b-2">Instructions :</p>
+          <div class="flex flex-col">
+            {% for instruction in instructions %}
+              <p class="my-2">
+                <a href="{% url 'instruction-edit' instruction.id %}" class="mr-2">
+                  <img class="fill-current h-3 w-3 hidden sm:inline-block" width="20" height="20" src="{% static 'assets/img/edit.svg' %}" alt="Modifier" title="Modifier">
+                </a>
+                <span class="font-semibold mr-2">Etape {{ instruction.step }} :</span> {{ instruction.instruction }}
+              </p>  
+            {% endfor %}          
+            <p><a class="inline-block text-xs text-gray-500 my-4 border border-1 border-gray-200 px-4 py-2 rounded-full shadow-md" href="{% url 'instruction-add' recipe.id %}">Ajouter une instruction</a></p>
+          </div>
+      </div>
+
     </div>
 
-    <div class="mb-4">
-      <p class="font-semibold mb-2">Instructions :</p>
-        <div class="flex flex-col">
-          {% for instruction in instructions %}
-            {{ instruction.step }} {{ instruction.instruction }}
-            <a href="{% url 'instruction-edit' instruction.id %}">(modifier)</a>
-          {% endfor %}
-          <a href="{% url 'instruction-add' recipe.id %}">(ajouter)</a>
-        </div>
-    </div>
-
-    <div class="mb-4">
-      <p class="font-semibold mb-2">Tags :</p>
-      <div class="flex flex-row">
+    <div class="mb-4 cont-tag">
+      <p class="font-light text-xl mb-4 pb-2 border-0 border-b-2">Tags :</p>
+      <div class="flex flex-col flex-wrap">
         {% for tag in tags %}
-          <div class="py-2 px-4 mx-2 bg-gray-300 text-sm">{{ tag.tagtype }} : {{ tag.name }}</div>
-          <a href="{% url 'tag-edit' tag.id %}">(modifier)</a>
+          <p class="">
+            <a href="{% url 'tag-edit' tag.id %}" class="mr-2">
+              <img class="fill-current h-3 w-3 hidden sm:inline-block" width="20" height="20" src="{% static 'assets/img/edit.svg' %}" alt="Modifier" title="Modifier">
+            </a>
+            <span class="text-gray-500 text-sm mr-2 italic">{{ tag.tagtype }}</span> {{ tag.name }}
+          </p>
         {% endfor %}
-        <a href="{% url 'tag-add' recipe.id %}">(ajouter)</a>
+        <p><a class="inline-block text-xs text-gray-500 my-4 border border-1 border-gray-200 px-4 py-2 rounded-full shadow-md" href="{% url 'tag-add' recipe.id %}">Ajouter un tag</a></p>
       </div>
     </div>
 
   </div>
 
 
-  <div class="flex">
-    <p class="mx-auto text-center"><a href="{% url 'recipe-edit' recipe.id %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Editer la recette</a></p>
+  <div class="flex flex-col sm:flex-row">
+    <p class="mx-auto text-center mb-5 sm:mb-0"><a href="{% url 'recipe-edit' recipe.id %}" class="inline-block text-sm font-semibold px-4 py-2 leading-none border border-green-400 bg-green-400 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded-full">Editer la recette</a></p>
 
-    <p class="mx-auto text-center"><a href="{% url 'recipe-delete' recipe.id %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Effacer la recette</a></p>
+    <p class="mx-auto text-center"><a href="{% url 'recipe-delete' recipe.id %}" class="inline-block text-sm font-semibold px-4 py-2 leading-none border border-green-400 bg-green-400 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded-full">Effacer la recette</a></p>
   </div>
   </div>
 {% endblock content %}
