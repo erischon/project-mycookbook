@@ -1,0 +1,28 @@
+{% extends 'core/_base.html' %}{% load static %}
+
+{% block title %}My CookBook - {% endblock title %}
+
+{% block content %}
+<div class="mx-auto grid-cols-12 w-full mb-10 lg:max-w-screen-lg px-3">
+
+  <h1 class="text-4xl font-semibold text-center mb-5">Modification</h1>
+
+  <div class="flex mx-auto flex-col sm:w-1/2 bg-gray-100 p-10 rounded shadow">
+    <form method="post">
+      {% csrf_token %}
+
+      {% for field in form %}
+        <div class="flex flex-row justify-between">
+          {{ field.label }} {{ field }}
+        </div>
+      {% endfor %}
+
+      <p class="mt-5">
+        <input type="submit" class="inline-block text-sm font-semibold px-4 py-2 leading-none border border-green-400 bg-green-400 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded-full" value="Modifier">
+      </p>
+    </form>
+  </div>
+
+
+</div>
+{% endblock content %}

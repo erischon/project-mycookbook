@@ -1,9 +1,15 @@
+from django.db.models import query
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.forms import ModelForm, modelformset_factory
+from django.urls.base import reverse_lazy
 from django.utils.text import slugify
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import DeleteView, UpdateView, CreateView
 from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 
 from .forms import CookbookCreationForm, RecipeCreationForm, IngredientForm, InstructionForm, TagForm
 from .models import Cookbook, Recipe, Ingredient, RecipeInfos, Instruction, Tag, TagType
@@ -89,13 +95,6 @@ def create_recipe(request):
     return render(request, 'cookbook/recipe-create.html', context)
 
 
-# @login_required
-# def recipe_page(request, recipe_id):
-#     recipe = get_object_or_404(Recipe, id=recipe_id)
-
-#     return render(request, 'cookbook/recipe-page.html', {'recipe': recipe,})
-
-
 class RecipeDetailView(DetailView):
 
     model = Recipe
@@ -111,3 +110,99 @@ class RecipeDetailView(DetailView):
         context['tags'] = Tag.objects.filter(recipe=context['object'])
 
         return context
+
+
+class RecipeDetailEditModeView(DeleteView):
+    model = Recipe
+    template_name = 'cookbook/recipe-detail-edit-mode.html'
+    context_object_name = 'recipe'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['infos'] = RecipeInfos.objects.get(recipe=context['object'])
+        context['ingredients'] = Ingredient.objects.filter(recipe=context['object'])
+        context['instructions'] = Instruction.objects.filter(recipe=context['object'])
+        context['tags'] = Tag.objects.filter(recipe=context['object'])
+
+        return context
+
+
+class RecipeEditView(UpdateView):
+    model = Recipe
+    form_class = RecipeCreationForm
+    template_name = 'cookbook/recipe-edit.html'
+
+    def get_success_url(self):
+        return reverse_lazy('recipe-detail', args=(self.object.id,))
+
+
+class IngredientEditView(UpdateView):
+    model = Ingredient
+    form_class = IngredientForm
+    template_name = 'cookbook/recipe-edit.html'
+
+    def get_success_url(self):
+        return reverse_lazy('recipe-detail', args=(self.object.recipe.id,))
+
+
+class IngredientAddView(CreateView):
+    model = Ingredient
+    form_class = IngredientForm
+    template_name = 'cookbook/recipe-edit.html'
+
+    def form_valid(self, form):
+        form.instance.recipe = Recipe.objects.get(pk=self.kwargs.get('pk'))
+        return super(IngredientAddView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('recipe-detail', args=(self.object.recipe.id,))
+
+
+class InstructionEditView(UpdateView):
+    model = Instruction
+    form_class = InstructionForm
+    template_name = 'cookbook/recipe-edit.html'
+
+    def get_success_url(self):
+        return reverse_lazy('recipe-detail', args=(self.object.recipe.id,))
+
+
+class InstructionAddView(CreateView):
+    model = Instruction
+    form_class = InstructionForm
+    template_name = 'cookbook/recipe-edit.html'
+
+    def form_valid(self, form):
+        form.instance.recipe = Recipe.objects.get(pk=self.kwargs.get('pk'))
+        return super(InstructionAddView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('recipe-detail', args=(self.object.recipe.id,))
+
+
+class TagEditView(UpdateView):
+    model = Tag
+    form_class = TagForm
+    template_name = 'cookbook/recipe-edit.html'
+
+    def get_success_url(self):
+        return reverse_lazy('recipe-detail', args=(self.object.recipe.id,))
+
+
+class TagAddView(CreateView):
+    model = Tag
+    form_class = TagForm
+    template_name = 'cookbook/recipe-edit.html'
+
+    def form_valid(self, form):
+        form.instance.recipe = Recipe.objects.get(pk=self.kwargs.get('pk'))
+        return super(TagAddView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('recipe-detail', args=(self.object.recipe.id,))
+
+
+class RecipeDeleteView(DeleteView):
+    model = Recipe
+    success_url = '/mycookbook/'

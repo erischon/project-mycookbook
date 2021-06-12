@@ -56,12 +56,12 @@
         </header>
 
         <!-- Copy -->
-        <div class="w-screen">
+        <!-- <div class="w-screen">
             {% include 'core/copy.html' %}
-        </div>
+        </div> -->
 
         <!-- Body --> 
-        <div class="w-screen my-5">
+        <div class="w-screen my-5 flex-grow">
             {% block content %}
             {% endblock content %}
         </div>
@@ -72,7 +72,7 @@
                 <p class="text-sm font-semibold">&copy; 2021 - Eri Schön</p>
             </div>
             <div class="text-white py-5">
-                <p class="text-sm font-semibold">v 0.1.0-a-2</p>
+                <p class="text-sm font-semibold">v 0.1.1-a-1</p>
             </div>
             <div class="my-auto">
                 <img class="fill-current h-8 w-8 mr-2" width="54" height="54" src="{% static 'assets/img/logo-esdev-fff-transp-2.png' %}" alt="Eri Schön" title="Eri Schön">

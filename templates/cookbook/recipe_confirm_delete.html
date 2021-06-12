@@ -1,0 +1,21 @@
+{% extends 'core/_base.html' %}{% load static %}
+
+{% block title %}My CookBook - Effacer une recette{% endblock title %}
+
+{% block content %}
+<div class="mx-auto grid-cols-12 w-full mb-10 lg:max-w-screen-lg px-3">
+
+    <h1 class="text-4xl font-semibold text-center mb-10">Effacer une recette</h1>
+
+    <div class="flex mx-auto text-center sm:w-1/2 justify-center">
+        <form method="post">{% csrf_token %}
+            <p>Etes-vous sûr de vouloir effacer la recette :<br>
+                <span class="font-semibold">"{{ object }}"</span> ?</p>
+            <p class="mt-10">
+                <input type="submit" value="Oui je veux effacer cette recette" class="inline-block text-sm font-semibold px-4 py-2 leading-none border border-green-400 bg-green-400 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded-full">
+            </p>
+        </form>
+    </div>
+
+</div>
+{% endblock content %}
