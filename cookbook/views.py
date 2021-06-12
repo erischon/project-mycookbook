@@ -134,7 +134,7 @@ class RecipeEditView(UpdateView):
     template_name = 'cookbook/recipe-edit.html'
 
     def get_success_url(self):
-        return reverse_lazy('recipe-detail', args=(self.object.id,))
+        return reverse_lazy('recipe-edit-mode', args=(self.object.id,))
 
 
 class IngredientEditView(UpdateView):
@@ -143,7 +143,7 @@ class IngredientEditView(UpdateView):
     template_name = 'cookbook/recipe-edit.html'
 
     def get_success_url(self):
-        return reverse_lazy('recipe-detail', args=(self.object.recipe.id,))
+        return reverse_lazy('recipe-edit-mode', args=(self.object.recipe.id,))
 
 
 class IngredientAddView(CreateView):
@@ -156,7 +156,7 @@ class IngredientAddView(CreateView):
         return super(IngredientAddView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('recipe-detail', args=(self.object.recipe.id,))
+        return reverse_lazy('recipe-edit-mode', args=(self.object.recipe.id,))
 
 
 class InstructionEditView(UpdateView):
@@ -165,7 +165,7 @@ class InstructionEditView(UpdateView):
     template_name = 'cookbook/recipe-edit.html'
 
     def get_success_url(self):
-        return reverse_lazy('recipe-detail', args=(self.object.recipe.id,))
+        return reverse_lazy('recipe-edit-mode', args=(self.object.recipe.id,))
 
 
 class InstructionAddView(CreateView):
@@ -178,7 +178,7 @@ class InstructionAddView(CreateView):
         return super(InstructionAddView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('recipe-detail', args=(self.object.recipe.id,))
+        return reverse_lazy('recipe-edit-mode', args=(self.object.recipe.id,))
 
 
 class TagEditView(UpdateView):
@@ -187,7 +187,7 @@ class TagEditView(UpdateView):
     template_name = 'cookbook/recipe-edit.html'
 
     def get_success_url(self):
-        return reverse_lazy('recipe-detail', args=(self.object.recipe.id,))
+        return reverse_lazy('recipe-edit-mode', args=(self.object.recipe.id,))
 
 
 class TagAddView(CreateView):
@@ -200,7 +200,7 @@ class TagAddView(CreateView):
         return super(TagAddView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('recipe-detail', args=(self.object.recipe.id,))
+        return reverse_lazy('recipe-edit-mode', args=(self.object.recipe.id,))
 
 
 class RecipeDeleteView(DeleteView):
