@@ -1,6 +1,6 @@
 # from typing import ClassVar
 from django.forms import ModelForm, modelformset_factory
-from django.forms.widgets import TextInput, Textarea
+from django.forms.widgets import Select, TextInput, Textarea
 
 from .models import Cookbook, Recipe, Ingredient, Instruction, TagType, Tag
 
@@ -14,10 +14,11 @@ class CookbookCreationForm(ModelForm):
 class RecipeCreationForm(ModelForm):
     class Meta:
         model = Recipe
-        fields = ['title', 'description', 'guest', 'prep_time', 'cook_time', 'source']
+        fields = ['title', 'description', 'recipe_type', 'guest', 'prep_time', 'cook_time', 'source']
         labels = {
             'title': 'Nom de la recette ',
             'description': 'Une description ',
+            'recipe_type': 'Type de recette ',
             'guest': 'Pour combien de personne ',
             'prep_time': 'Temps de préparation ',
             'cook_time': 'Temps de cuisson ',
@@ -26,6 +27,7 @@ class RecipeCreationForm(ModelForm):
         widgets = {
             'title': TextInput(attrs={'placeholder': 'Nom de la recette', 'class': 'bg-gray-50 p-3 mb-4 w-full sm:w-1/2 shadow-md border-0 rounded'}),
             'description': Textarea(attrs={'placeholder': 'Une description', 'class': 'bg-gray-50 p-3 mb-4 w-full sm:w-1/2 shadow-md rounded', 'rows': 3}),
+            'recipe_type': Select(attrs={'class': 'bg-gray-50 p-3 mb-4 w-full sm:w-1/3 shadow-md border-0 rounded'}),
             'guest': TextInput(attrs={'placeholder': 'pour combien de personne ?', 'class': 'bg-gray-50 p-3 mb-4 w-full sm:w-1/2 shadow-md border-0 rounded'}),
             'prep_time': TextInput(attrs={'placeholder': 'Temps de préparation (00:00:00)', 'class': 'bg-gray-50 p-3 mb-4 w-full sm:w-1/2 shadow-md border-0 rounded'}),
             'cook_time': TextInput(attrs={'placeholder': 'Temps de cuisson (00:00:00)', 'class': 'bg-gray-50 p-3 mb-4 w-full sm:w-1/2 shadow-md border-0 rounded'}),

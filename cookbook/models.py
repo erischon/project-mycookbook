@@ -43,11 +43,13 @@ class TagType(models.Model):
 class RecipeType(models.Model):
     name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
 
 class Recipe(models.Model):
     title = models.CharField(max_length=200, unique=True)
     description = models.TextField(null=True)
-    # recipe_type = models.ForeignKey(RecipeType, on_delete=models.CASCADE, blank=True, null=True)
+    recipe_type = models.ForeignKey(RecipeType, on_delete=models.CASCADE, blank=True, null=True)
     guest = models.IntegerField(null=True)
     prep_time = models.DurationField(blank=True)
     cook_time = models.DurationField(blank=True)
