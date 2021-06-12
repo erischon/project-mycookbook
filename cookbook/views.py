@@ -112,6 +112,21 @@ class RecipeDetailView(DetailView):
         return context
 
 
+class RecipeDetailEditModeView(DeleteView):
+    model = Recipe
+    template_name = 'cookbook/recipe-detail-edit-mode.html'
+    context_object_name = 'recipe'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['infos'] = RecipeInfos.objects.get(recipe=context['object'])
+        context['ingredients'] = Ingredient.objects.filter(recipe=context['object'])
+        context['instructions'] = Instruction.objects.filter(recipe=context['object'])
+        context['tags'] = Tag.objects.filter(recipe=context['object'])
+
+        return context
+
 class RecipeEditView(UpdateView):
     model = Recipe
     form_class = RecipeCreationForm

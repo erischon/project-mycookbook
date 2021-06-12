@@ -40,9 +40,14 @@ class TagType(models.Model):
         return self.name
 
 
+class RecipeType(models.Model):
+    name = models.CharField(max_length=100)
+
+
 class Recipe(models.Model):
     title = models.CharField(max_length=200, unique=True)
     description = models.TextField(null=True)
+    # recipe_type = models.ForeignKey(RecipeType, on_delete=models.CASCADE, blank=True, null=True)
     guest = models.IntegerField(null=True)
     prep_time = models.DurationField(blank=True)
     cook_time = models.DurationField(blank=True)
@@ -65,7 +70,7 @@ class RecipeInfos(models.Model):
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=200)
-    measure = models.CharField(max_length=200, null=False)
+    measure = models.CharField(max_length=50, null=False)
     quantity = models.IntegerField(null=True)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null=False)
 
