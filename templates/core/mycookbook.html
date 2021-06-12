@@ -18,7 +18,7 @@
       <a href="{% url 'recipe-detail' recipe.id %}">
         <p class="text-2xl font-semibold mb-2">{{ recipe.title|title }}</p>
         <p class="text-center text-sm text-gray-600 my-2 px-3 py-1 border-b-2 border-r-2 border-gray-300 inline-block rounded-br-xl shadow-md">{{ recipe.recipe_type|title }}</p>
-        <div class="bg-gray-50 p-2 my-2 flex flex-row flex-wrap shadow">
+        <div class="bg-gray-50 p-2 my-2 flex flex-row flex-wrap">
           <p><img class="fill-current h-5 w-5 m-2" width="20" height="20" src="{% static 'assets/img/users.svg' %}" alt="Nombre de convives" title="Nombre de convives"></p>
           <p class="my-auto mr-3">{{ recipe.guest }}</p>
           <p><img class="fill-current h-5 w-5 m-2" width="20" height="20" src="{% static 'assets/img/timer.svg' %}" alt="Temps de préparation" title="Temps de préparation"></p>
