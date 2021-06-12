@@ -127,6 +127,7 @@ class RecipeDetailEditModeView(DeleteView):
 
         return context
 
+
 class RecipeEditView(UpdateView):
     model = Recipe
     form_class = RecipeCreationForm

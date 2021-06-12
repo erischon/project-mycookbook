@@ -46,6 +46,7 @@ class RecipeType(models.Model):
     def __str__(self):
         return self.name
 
+
 class Recipe(models.Model):
     title = models.CharField(max_length=200, unique=True)
     description = models.TextField(null=True)
