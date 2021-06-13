@@ -6,7 +6,7 @@
 <div class="mx-auto grid-cols-12 w-full mb-10 lg:max-w-screen-lg px-5">
   {% if user == infos.creator %}
 
-  <div class="flex mx-auto"><p class="text-center text-sm mb-2 px-4 py-1 bg-green-200 inline-block mx-auto rounded shadow">{{ recipe.recipe_type }}</p></div>
+  <div class="flex mx-auto"><p class="text-center text-sm mb-2 px-4 py-1 inline-block mx-auto shadow-md">{{ recipe.recipe_type|title }}</p></div>
   <h1 class="text-4xl font-semibold text-center mb-2">{{ recipe.title }}</h1>
   <p class="text-center text-sm mb-5">Une recette de {{ infos.creator }}</p>
 
