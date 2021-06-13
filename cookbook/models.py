@@ -85,14 +85,14 @@ class Ingredient(models.Model):
 
 
 class Instruction(models.Model):
-    step = models.IntegerField(null=True)
-    instruction = models.TextField(null=True)
+    step = models.IntegerField(null=False)
+    instruction = models.TextField(null=False)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null=False)
 
 
 class Tag(models.Model):
     name = models.CharField(max_length=200)
-    tagtype = models.ForeignKey(TagType, on_delete=models.CASCADE)
+    tagtype = models.ForeignKey(TagType, on_delete=models.CASCADE, null=True)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null=False)
 
     def __str__(self):
