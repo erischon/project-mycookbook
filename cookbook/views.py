@@ -53,7 +53,7 @@ def create_recipe(request):
         instruction_formset = InstructionFormSet(request.POST, prefix='instruction')
         tag_formset = TagFormSet(request.POST, prefix='tag')
 
-        if recipe_form.is_valid() and ingredient_formset.is_valid() and instruction_formset.is_valid():
+        if recipe_form.is_valid() and ingredient_formset.is_valid() and instruction_formset.is_valid() and tag_formset.is_valid():
             # Recipe
             recipe = recipe_form.save()
             recipe.cookbook.set([Cookbook.objects.get(user=request.user)])
@@ -78,7 +78,7 @@ def create_recipe(request):
                 tag.recipe = recipe
                 tag.save()
 
-            return redirect('home')
+            return redirect('my_cookbook')
 
     else:
         recipe_form = RecipeCreationForm()
@@ -168,7 +168,7 @@ class IngredientAddView(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('recipe-edit-mode', args=(self.object.recipe.id,))
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         recipe = Recipe.objects.get(pk=self.kwargs.get('pk'))
@@ -183,7 +183,7 @@ class InstructionEditView(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('recipe-edit-mode', args=(self.object.recipe.id,))
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         recipe = Recipe.objects.get(id=self.object.recipe.id)
@@ -217,7 +217,7 @@ class TagEditView(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('recipe-edit-mode', args=(self.object.recipe.id,))
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         recipe = Recipe.objects.get(id=self.object.recipe.id)

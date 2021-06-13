@@ -165,6 +165,14 @@
             </fieldset>
           </fieldset>
 
+          {% if tag_set.errors %}
+            <div class="text-red-500 font-semibold">
+              {% for fields in tag_form.errors %}
+                {{ fields }}
+              {% endfor %}
+            </div>
+          {% endif %}
+
           <fieldset>
             <button type="button" class="controls inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 shadow rounded" data-formset-add-form>Ajouter un tag</button>
           </fieldset>
