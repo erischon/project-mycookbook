@@ -1,9 +1,10 @@
 {% extends 'core/_base.html' %}{% load static %}
 
-{% block title %}My CookBook - {% endblock title %}
+{% block title %}My CookBook - Edition{% endblock title %}
 
 {% block content %}
 <div class="mx-auto grid-cols-12 w-full mb-10 lg:max-w-screen-lg px-3">
+  {% if user == infos.creator %}
 
   <h1 class="text-4xl font-semibold text-center mb-5">Modification</h1>
 
@@ -23,6 +24,10 @@
     </form>
   </div>
 
+  {% else %}
 
+  <p class="text-center text-xl font-semibold">Désolé {{ user.name }}, vous n'avez rien à faire ici, et je pense que vous le savez ;)</p>
+
+  {% endif%}
 </div>
 {% endblock content %}

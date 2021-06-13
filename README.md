@@ -1,7 +1,19 @@
 ![Build](https://travis-ci.com/erischon/p13_erischon.svg?branch=master)
 
-# Mon P13 My CookBook
+# Project My CookBook
 
+## Release 0.1.1 : Gestion des recettes
+
+### Release 0.1.1-a.1 : CRUD
+
+- Backend :
+    - Ajout d’un mode Edition pour les recettes
+    - Possibilité d’effacer une recette
+    - Ajout de différents types pour les recettes
+- Frontend :
+    - Modification du design des pages :
+        - Mon Cookbook
+        - Recette
 
 ## Release 0.1.0 : Création de recette
 

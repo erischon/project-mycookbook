@@ -136,6 +136,11 @@ class RecipeEditView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('recipe-edit-mode', args=(self.object.id,))
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['infos'] = RecipeInfos.objects.get(recipe=context['object'])
+        return context
+
 
 class IngredientEditView(UpdateView):
     model = Ingredient
@@ -144,6 +149,12 @@ class IngredientEditView(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('recipe-edit-mode', args=(self.object.recipe.id,))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        recipe = Recipe.objects.get(id=self.object.recipe.id)
+        context['infos'] = RecipeInfos.objects.get(recipe=recipe)
+        return context
 
 
 class IngredientAddView(CreateView):
@@ -157,6 +168,12 @@ class IngredientAddView(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('recipe-edit-mode', args=(self.object.recipe.id,))
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        recipe = Recipe.objects.get(pk=self.kwargs.get('pk'))
+        context['infos'] = RecipeInfos.objects.get(recipe=recipe)
+        return context
 
 
 class InstructionEditView(UpdateView):
@@ -166,6 +183,12 @@ class InstructionEditView(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('recipe-edit-mode', args=(self.object.recipe.id,))
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        recipe = Recipe.objects.get(id=self.object.recipe.id)
+        context['infos'] = RecipeInfos.objects.get(recipe=recipe)
+        return context
 
 
 class InstructionAddView(CreateView):
@@ -180,6 +203,12 @@ class InstructionAddView(CreateView):
     def get_success_url(self):
         return reverse_lazy('recipe-edit-mode', args=(self.object.recipe.id,))
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        recipe = Recipe.objects.get(pk=self.kwargs.get('pk'))
+        context['infos'] = RecipeInfos.objects.get(recipe=recipe)
+        return context
+
 
 class TagEditView(UpdateView):
     model = Tag
@@ -188,6 +217,12 @@ class TagEditView(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('recipe-edit-mode', args=(self.object.recipe.id,))
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        recipe = Recipe.objects.get(id=self.object.recipe.id)
+        context['infos'] = RecipeInfos.objects.get(recipe=recipe)
+        return context
 
 
 class TagAddView(CreateView):
@@ -201,6 +236,12 @@ class TagAddView(CreateView):
 
     def get_success_url(self):
         return reverse_lazy('recipe-edit-mode', args=(self.object.recipe.id,))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        recipe = Recipe.objects.get(pk=self.kwargs.get('pk'))
+        context['infos'] = RecipeInfos.objects.get(recipe=recipe)
+        return context
 
 
 class RecipeDeleteView(DeleteView):

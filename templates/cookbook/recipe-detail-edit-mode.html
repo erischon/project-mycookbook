@@ -1,9 +1,10 @@
 {% extends 'core/_base.html' %}{% load static %}
 
-{% block title %}My CookBook - {% endblock title %}
+{% block title %}My CookBook - Mode Edition{% endblock title %}
 
 {% block content %}
 <div class="mx-auto grid-cols-12 w-full mb-10 lg:max-w-screen-lg px-5">
+  {% if user == infos.creator %}
 
   <div class="flex mx-auto"><p class="text-center text-sm mb-2 px-4 py-1 bg-green-200 inline-block mx-auto rounded shadow">{{ recipe.recipe_type }}</p></div>
   <h1 class="text-4xl font-semibold text-center mb-2">{{ recipe.title }}</h1>
@@ -93,5 +94,11 @@
 
     <p class="mx-auto text-center"><a href="{% url 'recipe-delete' recipe.id %}" class="inline-block text-sm font-semibold px-4 py-2 leading-none border border-red-400 bg-red-400 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded-full">Effacer la recette</a></p>
   </div>
-  </div>
+
+  {% else %}
+
+  <p class="text-center text-xl font-semibold">Désolé {{ user.name }}, vous n'avez rien à faire ici, et je pense que vous le savez ;)</p>
+
+  {% endif%}
+</div>
 {% endblock content %}
