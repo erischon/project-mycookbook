@@ -87,13 +87,13 @@ class Ingredient(models.Model):
 class Instruction(models.Model):
     step = models.IntegerField(null=True)
     instruction = models.TextField(null=True)
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null=False, default=1)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null=False)
 
 
 class Tag(models.Model):
     name = models.CharField(max_length=200)
-    tagtype = models.ForeignKey(TagType, on_delete=models.CASCADE, default=1)
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null=False, default=1)
+    tagtype = models.ForeignKey(TagType, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null=False)
 
     def __str__(self):
         return self.name
@@ -101,7 +101,7 @@ class Tag(models.Model):
 
 class Tips(models.Model):
     tips = models.TextField(null=True)
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null=False, default=1)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null=False)
 
 
 class Photo(models.Model):
