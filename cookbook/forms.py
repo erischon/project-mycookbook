@@ -68,7 +68,7 @@ class InstructionForm(ModelForm):
 class TagForm(ModelForm):
     class Meta:
         model = Tag
-        fields = ['name', 'tagtype']
+        fields = ['tagtype', 'name']
         labels = {
             'name': 'Tag ',
             'tagtype': 'Catégorie ',
