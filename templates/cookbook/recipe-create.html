@@ -167,7 +167,7 @@
 
           {% if tag_set.errors %}
             <div class="text-red-500 font-semibold">
-              {% for fields in tag_form.errors %}
+              {% for fields in tag_set.errors %}
                 {{ fields }}
               {% endfor %}
             </div>
