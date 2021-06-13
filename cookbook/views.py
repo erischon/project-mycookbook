@@ -78,7 +78,7 @@ def create_recipe(request):
                 tag.recipe = recipe
                 tag.save()
 
-            return redirect('my_cookbook')
+            return redirect('home')
 
     else:
         recipe_form = RecipeCreationForm()
