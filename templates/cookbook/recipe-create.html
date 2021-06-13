@@ -117,9 +117,9 @@
             </fieldset>
           </fieldset>
 
-          {% if instruction_set.errors %}
+          {% if instruction_formset.errors %}
             <div class="text-red-500 font-semibold">
-              {% for fields in instruction_set.errors %}
+              {% for fields in instruction_formset.errors %}
                 {{ fields }}
               {% endfor %}
             </div>
@@ -165,9 +165,9 @@
             </fieldset>
           </fieldset>
 
-          {% if tag_set.errors %}
+          {% if tag_formset.errors %}
             <div class="text-red-500 font-semibold">
-              {% for fields in tag_set.errors %}
+              {% for fields in tag_formset.errors %}
                 {{ fields }}
               {% endfor %}
             </div>
