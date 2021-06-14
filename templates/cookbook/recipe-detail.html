@@ -5,6 +5,8 @@
 {% block content %}
 <div class="mx-auto grid-cols-12 w-full mb-10 lg:max-w-screen-lg px-5">
 
+  <a href="{% url 'share-link' recipe.id %}">Share</a>
+
   {% if user == infos.creator or "social-detail" in request.path %}
 
     <div class="flex mx-auto"><p class="text-center text-sm mb-2 px-4 py-1 inline-block mx-auto shadow-md">{{ recipe.recipe_type|title }}</p></div>

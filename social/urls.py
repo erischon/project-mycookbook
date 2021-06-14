@@ -3,6 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path('generate_link', views.generate_link, name='generate-link'),
-    path('one_time_link/<str:access_code>', views.one_time_link, name='one-time-link'),
+    path('share-link/<int:id>', views.generate_link, name='share-link'),
+    path('otl/<int:id>/<str:access_code>', views.one_time_link, name='one-time-link'),
 ]
