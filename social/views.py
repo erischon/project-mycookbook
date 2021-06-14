@@ -10,10 +10,10 @@ def randomString(stringLength=20):
     letters = string.ascii_lowercase
     return ''.join(random.choice(letters) for i in range(stringLength))
 
-def generate_link(request, pk):
+def generate_link(request):
     """ Generate the link itself. """
     the_string = randomString(stringLength=20)
-    the_url = "69/detail"
+    the_url = "69/social-detail"
     OneTimeLinkModel.objects.create(one_time_code=the_string)
     return HttpResponse('<a href="/cookbook/{}/{}">{}{}</a>'.format(the_url, the_string, request.build_absolute_uri(), the_string))
 
