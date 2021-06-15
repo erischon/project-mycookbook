@@ -9,6 +9,7 @@ def random_string(string_length):
 
 
 def increment_by_one(link):
+    """ Increment by one the use count. """
     link.use_count = link.use_count + 1
     link.save()
     return link
