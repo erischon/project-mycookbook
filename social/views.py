@@ -16,6 +16,7 @@ def randomString(stringLength):
     letters = string.ascii_lowercase
     return ''.join(random.choice(letters) for i in range(stringLength))
 
+
 def generate_link(request, id):
     """ Generate the link itself. """
     the_string = randomString(20)
@@ -27,15 +28,15 @@ def one_time_link(request, id, access_code):
     """ Handles the link request. """
     if OneTimeLinkModel.objects.filter(one_time_code=access_code).exists():
         model = OneTimeLinkModel.objects.get(one_time_code=access_code)
-        expire_time = model.expiry_time - datetime.timedelta(days=1)
-        today = datetime.datetime.now()
+        model.use_count = model.use_count + 1
+        model.save()
 
-        if expire_time > today:
+        if model.use_count <= 3:
+            url = reverse('social-detail', args=[id])
+            return redirect(url)
+        else:
             OneTimeLinkModel.objects.filter(one_time_code=access_code).delete()
             return HttpResponse("Expired link.")
-
-        url = reverse('social-detail', args=[id])
-        return redirect(url)
 
     elif not OneTimeLinkModel.objects.filter(one_time_code=access_code).exists():
         return HttpResponse("Bad or expired link.")
