@@ -11,7 +11,7 @@ MAX_IMPRESSION = 3
 
 
 def generate_link(request, id):
-    """ Generate the link itself. """
+    """ Generate the One Time link. """
     the_string = random_string(STRING_LENGTH)
     OneTimeLinkModel.objects.create(one_time_code=the_string)
     return HttpResponse('<a href="/social/otl/{}/{}">{}{}</a>'.format(id, the_string, request.build_absolute_uri(), the_string))
