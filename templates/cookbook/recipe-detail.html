@@ -74,8 +74,20 @@
 
     </div>
 
+    <div class="flex flex-col sm:flex-row border-2 border-gray-300 py-10 px-5 ">
+      <div class="flex flex-col sm:w-1/2">
+        <div class="mb-2">
+          <p>Partager cette recette :</p>
+        </div>
+        <div class="flex flex-col text-sm">
+          <input type="text" value="{{ share_link }}" id="myInput" class="sm:w-2/3 border-none bg-gray-200 p-2">
+          <button onclick="myFunction()" class="inline-block bg-green-400 rounded-full py-1">Copier</button>
+      </div>
+      </div>
+    </div>
+
     {% if user == infos.creator %}
-      <div class="flex flex-col sm:flex-row">
+      <div class="flex flex-col sm:flex-row pt-10">
         <p class="mx-auto text-center mb-5 sm:mb-0"><a href="{% url 'recipe-edit-mode' recipe.id %}" class="hidden sm:inline-block text-sm font-semibold px-4 py-2 leading-none border border-green-400 bg-green-400 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded-full">Activer le mode édition</a></p>
 
         <p class="mx-auto text-center"><a href="{% url 'my_cookbook' %}" class="inline-block text-sm font-semibold px-4 py-2 leading-none border border-green-400 bg-green-400 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded-full">Mon Cookbook</a></p>
@@ -89,4 +101,15 @@
   {% endif%}
 
 </div>
+
+<script>
+function myFunction() {
+  var copyText = document.getElementById("myInput");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  alert("Lien copié !");
+}
+</script>
+
 {% endblock content %}
