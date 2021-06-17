@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.contrib.auth import get_user_model
 
 from cookbook.forms import RecipeCreationForm
-from cookbook.models import Cookbook, Recipe, RecipeInfos, TagType
+from cookbook.models import Cookbook, Recipe, RecipeInfos, TagType, Ingredient, Instruction, Tag
 
 
 class CookbookTestViews(TestCase):
@@ -46,10 +46,20 @@ class CookbookTestViews(TestCase):
             slug='recette-test',
             recipe=self.recipe,
         )
-
+        # Ingredient
+        self.ingredient = Ingredient.objects.create(
+            name="ingredient name",
+            measure="une mesure",
+            quantity='1',
+            recipe=self.recipe,
+        )
+        # Urls
         self.cb_create_url = reverse('cookbook_create')
         self.r_create_url = reverse('recipe_create')
         self.recipe_page_url = reverse('recipe-detail', args=[self.recipe.id])
+        self.recipe_detail_edit_mode_url = reverse('recipe-edit-mode', args=[self.recipe.id])
+        self.recipe_edit_url = reverse('recipe-edit', args=[self.recipe.id])
+        self.ingredient_edit_url = reverse('ingredient-edit', args=[self.ingredient.id])
 
     def test_cookbook_creation_page_view(self):
         """ """
@@ -83,6 +93,60 @@ class CookbookTestViews(TestCase):
 
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'cookbook/recipe-detail.html')
+
+    """ 
+    Testing the CBV for Recipe Edit and Add part. 
+    """
+    def test_recipe_detail_edit_mode(self):
+        """
+        cette class doit
+        afficher la page
+        avec les informations existantes
+        """
+        response = self.client.get(self.recipe_detail_edit_mode_url)
+
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'cookbook/recipe-detail-edit-mode.html')
+
+    def test_recipe_edit(self):
+        """
+        cette class doit
+        afficher le formulaire
+        avec les informations existantes
+        sauvegarder les modifications
+        revenir sur la page de la recette en mode édition
+        """
+        response = self.client.get(self.recipe_edit_url)
+
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'cookbook/recipe-edit.html')
+
+    def test_ingredient_edit(self):
+        response = self.client.get(self.ingredient_edit_url)
+
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'cookbook/recipe-edit.html')
+
+    def test_ingredient_add(self):
+        """
+        cette class doit
+        afficher le formulaire
+        sauvegarder les informations
+        revenir sur la page de la recette en mode édition
+        """
+        pass
+
+    def test_instruction_edit(self):
+        pass
+
+    def test_instruction_add(self):
+        pass
+
+    def test_tag_edit(self):
+        pass
+
+    def test_tag_add(self):
+        pass
 
 
 class CreateRecipeTestPostView(TestCase):
@@ -122,3 +186,5 @@ class CreateRecipeTestPostView(TestCase):
 
         self.assertEquals(response.status_code, 302)
         self.assertRedirects(response, '/mycookbook/')
+
+
