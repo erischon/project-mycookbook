@@ -104,9 +104,8 @@ class RecipeDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        recipe = context['object']
+        # recipe = context['object']
 
-        # context['share_link'] = generate_link(recipe.id)
         context['infos'] = RecipeInfos.objects.get(recipe=context['object'])
         context['ingredients'] = Ingredient.objects.filter(recipe=context['object'])
         context['instructions'] = Instruction.objects.filter(recipe=context['object'])
