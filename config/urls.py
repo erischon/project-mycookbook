@@ -9,5 +9,4 @@ urlpatterns = [
     path('', include('core.urls')),
     path('accounts/', include('accounts.urls')),
     path('cookbook/', include('cookbook.urls')),
-    path('social/', include('social.urls')),
 ]
