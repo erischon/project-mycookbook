@@ -2,7 +2,7 @@ from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.urls import reverse
 
-from .models import OneTimeLinkModel
+# from .models import OneTimeLinkModel
 from social.utils import random_string, increment_by_one
 
 

@@ -13,8 +13,8 @@ from django.urls import reverse
 
 from .forms import CookbookCreationForm, RecipeCreationForm, IngredientForm, InstructionForm, TagForm
 from .models import Cookbook, Recipe, Ingredient, RecipeInfos, Instruction, Tag, TagType
-from social.models import OneTimeLinkModel
-from social.views import generate_link
+# from social.models import OneTimeLinkModel
+# from social.views import generate_link
 
 
 @login_required
@@ -106,7 +106,7 @@ class RecipeDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         recipe = context['object']
 
-        context['share_link'] = generate_link(recipe.id)
+        # context['share_link'] = generate_link(recipe.id)
         context['infos'] = RecipeInfos.objects.get(recipe=context['object'])
         context['ingredients'] = Ingredient.objects.filter(recipe=context['object'])
         context['instructions'] = Instruction.objects.filter(recipe=context['object'])

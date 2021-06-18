@@ -5,9 +5,7 @@
 {% block content %}
 <div class="mx-auto grid-cols-12 w-full mb-10 lg:max-w-screen-lg px-5">
 
-  <a href="{% url 'share-link' recipe.id %}">Share</a>
-
-  {% if user == infos.creator or "social-detail" in request.path %}
+  {% if user == infos.creator %}
 
     <div class="flex mx-auto"><p class="text-center text-sm mb-2 px-4 py-1 inline-block mx-auto shadow-md">{{ recipe.recipe_type|title }}</p></div>
     <h1 class="text-4xl font-semibold text-center mb-2">{{ recipe.title|title }}</h1>
@@ -72,18 +70,6 @@
         </div>
       </div>
 
-    </div>
-
-    <div class="flex flex-col sm:flex-row border-2 border-gray-300 py-10 px-5 ">
-      <div class="flex flex-col sm:w-1/2">
-        <div class="mb-2">
-          <p>Partager cette recette :</p>
-        </div>
-        <div class="flex flex-col text-sm">
-          <input type="text" value="{{ share_link }}" id="myInput" class="sm:w-2/3 border-none bg-gray-200 p-2">
-          <button onclick="myFunction()" class="inline-block bg-green-400 rounded-full py-1">Copier</button>
-      </div>
-      </div>
     </div>
 
     {% if user == infos.creator %}
