@@ -83,7 +83,6 @@ class CookbookTestViews(TestCase):
         self.tag_edit_url = reverse('tag-edit', args=[self.tag.id])
         self.tag_add_url = reverse('tag-add', args=[self.recipe.id])
 
-
     def test_cookbook_creation_page_view(self):
         """ """
         response = self.client.get(self.cb_create_url)
