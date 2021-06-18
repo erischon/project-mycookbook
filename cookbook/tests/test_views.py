@@ -53,6 +53,8 @@ class CookbookTestViews(TestCase):
             quantity='1',
             recipe=self.recipe,
         )
+        # Instruction
+        # Tag
         # Urls
         self.cb_create_url = reverse('cookbook_create')
         self.r_create_url = reverse('recipe_create')
