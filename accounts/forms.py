@@ -4,6 +4,7 @@ from django.utils.translation import gettext as _
 
 
 class CustomUserCreationForm(UserCreationForm):
+    """ Custom User Form. """
     class Meta:
         model = get_user_model()
         fields = ('email', 'username')
@@ -16,7 +17,7 @@ class CustomUserCreationForm(UserCreationForm):
 
 
 class CustomUserChangeForm(UserChangeForm):
-
+    """ Custom User Change Form. """
     class Meta:
         model = get_user_model()
         fields = ('email', 'username',)

@@ -3,4 +3,5 @@ from django.db import models
 
 
 class CustomUser(AbstractUser):
+    """ Customer User Model. """
     pass

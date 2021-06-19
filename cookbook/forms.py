@@ -6,12 +6,14 @@ from .models import Cookbook, Recipe, Ingredient, Instruction, TagType, Tag
 
 
 class CookbookCreationForm(ModelForm):
+    """ Cookbook creation Form (no longer used). """
     class Meta:
         model = Cookbook
         fields = ['name']
 
 
 class RecipeCreationForm(ModelForm):
+    """ Recipe Form. """
     class Meta:
         model = Recipe
         fields = ['title', 'description', 'recipe_type', 'guest', 'prep_time', 'cook_time', 'source']
@@ -36,6 +38,7 @@ class RecipeCreationForm(ModelForm):
 
 
 class IngredientForm(ModelForm):
+    """ Ingredient Form. """
     class Meta:
         model = Ingredient
         fields = ['name', 'measure', 'quantity']
@@ -52,6 +55,7 @@ class IngredientForm(ModelForm):
 
 
 class InstructionForm(ModelForm):
+    """ Instruction Form. """
     class Meta:
         model = Instruction
         fields = ['step', 'instruction']
@@ -66,6 +70,7 @@ class InstructionForm(ModelForm):
 
 
 class TagForm(ModelForm):
+    """ Tag Form. """
     class Meta:
         model = Tag
         fields = ['tagtype', 'name']
