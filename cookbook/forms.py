@@ -79,5 +79,6 @@ class TagForm(ModelForm):
             'tagtype': 'Catégorie ',
         }
         widgets = {
-            'name': TextInput(attrs={'placeholder': 'Nom du tag', 'class': 'bg-gray-50 p-3 mb-2 w-full sm:w-full shadow-md border-0 rounded'}),
+            'name': TextInput(attrs={'placeholder': 'Nom de l\'étiquette', 'class': 'bg-gray-50 p-3 mb-2 sm:mb-0 w-full sm:w-full shadow-md border-0 rounded'}),
+            'tagtype': Select(attrs={'class': 'bg-gray-50 p-3 mb-4 sm:mb-0 w-full shadow-md border-0 rounded'}, choices={'default': 'null'}),
         }
