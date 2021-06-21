@@ -29,7 +29,7 @@
 
     <div class="mb-4">
       <p class="font-light text-xl mb-4 pb-2 border-0 border-b-2">Description</p>
-      {{ recipe.description }}
+      {{ recipe.description|linebreaks }}
     </div>
 
     <p class="mx-auto text-center mb-10">
@@ -62,7 +62,7 @@
                 <a href="{% url 'instruction-edit' instruction.id %}" class="mr-2">
                   <img class="fill-current h-3 w-3 hidden sm:inline-block" width="20" height="20" src="{% static 'assets/img/edit.svg' %}" alt="Modifier" title="Modifier">
                 </a>
-                <span class="font-semibold mr-2">Etape {{ instruction.step }} :</span> {{ instruction.instruction }}
+                <span class="font-semibold mr-2">Etape {{ instruction.step }} :</span> {{ instruction.instruction|linebreaks }}
               </p>  
             {% endfor %}          
             <p><a class="inline-block text-xs text-gray-500 my-4 border border-1 border-gray-200 px-4 py-2 rounded-full shadow-md" href="{% url 'instruction-add' recipe.id %}">Ajouter une instruction</a></p>
