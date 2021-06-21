@@ -75,8 +75,8 @@ class TagForm(ModelForm):
         model = Tag
         fields = ['tagtype', 'name']
         labels = {
-            'name': 'Tag ',
-            'tagtype': 'Catégorie ',
+            'name': 'Etiquette ',
+            'tagtype': 'Type ',
         }
         widgets = {
             'name': TextInput(attrs={'placeholder': 'Nom de l\'étiquette', 'class': 'bg-gray-50 p-3 mb-2 sm:mb-0 w-full sm:w-full shadow-md border-0 rounded'}),

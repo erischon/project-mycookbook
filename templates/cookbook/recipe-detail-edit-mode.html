@@ -72,7 +72,7 @@
     </div>
 
     <div class="mb-4 cont-tag">
-      <p class="font-light text-xl mb-4 pb-2 border-0 border-b-2">Tags :</p>
+      <p class="font-light text-xl mb-4 pb-2 border-0 border-b-2">Etiquette(s) :</p>
       <div class="flex flex-col flex-wrap">
         {% for tag in tags %}
           <p class="">
@@ -82,7 +82,7 @@
             <span class="text-gray-500 text-sm mr-2 italic">{{ tag.tagtype }}</span> {{ tag.name }}
           </p>
         {% endfor %}
-        <p><a class="inline-block text-xs text-gray-500 my-4 border border-1 border-gray-200 px-4 py-2 rounded-full shadow-md" href="{% url 'tag-add' recipe.id %}">Ajouter un tag</a></p>
+        <p><a class="inline-block text-xs text-gray-500 my-4 border border-1 border-gray-200 px-4 py-2 rounded-full shadow-md" href="{% url 'tag-add' recipe.id %}">Ajouter une étiquette</a></p>
       </div>
     </div>
 
