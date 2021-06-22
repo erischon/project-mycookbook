@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'core',
     'accounts',
     'cookbook',
+    'private',
 ]
 
 MIDDLEWARE = [
