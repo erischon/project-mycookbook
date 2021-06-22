@@ -9,13 +9,14 @@
   <h1 class="text-4xl font-semibold text-center mb-5">Modification</h1>
 
   <!-- <div class="flex mx-auto flex-col sm:w-1/2 bg-gray-100 p-10 rounded shadow"> -->
-    <div class="grid grid-rows-2 mx-auto sm:w-1/2 bg-gray-100 p-10 rounded shadow">
+    <div class="mx-auto sm:w-2/3 bg-gray-100 p-10 rounded shadow items-start">
     <form method="post">
       {% csrf_token %}
 
       {% for field in form %}
-        <div class="justify-between my-5">
-          {{ field.label }} {{ field }}
+        <div class="justify-between my-5 sm:grid sm:grid-cols-8 w-full">
+          <div class="sm:col-span-3 font-semibold">{{ field.label }}</div> 
+          <div class="sm:col-span-5">{{ field }}</div>
         </div>
       {% endfor %}
 

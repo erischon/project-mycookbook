@@ -13,13 +13,18 @@
       <div class="flex flex-col px-2">
         <p class="text-xl font-semibold my-5">Informations générales <span class="text-red-500">*</span></p>
 
-        <div class="">{{ recipe_form.title }}</div>
-        <div class="">{{ recipe_form.description }}</div>
-        <div class="mb-2"><span class="text-gray-400 mr-2">{{ recipe_form.recipe_type.label }} :</span> {{ recipe_form.recipe_type }}</div>
-        <div class="">{{ recipe_form.guest }}</div>
-        <div class="">{{ recipe_form.prep_time }}</div>
-        <div class="">{{ recipe_form.cook_time }}</div>
-        <div class="">{{ recipe_form.source }}</div>
+        <div class="m-4 p-4 sm:w-5/6">
+          <div class="sm:w-3/4">
+            <div class="">{{ recipe_form.title }}</div>
+            <div class="">{{ recipe_form.description }}</div>
+            <div class="mb-2"><span class="text-gray-400 mr-2">{{ recipe_form.recipe_type.label }} :</span> {{ recipe_form.recipe_type }}</div>
+            <div class="">{{ recipe_form.guest }}</div>
+            <div class="">{{ recipe_form.prep_time }}</div>
+            <div class="">{{ recipe_form.cook_time }}</div>
+            <div class="">{{ recipe_form.source }}</div>
+          </div>
+        </div>
+
       </div>
 
       {% if recipe_form.errors %}
