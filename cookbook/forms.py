@@ -31,8 +31,8 @@ class RecipeCreationForm(ModelForm):
             'description': Textarea(attrs={'placeholder': 'Une description', 'class': 'bg-gray-50 p-3 mb-4 w-full shadow-md rounded', 'rows': 3}),
             'recipe_type': Select(attrs={'class': 'bg-gray-50 p-3 mb-4 w-full shadow-md border-0 rounded'}),
             'guest': TextInput(attrs={'placeholder': 'Pour combien de personne ?', 'class': 'bg-gray-50 p-3 mb-4 w-full shadow-md border-0 rounded'}),
-            'prep_time': TextInput(attrs={'placeholder': 'Temps de préparation (heures:minutes)', 'class': 'bg-gray-50 p-3 mb-4 w-full shadow-md border-0 rounded'}),
-            'cook_time': TextInput(attrs={'placeholder': 'Temps de cuisson (heures:minutes)', 'class': 'bg-gray-50 p-3 mb-4 w-full shadow-md border-0 rounded'}),
+            'prep_time': TextInput(attrs={'placeholder': 'Temps de préparation (heures:minutes:00)', 'class': 'bg-gray-50 p-3 mb-4 w-full shadow-md border-0 rounded'}),
+            'cook_time': TextInput(attrs={'placeholder': 'Temps de cuisson (heures:minutes:00)', 'class': 'bg-gray-50 p-3 mb-4 w-full shadow-md border-0 rounded'}),
             'source': TextInput(attrs={'placeholder': 'Source', 'class': 'bg-gray-50 p-3 mb-4 w-full shadow-md border-0 rounded'}),
         }
 
