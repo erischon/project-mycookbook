@@ -30,7 +30,7 @@ class PrivateTestsView(TestCase):
             cook_time='0:5:0',
             source='Aucune',
         )
-        # self.recipe.create(cookbook=self.cookbook)
+        self.recipe.cookbook.add(self.cookbook)
         self.recipeinfos = RecipeInfos.objects.create(
             creator=self.user,
             owner=self.user,
@@ -51,7 +51,7 @@ class PrivateTestsView(TestCase):
             'note': 'Quelques mots',
             'satisfaction': 'Moyen',
         }
-        success_url = "/cookbook/{}/detail/".format(self.recipe.id)
+        success_url = "/cookbook/{}/detail".format(self.recipe.id)
 
         response = self.client.post(self.note_create_url)
         response_2 = self.client.post(self.note_create_url, kwargs)
