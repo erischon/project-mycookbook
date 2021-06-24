@@ -39,6 +39,7 @@ class PrivateTestsView(TestCase):
         )
         # Urls
         self.note_create_url = reverse('create-note', args=[self.recipe.id])
+        self.note_list_url = reverse('note-list', args=[self.recipe.id])
 
     def test_note_create_view(self):
         kwargs = {
@@ -55,7 +56,10 @@ class PrivateTestsView(TestCase):
         self.assertRedirects(response_2, success_url)
 
     def test_note_list_view(self):
-        pass
+        response = self.client.get(self.note_list_url)
+
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'private/note-list.html')
 
     def test_note_update_view(self):
         pass

@@ -34,7 +34,14 @@ class CreateNoteView(CreateView):
 
 
 class NoteListView(ListView):
-    pass
+    model = PersonalNote
+    template_name = 'private/note-list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        recipe = Recipe.objects.get(pk=self.kwargs.get('pk'))
+        context['recipe'] = recipe
+        return context
 
 
 class UpdateNoteView(UpdateView):
