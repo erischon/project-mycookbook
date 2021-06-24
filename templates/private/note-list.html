@@ -13,13 +13,15 @@
 
       {% for note in object_list %}
         <div class="">
-            <div class="text-xs italic">{{ note.date|date:'d-m-y' }}</div>
-            <div class="grid grid-cols-8 grid-rows-2 bg-green-100 p-10 mt-1 mb-4">
-                <div class="col-span-7">{{ note.note|linebreaks }}</div>
-                <div class="col-span-7">{{ note.satisfaction }}</div>
-                <div class="row-span-2 bg-yellow-600">
+            <div class="grid sm:grid-cols-9 bg-gray-200 p-10 mt-1 mb-4">
+                <div class="sm:col-span-1 text-xs italic mb-2">{{ note.date|date:'d-m-y' }}</div>
+                <div class="sm:col-span-7 flex flex-col my-auto border-l-2 border-gray-400">
+                    <div class="pl-5">{{ note.note|linebreaks }}</div>
+                    <div class="pl-5 text-xs text-gray-600 mt-5">Mon avis sur la recette : {{ note.satisfaction }}</div>
+                </div>
+                <div class="sm:col-span-1 mx-auto">
                     <a href="#">
-                        <img class="fill-current hidden sm:inline-block" width="20" height="20" src="{% static 'assets/img/edit.svg' %}" alt="Modifier" title="Modifier">
+                        <img class="fill-current hidden sm:inline-block" width="20" height="20" src="{% static 'assets/img/edit.svg' %}" alt="Modifier la note" title="Modifier la note">
                     </a>
                 </div>
             </div> 
