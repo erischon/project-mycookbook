@@ -40,12 +40,6 @@ class PrivateTestsView(TestCase):
         # Urls
         self.note_create_url = reverse('create-note', args=[self.recipe.id])
 
-    # def test_note_create_view(self):
-    #     response = self.client.post(self.note_create_url)
-
-    #     self.assertEquals(response.status_code, 200)
-    #     self.assertTemplateUsed(response, 'private/note-form.html')
-
     def test_note_create_view(self):
         kwargs = {
             'note': 'Quelques mots',
