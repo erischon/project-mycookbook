@@ -13,7 +13,7 @@
 
       {% for note in object_list %}
         <div class="">
-            <div class="grid sm:grid-cols-9 bg-gray-200 p-10 mt-1 mb-4">
+            <div class="grid sm:grid-cols-9 bg-gray-200 p-10 mt-1 mb-4 shadow rounded">
                 <div class="sm:col-span-1 text-xs italic mb-2">{{ note.date|date:'d-m-y' }}</div>
                 <div class="sm:col-span-7 flex flex-col my-auto border-l-2 border-gray-400">
                     <div class="pl-5">{{ note.note|linebreaks }}</div>
@@ -29,6 +29,8 @@
       {% endfor %}
 
     </div>
+
+    <p class="mx-auto text-center mb-5 sm:mb-0"><a href="{% url 'recipe-detail' recipe.id %}" class="inline-block text-sm font-semibold px-4 py-2 leading-none border border-green-400 bg-green-400 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded-full">Revenir à la recette</a></p>
 
 </div>
 {% endblock content %}
