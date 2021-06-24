@@ -16,7 +16,7 @@ class CreateNoteView(CreateView):
     success_url = 'home'
 
     def form_valid(self, form):
-        note = form.save(commit=False)
+        form.save(commit=False)
         recipe = Recipe.objects.get(pk=self.kwargs.get('pk'))
         cookbook = recipe.cookbook.get()
         form.instance.recipe = recipe
