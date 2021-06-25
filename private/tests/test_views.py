@@ -61,5 +61,5 @@ class PrivateTestsView(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'private/note-list.html')
 
-    def test_note_update_view(self):
+    def test_note_delete_view(self):
         pass
