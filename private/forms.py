@@ -10,5 +10,5 @@ class NoteCreationForm(ModelForm):
         fields = ['note', 'satisfaction']
         labels = {
             'note': 'Note personnelle ',
-            'satisfaction': 'Appréciation personnelle ',
+            'satisfaction': 'Appréciation ',
         }
