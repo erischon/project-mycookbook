@@ -46,7 +46,7 @@ class PrivateTestsView(TestCase):
             'note': 'Quelques mots',
             'satisfaction': 'Moyen',
         }
-        success_url = "/cookbook/{}/detail".format(self.recipe.id)
+        success_url = "/private/{}/note/".format(self.recipe.id)
 
         response = self.client.post(self.note_create_url)
         response_2 = self.client.post(self.note_create_url, kwargs)
