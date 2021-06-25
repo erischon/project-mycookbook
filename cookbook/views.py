@@ -13,6 +13,7 @@ from django.urls import reverse
 
 from .forms import CookbookCreationForm, RecipeCreationForm, IngredientForm, InstructionForm, TagForm
 from .models import Cookbook, Recipe, Ingredient, RecipeInfos, Instruction, Tag, TagType
+from private.models import PersonalNote
 
 
 @login_required
@@ -110,6 +111,7 @@ class RecipeDetailView(DetailView):
         context['ingredients'] = Ingredient.objects.filter(recipe=context['object'])
         context['instructions'] = Instruction.objects.filter(recipe=context['object'])
         context['tags'] = Tag.objects.filter(recipe=context['object'])
+        context['notes'] = PersonalNote.objects.filter(recipe=context['object'])
 
         return context
 
