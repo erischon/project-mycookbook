@@ -24,7 +24,7 @@ class CreateNoteView(CreateView):
         return super(CreateNoteView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy('recipe-detail', args=(self.object.recipe.id,))
+        return reverse_lazy('note-list', args=(self.object.recipe.id,))
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -36,6 +36,9 @@ class CreateNoteView(CreateView):
 class NoteListView(ListView):
     model = PersonalNote
     template_name = 'private/note-list.html'
+
+    def get_queryset(self):
+        return PersonalNote.objects.filter(recipe=self.kwargs.get('pk')).order_by('-date')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
