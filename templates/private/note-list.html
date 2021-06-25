@@ -8,6 +8,8 @@
   <p class="text-center font-semibold text-md">Notes pour la recette :</p>
   <h1 class="text-3xl font-semibold text-center mb-5">{{ recipe.title }}</h1>
 
+  <p class="mx-auto text-center mb-5 sm:mb-0"><a href="{% url 'create-note' recipe.id %}" class="inline-block text-sm font-semibold px-4 py-2 leading-none border border-green-400 bg-green-400 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded-full">Ecrire une note personnelle</a></p>
+
   <!-- <div class="flex mx-auto flex-col sm:w-1/2 bg-gray-100 p-10 rounded shadow"> -->
     <div class="mx-auto sm:w-5/6 p-10 items-start">
 
