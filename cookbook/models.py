@@ -7,6 +7,7 @@ from accounts.models import CustomUser as User
 
 
 class Cookbook(models.Model):
+    """ Coockbook model. """
     name = models.CharField(max_length=200)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
@@ -18,10 +19,12 @@ class Cookbook(models.Model):
 
 
 class LinkType(models.Model):
+    """ Link Type Model. """
     name = models.CharField(max_length=200)
 
 
 class Link(models.Model):
+    """ Link Model. """
     name = models.CharField(max_length=200)
     url = models.URLField(max_length=200)
     cookbook = models.ForeignKey(Cookbook, on_delete=models.CASCADE)
@@ -29,11 +32,13 @@ class Link(models.Model):
 
 
 class Tab(models.Model):
+    """ Tab Model : for create categories inside the cookbook. """
     name = models.CharField(max_length=200)
     cookbook = models.ForeignKey(Cookbook, on_delete=models.CASCADE)
 
 
 class TagType(models.Model):
+    """ Tag type Model. """
     name = models.CharField(max_length=200)
 
     def __str__(self):
@@ -41,6 +46,7 @@ class TagType(models.Model):
 
 
 class RecipeType(models.Model):
+    """ Recipe Type Model. """
     name = models.CharField(max_length=100)
 
     def __str__(self):
@@ -48,6 +54,7 @@ class RecipeType(models.Model):
 
 
 class Recipe(models.Model):
+    """ Recipe Model. """
     title = models.CharField(max_length=200, unique=True)
     description = models.TextField(null=True)
     recipe_type = models.ForeignKey(RecipeType, on_delete=models.CASCADE, blank=True, null=True)
@@ -62,6 +69,7 @@ class Recipe(models.Model):
 
 
 class RecipeInfos(models.Model):
+    """ Recipe Infos Model : the infos about the recipe. """
     slug = models.SlugField(max_length=200, null=True)
     private = models.BooleanField(default=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="creator")
@@ -72,6 +80,7 @@ class RecipeInfos(models.Model):
 
 
 class Ingredient(models.Model):
+    """ Ingredient Model. """
     name = models.CharField(max_length=200)
     measure = models.CharField(max_length=50, null=False)
     quantity = models.IntegerField(null=True)
@@ -85,6 +94,7 @@ class Ingredient(models.Model):
 
 
 class Instruction(models.Model):
+    """ Instruction Model. """
     step = models.IntegerField(null=False)
     instruction = models.TextField(null=False)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null=False)
@@ -100,33 +110,39 @@ class Tag(models.Model):
 
 
 class Tips(models.Model):
+    """ Tips Model. """
     tips = models.TextField(null=True)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, null=False)
 
 
 class Photo(models.Model):
+    """ Photo Model. """
     name = models.CharField(max_length=200)
     photo = models.ImageField(null=True, blank=True, upload_to='recipe/')
 
 
 class Video(models.Model):
+    """ Video Model. """
     name = models.CharField(max_length=200)
     url = models.URLField(null=True)
 
 
 class Media(models.Model):
+    """ Media Type Model. """
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     photo = models.ForeignKey(Photo, on_delete=models.CASCADE, blank=True)
     video = models.ForeignKey(Video, on_delete=models.CASCADE, blank=True)
 
 
 class Note(models.Model):
+    """ Private Note Model. """
     note = models.TextField(null=True)
     cookbook = models.ForeignKey(Cookbook, on_delete=models.CASCADE)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
 
 
 class Favorite(models.Model):
+    """ Recipe Favorite Model. """
     name = models.CharField(max_length=200)
     cookbook = models.ForeignKey(Cookbook, on_delete=models.CASCADE)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)

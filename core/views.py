@@ -5,11 +5,13 @@ from cookbook.models import Cookbook, Recipe
 
 
 def homePage(request):
+    """ Home Page. """
     return render(request, 'core/home.html')
 
 
 @login_required
 def user_admin(request):
+    """ User Page Administration and Cookbook Creation for the first login. """
     try:
         cookbook = Cookbook.objects.get(user=request.user)
     except Cookbook.DoesNotExist:
@@ -19,6 +21,7 @@ def user_admin(request):
 
 @login_required
 def my_cookbook(request):
+    """ Cookbook Page. """
     cookbook_object = Cookbook.objects.get(user=request.user)
     recipes = Recipe.objects.filter(cookbook=cookbook_object)
 

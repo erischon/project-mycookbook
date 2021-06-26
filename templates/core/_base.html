@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="{% static 'css/mystyles.css' %}">
     <link rel="stylesheet" href="{% static 'js/index.js' %}">
 
+    <!-- 3nd -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+
     <title>{% block title %}My CookBook{% endblock title%}</title>
 </head>
 <body class="font-sans tracking-wide leading-relaxed">
@@ -29,15 +33,7 @@
                     </span>
                 </a>
             </div>
-            <!-- <div class="block lg:hidden">
-                <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-                    <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-                </button>
-            </div> -->
             <nav class="block">
-                <!-- <div class="font-semibold lg:flex-grow">
-                    <a href="{% url 'home' %}" class="block mt-4 lg:inline-block lg:mt-0 border-b-2 border-transparent hover:border-gray-500 mr-4">Accueil</a>
-                </div> -->
                 <div class="font-semibold flex sm:flex-none items-end">
                     {% if user.is_authenticated %}
                         <a href="{% url 'my_cookbook' %}" class="block mt-4 lg:inline-block lg:mt-0 mr-4">
@@ -47,9 +43,10 @@
                         <a href="{% url 'logout' %}" class="block mt-4 lg:inline-block lg:mt-0 mr-4"><img class="fill-current h-5 w-5 mr-2" width="54" height="54" src="{% static 'assets/img/logout.svg' %}" alt="Déconnection" title="Déconnection"></a>
 
                     {% else %}
-                         <a href="{% url 'login' %}" class="block lg:inline-block lg:mt-0 mr-4"><img class="fill-current h-7 w-7 mr-2 mb-1" width="54" height="54" src="{% static 'assets/img/login.svg' %}" alt="Connection" title="Connection"></a>
-                        <a href="{% url 'signup' %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded">Créer un Cookbook</a>
-
+                        <div class="flex flex-row justify-around items-end w-full">
+                            <a href="{% url 'signup' %}" class="inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 sm:mt-0 sm:mx-5 uppercase shadow rounded">Créer un Cookbook</a>
+                            <a href="{% url 'login' %}" class="block sm:inline-block sm:mt-0 sm:mx-5"><img class="fill-current h-7 w-7 mr-2 mb-1" width="54" height="54" src="{% static 'assets/img/login.svg' %}" alt="Connection" title="Connection"></a>
+                        </div>
                     {% endif %}
                 </div>
             </nav>
@@ -80,5 +77,6 @@
         </footer>
 
     </div>
+
 </body>
 </html>

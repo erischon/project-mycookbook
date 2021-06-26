@@ -11,15 +11,20 @@
       {% csrf_token %}
 
       <div class="flex flex-col px-2">
-        <p class="text-xl font-semibold my-5">Informations générales</p>
+        <p class="text-xl font-semibold my-5">Informations générales <span class="text-red-500">*</span></p>
 
-        <div class="">{{ recipe_form.title }}</div>
-        <div class="">{{ recipe_form.description }}</div>
-        <div class="mb-2"><span class="text-gray-400 mr-2">{{ recipe_form.recipe_type.label }} :</span> {{ recipe_form.recipe_type }}</div>
-        <div class="">{{ recipe_form.guest }}</div>
-        <div class="">{{ recipe_form.prep_time }}</div>
-        <div class="">{{ recipe_form.cook_time }}</div>
-        <div class="">{{ recipe_form.source }}</div>
+        <div class="m-4 p-4 sm:w-5/6">
+          <div class="sm:w-3/4">
+            <div class="">{{ recipe_form.title }}</div>
+            <div class="">{{ recipe_form.description }}</div>
+            <div class="mb-2"><span class="text-gray-400 mr-2">{{ recipe_form.recipe_type.label }} :</span> {{ recipe_form.recipe_type }}</div>
+            <div class="">{{ recipe_form.guest }}</div>
+            <div class="">{{ recipe_form.prep_time }}</div>
+            <div class="">{{ recipe_form.cook_time }}</div>
+            <div class="">{{ recipe_form.source }}</div>
+          </div>
+        </div>
+
       </div>
 
       {% if recipe_form.errors %}
@@ -30,24 +35,31 @@
         </div>
       {% endif %}
 
+      <!-- Ingredients -->
       <div class="flex flex-col px-2">
 
-        <p class="text-xl font-semibold my-5">Les ingrédients pour cette recette</p>
+        <p class="text-xl font-semibold mt-5">Les ingrédients pour cette recette <span class="text-red-500">*</span></p>
+        <p class="text-sm text-gray-500 mb-5">
+          Les ingrédients nécessaires : leur nom, leur quantité et la mesure utilisée (g, pincée, cl, ...).<br>
+          Pour <strong>la mesure</strong>, mettez unité ou le nom de l'ingrédient quand il y a lieu.<br>
+          Par exemple si vous avez besoin d'une laitue notez :<br>
+          ingrédient : Laitue, quantitée : 1, mesure : unité.
+        </p>
 
-        <div class="m-4 p-4 border border-6 border-gray-500 ingredients-container" id="ingredient_form">
+        <div class="m-4 p-4 border border-6 border-gray-500 ingredients-container sm:w-5/6" id="ingredient_form">
 
           {{ ingredient_formset.management_form }}
 
           <fieldset disabled class="empty-form" style="display: none">
             <fieldset>
-              <div class="flex flex-col sm:flex-row my-2 py-2">
+              <div class="grid sm:grid-cols-11 gap-2 lg:w-5/6 items-center">
 
-                <div class="p-2 gap-2"> {{ ingredient_formset.empty_form.name }} </div>
-                <div class="p-2 gap-2"> {{ ingredient_formset.empty_form.quantity }} </div>
-                <div class="p-2 gap-2"> {{ ingredient_formset.empty_form.measure }} </div>
+                <div class="p-2 gap-2 sm:col-span-5"> {{ ingredient_formset.empty_form.name }} </div>
+                <div class="p-2 gap-2 sm:col-span-2"> {{ ingredient_formset.empty_form.quantity }} </div>
+                <div class="p-2 gap-2 sm:col-span-2"> {{ ingredient_formset.empty_form.measure }} </div>
               
                 <button type="button" data-formset-remove-form class="m-5 w-9 h-9 focus:outline-none">
-                  <img class="fill-current h-6 w-6 m-2" width="54" height="54" src="{% static 'assets/img/delete.svg' %}">
+                  <img class="fill-current h-6 w-6 m-2" width="54" height="54" src="{% static 'assets/img/delete.svg' %}"  title="Effacer" alt="Effacer">
                 </button>
               </div>
 
@@ -57,10 +69,10 @@
           <fieldset class="forms">
             <fieldset>
               {% for ingredient_set in ingredient_formset %}
-                <div class="flex flex-col sm:flex-row my-2 py-2">
-                  <div class="p-2 gap-2"> {{ ingredient_set.name }} </div>
-                  <div class="p-2 gap-2"> {{ ingredient_set.quantity }} </div>
-                  <div class="p-2 gap-2"> {{ ingredient_set.measure }} </div>
+                <div class="grid sm:grid-cols-11 gap-2 lg:w-5/6 items-center">
+                  <div class="p-2 gap-2 sm:col-span-5"> {{ ingredient_set.name }} </div>
+                  <div class="p-2 gap-2 sm:col-span-2"> {{ ingredient_set.quantity }} </div>
+                  <div class="p-2 gap-2 sm:col-span-2"> {{ ingredient_set.measure }} </div>
                 </div>
               {% endfor %}
             </fieldset>
@@ -81,23 +93,27 @@
         </div>
       </div>
 
+      <!-- Instructions -->
       <div class="flex flex-col px-2">  
-        <p class="text-xl font-semibold my-5">Comment faire la recette :</p>
+        <p class="text-xl font-semibold mt-5">Comment faire la recette <span class="text-red-500">*</span></p>
+        <p class="text-sm text-gray-500 mb-5">
+          Les différentes étapes pour arriver au plat. 
+        </p>
 
-        <div class="m-4 p-4 border border-6 border-gray-500 instruction-container" id="instruction_form">
+        <div class="m-4 p-4 border border-6 border-gray-500 instruction-container sm:w-5/6" id="instruction_form">
 
           {{ instruction_formset.management_form }}
 
           <fieldset disabled class="empty-form" style="display: none">
             <fieldset>
-              <div class="flex">
+              <div class="grid sm:grid-cols-9 gap-2 lg:w-5/6 items-start">
 
-                <div class="p-2 gap-2"> {{ instruction_formset.empty_form.step }} </div>
-                <div class="p-2 gap-2"> {{ instruction_formset.empty_form.instruction }} </div>
+                <div class="p-2 gap-2 sm:col-span-2"> {{ instruction_formset.empty_form.step }} </div>
+                <div class="p-2 gap-2 sm:col-span-6"> {{ instruction_formset.empty_form.instruction }} </div>
               
                 <div class="flex">
                   <button type="button" data-formset-remove-form class="m-5 w-9 h-9 focus:outline-none">
-                    <img class="fill-current h-6 w-6 m-2" width="54" height="54" src="{% static 'assets/img/delete.svg' %}">
+                    <img class="fill-current h-6 w-6 m-2" width="54" height="54" src="{% static 'assets/img/delete.svg' %}"  title="Effacer" alt="Effacer">
                   </button>            
                 </div>
               
@@ -109,9 +125,9 @@
           <fieldset class="forms">
             <fieldset>
               {% for instruction_set in instruction_formset %}
-                <div class="flex">
-                  <div class="p-2 gap-2"> {{ instruction_set.step }} </div>
-                  <div class="p-2 gap-2"> {{ instruction_set.instruction }} </div>
+                <div class="grid sm:grid-cols-9 gap-2 lg:w-5/6 items-start">
+                  <div class="p-2 gap-2 sm:col-span-2"> {{ instruction_set.step }} </div>
+                  <div class="p-2 gap-2 sm:col-span-6"> {{ instruction_set.instruction }} </div>
                 </div>
               {% endfor %}
             </fieldset>
@@ -131,22 +147,27 @@
         </div>
       </div>
 
+      <!-- Tags -->
       <div class="flex flex-col px-2">
-        <p class="text-xl font-semibold my-5">Tags :</p>
+        <p class="text-xl font-semibold mt-5">Etiquette(s) <span class="text-red-500">*</span></p>
+        <p class="text-sm text-gray-500 mb-5">
+          Un tag représente une étiquette que vous apposez sur cette recette.<br>
+          C'est un mot-clé qui vous permettra de faire des recherches plus facilement. 
+        </p>
 
-        <div class="m-4 p-4 border border-6 border-gray-500 tag-container" id="tag_form">
+        <div class="m-4 p-4 border border-6 border-gray-500 tag-container rounded sm:w-5/6" id="tag_form">
 
           {{ tag_formset.management_form }}
 
           <fieldset disabled class="empty-form" style="display: none">
             <fieldset>
-              <div class="flex">
+              <div class="grid sm:grid-cols-9 gap-2 lg:w-full items-center">
 
-                <div class="p-2 gap-2"> {{ tag_formset.empty_form.tagtype }} </div>
-                <div class="p-2 gap-2"> {{ tag_formset.empty_form.name }} </div>
+                <div class="p-2 gap-2 sm:col-span-2"> {{ tag_formset.empty_form.tagtype }} </div>
+                <div class="p-2 gap-2 sm:col-span-6"> {{ tag_formset.empty_form.name }} </div>
               
                 <button type="button" data-formset-remove-form class="m-5 w-9 h-9 focus:outline-none">
-                  <img class="fill-current h-6 w-6 m-2" width="54" height="54" src="{% static 'assets/img/delete.svg' %}">
+                  <img class="fill-current h-6 w-6 m-2" width="54" height="54" src="{% static 'assets/img/delete.svg' %}" title="Effacer" alt="Effacer">
                 </button>
               
               </div>
@@ -157,9 +178,9 @@
           <fieldset class="forms">
             <fieldset>
               {% for tag_set in tag_formset %}
-                <div class="flex">
-                  <div class="p-2 gap-2"> {{ tag_set.tagtype }} </div>
-                  <div class="p-2 gap-2"> {{ tag_set.name }} </div>
+                <div class="grid sm:grid-cols-9 gap-2 lg:w-full items-center">
+                  <div class="p-2 sm:col-span-2"> {{ tag_set.tagtype }} </div>
+                  <div class="p-2 sm:col-span-6"> {{ tag_set.name }} </div>
                 </div>
               {% endfor %}
             </fieldset>
@@ -174,7 +195,7 @@
           {% endif %}
 
           <fieldset>
-            <button type="button" class="controls inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 shadow rounded" data-formset-add-form>Ajouter un tag</button>
+            <button type="button" class="controls inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 shadow rounded" data-formset-add-form>Ajouter une étiquette</button>
           </fieldset>
 
         </div>
@@ -182,6 +203,10 @@
 
     <div class="m-5">
       <button class="controls inline-block text-sm text-white px-4 py-2 leading-none border border-gray-700 bg-gray-700 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded" type="submit">Envoyer</button>
+    </div>
+
+    <div>
+      <p><span class="text-red-500">*</span> : ces parties sont obligatoires</p>
     </div>
   </form>
 

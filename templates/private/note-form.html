@@ -1,12 +1,12 @@
 {% extends 'core/_base.html' %}{% load static %}
 
-{% block title %}My CookBook - Edition{% endblock title %}
+{% block title %}My CookBook - Ecrire une Note{% endblock title %}
 
 {% block content %}
 <div class="mx-auto grid-cols-12 w-full mb-10 lg:max-w-screen-lg px-3">
-  {% if user == infos.creator %}
 
-  <h1 class="text-4xl font-semibold text-center mb-5">Modification</h1>
+  <p class="text-center font-semibold text-md">Note sur la recette :</p>
+  <h1 class="text-3xl font-semibold text-center mb-5">{{ recipe.title }}</h1>
 
   <!-- <div class="flex mx-auto flex-col sm:w-1/2 bg-gray-100 p-10 rounded shadow"> -->
     <div class="mx-auto sm:w-2/3 bg-gray-100 p-10 rounded shadow items-start">
@@ -20,16 +20,11 @@
         </div>
       {% endfor %}
 
-      <p class="mt-5">
+      <p class="py-5 sm:py-10">
         <input type="submit" class="inline-block text-sm font-semibold px-4 py-2 leading-none border border-green-400 bg-green-400 hover:bg-white hover:text-black mt-4 lg:mt-0 uppercase shadow rounded-full" value="Valider">
       </p>
     </form>
   </div>
 
-  {% else %}
-
-  <p class="text-center text-xl font-semibold">Désolé {{ user.name }}, vous n'avez rien à faire ici, et je pense que vous le savez ;)</p>
-
-  {% endif%}
 </div>
 {% endblock content %}

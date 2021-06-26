@@ -6,12 +6,14 @@ from .models import Cookbook, Recipe, Ingredient, Instruction, TagType, Tag
 
 
 class CookbookCreationForm(ModelForm):
+    """ Cookbook creation Form (no longer used). """
     class Meta:
         model = Cookbook
         fields = ['name']
 
 
 class RecipeCreationForm(ModelForm):
+    """ Recipe Form. """
     class Meta:
         model = Recipe
         fields = ['title', 'description', 'recipe_type', 'guest', 'prep_time', 'cook_time', 'source']
@@ -25,17 +27,18 @@ class RecipeCreationForm(ModelForm):
             'source': 'Source de la recette'
         }
         widgets = {
-            'title': TextInput(attrs={'placeholder': 'Nom de la recette', 'class': 'bg-gray-50 p-3 mb-4 w-full sm:w-1/2 shadow-md border-0 rounded'}),
-            'description': Textarea(attrs={'placeholder': 'Une description', 'class': 'bg-gray-50 p-3 mb-4 w-full sm:w-1/2 shadow-md rounded', 'rows': 3}),
-            'recipe_type': Select(attrs={'class': 'bg-gray-50 p-3 mb-4 w-full sm:w-1/3 shadow-md border-0 rounded'}),
-            'guest': TextInput(attrs={'placeholder': 'pour combien de personne ?', 'class': 'bg-gray-50 p-3 mb-4 w-full sm:w-1/2 shadow-md border-0 rounded'}),
-            'prep_time': TextInput(attrs={'placeholder': 'Temps de préparation (00:00:00)', 'class': 'bg-gray-50 p-3 mb-4 w-full sm:w-1/2 shadow-md border-0 rounded'}),
-            'cook_time': TextInput(attrs={'placeholder': 'Temps de cuisson (00:00:00)', 'class': 'bg-gray-50 p-3 mb-4 w-full sm:w-1/2 shadow-md border-0 rounded'}),
-            'source': TextInput(attrs={'placeholder': 'Source', 'class': 'bg-gray-50 p-3 mb-4 w-full sm:w-1/2 shadow-md border-0 rounded'}),
+            'title': TextInput(attrs={'placeholder': 'Nom de la recette', 'class': 'bg-gray-50 p-3 mb-4 w-full shadow-md border-0 rounded'}),
+            'description': Textarea(attrs={'placeholder': 'Une description', 'class': 'bg-gray-50 p-3 mb-4 w-full shadow-md rounded', 'rows': 3}),
+            'recipe_type': Select(attrs={'class': 'bg-gray-50 p-3 mb-4 w-full shadow-md border-0 rounded'}),
+            'guest': TextInput(attrs={'placeholder': 'Pour combien de personne ?', 'class': 'bg-gray-50 p-3 mb-4 w-full shadow-md border-0 rounded'}),
+            'prep_time': TextInput(attrs={'placeholder': 'Temps de préparation (heures:minutes:00)', 'class': 'bg-gray-50 p-3 mb-4 w-full shadow-md border-0 rounded'}),
+            'cook_time': TextInput(attrs={'placeholder': 'Temps de cuisson (heures:minutes:00)', 'class': 'bg-gray-50 p-3 mb-4 w-full shadow-md border-0 rounded'}),
+            'source': TextInput(attrs={'placeholder': 'Source', 'class': 'bg-gray-50 p-3 mb-4 w-full shadow-md border-0 rounded'}),
         }
 
 
 class IngredientForm(ModelForm):
+    """ Ingredient Form. """
     class Meta:
         model = Ingredient
         fields = ['name', 'measure', 'quantity']
@@ -47,11 +50,12 @@ class IngredientForm(ModelForm):
         widgets = {
             'name': TextInput(attrs={'placeholder': 'Ingrédient', 'class': 'bg-gray-50 p-3 mb-2 w-full sm:w-full shadow-md border-0 rounded'}),
             'quantity': TextInput(attrs={'placeholder': 'Quantité', 'class': 'bg-gray-50 p-3 mb-2 w-40 sm:w-full shadow-md border-0 rounded'}),
-            'measure': TextInput(attrs={'placeholder': 'Mesure (kg, pincée, ...)', 'class': 'bg-gray-50 p-3 mb-2 w-40 sm:w-full shadow-md border-0 rounded'}),
+            'measure': TextInput(attrs={'placeholder': 'Mesure', 'class': 'bg-gray-50 p-3 mb-2 w-40 sm:w-full shadow-md border-0 rounded'}),
         }
 
 
 class InstructionForm(ModelForm):
+    """ Instruction Form. """
     class Meta:
         model = Instruction
         fields = ['step', 'instruction']
@@ -66,13 +70,15 @@ class InstructionForm(ModelForm):
 
 
 class TagForm(ModelForm):
+    """ Tag Form. """
     class Meta:
         model = Tag
-        fields = ['name', 'tagtype']
+        fields = ['tagtype', 'name']
         labels = {
-            'name': 'Tag ',
-            'tagtype': 'Catégorie ',
+            'name': 'Etiquette ',
+            'tagtype': 'Type ',
         }
         widgets = {
-            'name': TextInput(attrs={'placeholder': 'Nom du tag', 'class': 'bg-gray-50 p-3 mb-2 w-full sm:w-full shadow-md border-0 rounded'}),
+            'name': TextInput(attrs={'placeholder': 'Nom de l\'étiquette', 'class': 'bg-gray-50 p-3 mb-2 sm:mb-0 w-full sm:w-full shadow-md border-0 rounded'}),
+            'tagtype': Select(attrs={'class': 'bg-gray-50 p-3 mb-4 sm:mb-0 w-full shadow-md border-0 rounded'}, choices={'default': 'null'}),
         }

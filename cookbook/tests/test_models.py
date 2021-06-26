@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from django.contrib.auth import get_user_model
 
-from cookbook.models import Cookbook, Recipe, TagType, Tag, Ingredient
+from cookbook.models import Cookbook, Recipe, RecipeType, TagType, Tag, Ingredient
 
 
 class CookbookModelsTest(TestCase):
@@ -40,6 +40,9 @@ class CookbookModelsTest(TestCase):
             tagtype=self.tagtype,
             recipe=self.recipe,
         )
+        self.recipe_type = RecipeType.objects.create(
+            name='RecipeType test',
+        )
 
     def test_cookbook_name(self):
         """ """
@@ -75,3 +78,10 @@ class CookbookModelsTest(TestCase):
         tag_name = tag.name
 
         self.assertEquals(tag_name, str(tag))
+
+    def test_recipetype_name(self):
+        """ """
+        recipe_type = RecipeType.objects.get(name='RecipeType test')
+        recipe_type_name = recipe_type.name
+
+        self.assertEquals(recipe_type_name, str(recipe_type))
