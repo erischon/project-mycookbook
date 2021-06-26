@@ -14,4 +14,4 @@ class SignupPageTests(TestCase):
         """ """
         self.assertEqual(self.response.status_code, 200)
         self.assertTemplateUsed(self.response, 'registration/signup.html')
-        self.assertContains(self.response, 'Sign Up')
+        self.assertContains(self.response, 'Créer mon Cookbook')
