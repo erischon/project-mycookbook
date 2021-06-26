@@ -2,6 +2,17 @@
 
 # Project My CookBook
 
+## Release 0.1.2 : Prise de note sur une recette
+
+### Release 0.1.2-a.1 :
+
+- Backend
+    - Ajout de notes personnelles sur les recettes
+- Frontend
+    - Modification du design des formulaires
+- Divers
+    - Coverage à 97%
+
 ## Release 0.1.1 : Gestion des recettes
 
 ### Release 0.1.1-a.1 : CRUD
