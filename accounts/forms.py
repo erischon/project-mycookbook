@@ -7,14 +7,13 @@ class CustomUserCreationForm(UserCreationForm):
     """ Custom User Form. """
     class Meta:
         model = get_user_model()
-        fields = ('email', 'username')
+        fields = ('username', 'email')
         labels = {
-            'username': 'Prénom :',
-            'email': 'Adresse mail :',
+            'username': 'Nom d\'utilisateur :',
+            'email': 'Adresse email :',
             'password1': 'Mot de passe :',
             'password2': 'Confirmez votre mot de passe :'
         }
-
 
 class CustomUserChangeForm(UserChangeForm):
     """ Custom User Change Form. """
