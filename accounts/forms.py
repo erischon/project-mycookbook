@@ -20,7 +20,7 @@ class CustomUserCreationForm(UserCreationForm):
 class CustomAuthenticationForm(AuthenticationForm):
     """ Custom Login Form. """
     username = UsernameField(
-        label='Nom d\'utilisateur',
+        label='Nom d\'utilisateur ',
         widget=forms.TextInput(attrs={'autofocus': True})
     )
 
