@@ -15,6 +15,7 @@ class CustomUserCreationForm(UserCreationForm):
             'password2': 'Confirmez votre mot de passe :'
         }
 
+
 class CustomUserChangeForm(UserChangeForm):
     """ Custom User Change Form. """
     class Meta:
