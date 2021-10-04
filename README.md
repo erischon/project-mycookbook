@@ -2,6 +2,8 @@
 
 # Project My CookBook
 
+## Project Paused
+
 ## Release 0.1.2 : Prise de note sur une recette
 
 ### Release 0.1.2-a.1 :
